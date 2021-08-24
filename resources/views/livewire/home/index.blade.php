@@ -8,7 +8,7 @@
     </div>
     <div class="flex flex-col justify-center items-start  p-40">
         <div class="text-white">
-            <u class="flex justify-center">Backend Developer</u>
+            <h2 class="flex justify-center font-bold text-2xl">Backend Developer</h2>
             <p class="text-xl">
                 Ready for new challenges and finding new ways to level up. 
                 I enjoy working in a team environment where teamwork and communication skills are key. 
