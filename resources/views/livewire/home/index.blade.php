@@ -12,6 +12,10 @@
         font-family: 'IBM Plex Sans Thai', sans-serif;
     }
 
+    p, .content, ul>li {
+        font-family: 'Ubuntu', sans-serif;
+    }
+
     .zigzag {
         background: 
         linear-gradient(135deg, black 25%, transparent 25%) -50px 0,
