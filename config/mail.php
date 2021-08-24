@@ -15,6 +15,11 @@ return [
 
     'default' => env('MAIL_MAILER', 'smtp'),
 
+    'personal' => [
+        'email' => env('PERSONAL_EMAIL', 'erickokkuan@gmail.com'),
+        'name' => env('PERSONAL_NAME', 'Eric Heng'),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Mailer Configurations
@@ -84,8 +89,8 @@ return [
     */
 
     'from' => [
-        'address' => env('MAIL_FROM_ADDRESS', 'hello@example.com'),
-        'name' => env('MAIL_FROM_NAME', 'Example'),
+        'address' => env('MAIL_FROM_ADDRESS', 'eric.hengkokkuan@gmail.com'),
+        'name' => env('MAIL_FROM_NAME', 'Eric Profile Site'),
     ],
 
     /*

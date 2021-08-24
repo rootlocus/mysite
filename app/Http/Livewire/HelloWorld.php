@@ -15,7 +15,7 @@ class HelloWorld extends Component
     public $updated = 'not updated';
 
     // public function mount(Request $request, $name)
-    public function mount($name)
+    public function mount($name = "DEFAULT")
     {
         // $this->name = $request->input('name', $name);
         $this->name = $name;
@@ -42,5 +42,10 @@ class HelloWorld extends Component
     public function resetName($name = "DEFAULT")
     {
         $this->name = $name;
+    }
+
+    public function fuck()
+    {
+        dd("FUCK");
     }
 }

@@ -9,11 +9,12 @@
     </select>
     {{ implode(', ', $greeting) }} {{ $name }} @if ($loud) ! @endif
 
-    <!-- <button wire:click="resetName($event.target.innerText)">Reset Name</button> -->
-    <!-- <form action="#" wire:submit.prevent="resetName('Bingo')"> -->
+    <button wire:click="resetName($event.target.innerText)">Reset Name2</button>
+    {{-- <form action="#" wire:submit.prevent="resetName('Bingo')"> --}}
     <form action="#" wire:submit.prevent="$set('name', 'BINGO')">
         <button>Reset Name</button>
     </form>
     {{ $hydrated }}
     {{ $updated }}
+    <button wire:click="fuck">TEST</button>
 </div>
