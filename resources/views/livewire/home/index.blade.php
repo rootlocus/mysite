@@ -1,12 +1,24 @@
+<style>
+    html { /* body won't work ¯\_(ツ)_/¯ */
+        scroll-snap-type: y proximity;
+    }
+
+    section {
+        /* height: 100vh; */
+        /* width: 100vw; */
+        flex-basis: 50%;
+        scroll-snap-align: start;
+    }
+</style>
+
 <div class="h-full">
-    <div class="flex justify-center items-center h-screen bg-black">
+    <section class="flex justify-center items-center h-screen bg-black">
         <img src="{{ asset('storage/images/duck.png')}}" style="height: 150px;"/>
         <h1 class="text-white font-bold text-8xl ">
             ERIC HENG
         </h1>
-
-    </div>
-    <div class="flex flex-col justify-center items-start px-40 pt-20 bg-gray-900">
+    </section>
+    <section class="flex flex-col justify-center items-start px-40 pt-20 bg-gray-900">
         <div class="text-white">
             <h2 class="flex justify-center font-bold text-2xl">Backend Developer</h2>
             <p class="text-xl">
@@ -16,5 +28,5 @@
             </p>
         </div>
         <x-timeline.main />
-    </div>
+    </section>
 </div>
