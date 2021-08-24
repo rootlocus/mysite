@@ -3,7 +3,7 @@
         <div class="flex justify-center items-start">
             <img src="{{ asset('storage/images/duck.png')}}" style="height: 50px;"/>
         </div>
-        <div class="absolute border-dotted border-2 border-blue-500 h-full" style="left: 50%"></div>\
+        <div class="absolute border-dashed border-2 border-white h-full" style="left: 50%"></div>
         <x-timeline.section
             direction='right-timeline'
             title='DXC Technology (Previously known as CSC)'
