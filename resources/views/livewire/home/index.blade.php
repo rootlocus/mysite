@@ -47,11 +47,27 @@
 </style>
 
 <div class="h-full">
-    <section class="flex justify-center items-center h-screen gradientShade">
-        <img src="{{ asset('storage/images/duck.png')}}" style="height: 150px;"/>
-        <h1 class="text-white text-8xl title">
-            ERIC HENG
-        </h1>
+    <section class="gradientShade h-screen">
+        <div class="h-full flex flex-col justify-center items-center">
+            <div class="flex flex-row items-center">
+                <img src="{{ asset('storage/images/duck.png')}}" style="height: 150px;"/>
+                <h1 class="text-white text-8xl title">
+                    ERIC HENG
+                </h1>
+            </div>
+            <div class="mt-10 flex flex-row text-white space-x-4">
+                <span style="font-size: 1em; color: white;">
+                    <a href="https://www.linkedin.com/in/kok-kuan-heng-00369063/" target="_blank">
+                        <i class="fab fa-linkedin fa-2x"></i>
+                    </a>
+                </span>
+                <span style="font-size: 1em; color: white;">
+                    <a href="https://www.instagram.com/erickokkuan/">
+                        <i class="fab fa-instagram fa-2x"></i>
+                    </a>
+                </span>
+            </div>
+        </div>
     </section>
     <section class="flex flex-col justify-center items-start px-40 pt-5 bg-gray-800">
         <div class="text-white">

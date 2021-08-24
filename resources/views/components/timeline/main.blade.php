@@ -4,7 +4,7 @@
             <span style="font-size: 1em; color: white;">
                 <i class="fas fa-graduation-cap"></i>
                 <b><a href="https://monash.edu.my/" class="hover:underline hover:text-blue-800">Graduated (Sunway Monash)</a></b>
-              </span>
+            </span>
         </div>
         <div class="absolute border-dashed border-2 border-white h-full" style="left: 50%"></div>
         <x-timeline.section
