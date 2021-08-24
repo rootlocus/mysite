@@ -6,7 +6,7 @@
         </h1>
 
     </div>
-    <div class="flex flex-col justify-center items-start  p-40">
+    <div class="flex flex-col justify-center items-start px-40 pt-20">
         <div class="text-white">
             <h2 class="flex justify-center font-bold text-2xl">Backend Developer</h2>
             <p class="text-xl">

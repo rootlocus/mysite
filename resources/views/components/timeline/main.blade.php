@@ -1,7 +1,10 @@
 <div class="container mx-auto w-full h-full">
     <div class="relative wrap overflow-hidden p-10 h-full">
         <div class="flex justify-center items-start">
-            <img src="{{ asset('storage/images/duck.png')}}" style="height: 50px;"/>
+            <span style="font-size: 1em; color: white;">
+                <i class="fas fa-graduation-cap"></i>
+                <b><a href="https://monash.edu.my/" class="hover:underline hover:text-blue-800">Graduated (Sunway Monash)</a></b>
+              </span>
         </div>
         <div class="absolute border-dashed border-2 border-white h-full" style="left: 50%"></div>
         <x-timeline.section
@@ -10,7 +13,7 @@
             titleLink="https://www.dxc.com/my/en"
             year="2014 - 2017"
             tools="AS400, SMART400, CLLE, CL/400, IBM DB2//400 relational database"
-            >
+        >
             <li>Data migration to new GROUP/400 system.</li>
             <li>Develop new and enhance existing programs.</li>
             <li>Create & enhance business objects, screens, reports, table programs, batch programs</li>
@@ -25,7 +28,7 @@
             titleLink="https://finatext.com/"
             year="2017 - 2019"
             tools="Ruby On Rails, Google Analytics, Adjust, FB Pixels, Google Scripts, Zapier"
-            >
+        >
             <li>Requirement gathering and testing of Pipster mobile application.</li>
             <li>Designing functional specifications for new mobile applications and change requests.</li>
             <li>Setting up analytic tools for product.</li>
@@ -39,7 +42,7 @@
             titleLink="https://www.supplycart.my/"
             year="2019 - 2021"
             tools="Laravel, Vue.Js, Tailwind, InertiaJs, MySQL, Postgres, Linux, PhpUnit"
-            >
+        >
             <li>Developed and improved procurement processes.</li>
             <li>Worked on both internal tools and product website.</li>
             <b class="underline">Internal</b>
@@ -62,6 +65,8 @@
         </x-timeline.section>
     </div>
     <div class="flex justify-center items-start">
-        <img src="{{ asset('storage/images/duck.png')}}" style="height: 50px;"/>
+        <span style="font-size: 3em; color: white;">
+            <i class="fas fa-question-circle"></i>
+          </span>
     </div>
 </div>
