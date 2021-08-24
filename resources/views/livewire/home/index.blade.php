@@ -15,6 +15,6 @@
                 Been a programmer since 2014 which is about {{ $years }} years.
             </p>
         </div>
-        <x-timeline />
+        <x-timeline.main />
     </div>
 </div>
