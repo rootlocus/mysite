@@ -1,12 +1,12 @@
 <div class="container mx-auto w-full h-full">
     <div class="relative wrap overflow-hidden p-10 h-full">
         <div class="flex justify-center items-start">
-            <span style="font-size: 1em; color: white;">
+            <span style="font-size: 1em;" class="text-indigo-800">
                 <i class="fas fa-graduation-cap"></i>
                 <b><a href="https://monash.edu.my/" class="hover:underline hover:text-blue-800">Graduated (Sunway Monash)</a></b>
             </span>
         </div>
-        <div class="absolute border-dashed border-2 border-white h-full" style="left: 50%"></div>
+        <div class="absolute border-dashed border-2 border-indigo-800 h-full" style="left: 50%"></div>
         <x-timeline.section
             direction='right-timeline'
             title='DXC Technology (Previously known as CSC)'
@@ -65,7 +65,7 @@
         </x-timeline.section>
     </div>
     <div class="flex justify-center items-start">
-        <span style="font-size: 3em; color: white;">
+        <span style="font-size: 3em;" class="text-indigo-800">
             <i class="fas fa-question-circle"></i>
           </span>
     </div>

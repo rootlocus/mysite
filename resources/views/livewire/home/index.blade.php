@@ -2,8 +2,8 @@
     <section class="gradientShade h-screen">
         <div class="h-full flex flex-col justify-center items-center">
             <div class="flex flex-row items-center">
-                <img src="{{ asset('storage/images/duck.png')}}" style="height: 150px;"/>
-                <h1 class="text-white text-8xl title">
+                {{-- <img src="{{ asset('storage/images/duck.png')}}" style="height: 150px;"/> --}}
+                <h1 class="text-white text-8xl font-bold title border-t-4 border-b-8 border-r-8 border-l-4 border-solid filter drop-shadow-lg">
                     ERIC HENG
                 </h1>
             </div>
@@ -26,8 +26,8 @@
             </div>
         </div>
     </section>
-    <section class="flex flex-col justify-center items-start px-40 pt-5 bg-gray-800">
-        <div class="text-white text-center ">
+    <section class="flex flex-col justify-center items-start px-40 pt-5 bg-white">
+        <div class="text-indigo-800 text-center ">
             <h2 class="font-bold text-2xl">Backend Developer</h2>
             <p class="text-xl px-80 pt-2">
                 Ready for new challenges and finding new ways to level up. 
