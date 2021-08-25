@@ -13,6 +13,12 @@ class Index extends Component
     public $message;
     public $isDisabled = true;
 
+    protected $rules = [
+        'message' => 'required|min:6',
+        'email' => 'required|email',
+        'name' => 'required',
+    ];
+
     public function mount()
     {
         $this->years = now()->year - 2014;
@@ -41,12 +47,10 @@ class Index extends Component
         return view('livewire.home.index');
     }
 
-    public function updated() 
+    public function updated()
     {
-
-        if ($this->message !== null && $this->email !== null && $this->name !== null)
-        {
-            $this->isDisabled = false;
-        }
+        $this->isDisabled = true;
+        $this->validate();
+        $this->isDisabled = false;
     }
 }
