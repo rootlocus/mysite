@@ -29,8 +29,8 @@ class Index extends Component
         $this->isDisabled = true;
 
         Mail::send('emails.contact-me', array(
-            'name' => config('mail.personal.name'),
-            'email' => config('mail.personal.email'),
+            'name' => $this->name,
+            'email' => $this->email,
             'sentMessage' => $this->message,
         ), function ($build)  {
             $build
