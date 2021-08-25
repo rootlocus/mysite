@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset_secure('css/app.css') }}" rel="stylesheet">
     {{-- Awesome icons --}}
     <script src="https://kit.fontawesome.com/a17b9c82a3.js" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/6808795aaa.js"></script>
@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@600&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
-    <link href="{{ asset('css/home.css') }}" rel="stylesheet"  type="text/css">
+    <link href="{{ asset_secure('css/home.css') }}" rel="stylesheet"  type="text/css">
     <title>Eric Heng - Web Developer, PC Gamer & Magic Enthusiast</title>
     @livewireStyles
 </head>
