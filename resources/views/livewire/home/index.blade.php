@@ -1,5 +1,5 @@
 <div class="h-full">
-    <section class="gradientShade h-screen">
+    <section class="gradientShadeGray h-screen">
         <div class="h-full flex flex-col justify-center items-center">
             <div class="flex flex-row items-center">
                 {{-- <img src="{{ asset('storage/images/duck.png')}}" style="height: 150px;"/> --}}
@@ -19,14 +19,26 @@
                     </a>
                 </span>
                 <span style="font-size: 1em; color: white;">
+                    <a href="https://github.com/rootlocus/">
+                        <i class="fab fa-github fa-2x"></i>
+                    </a>
+                </span>
+                <span style="font-size: 1em; color: white;">
                     <a href="https://www.instagram.com/erickokkuan/">
                         <i class="fab fa-instagram fa-2x"></i>
                     </a>
                 </span>
             </div>
+            <div class="absolute inset-x-0 bottom-0 h-16 flex flex-row justify-center items-center text-white">
+                <span style="font-size: 1em; color: white;" class="animate-bounce h-10 ">
+                    <a href="#timeline" class="scrollLink">
+                        <i class="fa fa-angle-down" aria-hidden="true"></i>
+                    </a>
+                </span>
+            </div>
         </div>
     </section>
-    <section class="flex flex-col justify-center items-start px-40 pt-5 bg-white">
+    <section class="gradientShadeWinter flex flex-col justify-center items-start px-40 pt-5" id="timeline">
         <div class="text-indigo-800 text-center ">
             <h2 class="font-bold text-2xl">Backend Developer</h2>
             <p class="text-xl px-80 pt-2">
@@ -37,16 +49,14 @@
         </div>
         <x-timeline.main/>
     </section>
-    <section class="bg-gray-700 h-screen">
+    <section class="gradientShadeWhale h-screen">
         <div class="h-full flex flex-col justify-center items-center">
-        <div class="text-white text-center"> 
+        <div class="text-indigo-800 text-center"> 
             <h2 class="font-bold text-2xl">Contact Me</h2>
             <p class="text-l py-2">
                 Just drop a message if you want to reach out to me!
             </p>
         </div>
-
-        <x-contact-me.form/>
+        <x-contact-me.form :isDisabled="$isDisabled"/>
     </section>
-
 </div>  

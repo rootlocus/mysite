@@ -1,5 +1,6 @@
 html {
     scroll-snap-type: y proximity;
+    scroll-behavior: smooth;
 }
 
 section {
@@ -25,11 +26,25 @@ p, .content, ul>li {
     background-color: #232323;
 }
 
-.gradientShade {
+.gradientShadeGray {
     background: linear-gradient(-60deg, #000000, #232526, #414345, #232526, #000000);
+    /* background: linear-gradient(-60deg, #434343, #000000, #434343); */
     background-size: 400% 400%;
     animation: gradient 10s ease infinite;
 }
+
+.gradientShadeRevealing {
+    background: linear-gradient(-60deg,  #d5d0e5    , #f3e6e8, #d5d0e5   , #f3e6e8);
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+}
+
+.gradientShadeWhale {
+    background: linear-gradient(-60deg, #6991c7, #a3bded, #6991c7, #a3bded  );
+    background-size: 400% 400%;
+    animation: gradient 10s ease infinite;
+}
+
 
 @keyframes gradient {
     0% {

@@ -11,6 +11,7 @@ class Index extends Component
     public $email;
     public $name;
     public $message;
+    public $isDisabled = true;
 
     public function mount()
     {
@@ -19,6 +20,8 @@ class Index extends Component
     
     public function submit()
     {
+        $this->isDisabled = true;
+
         Mail::send('emails.contact-me', array(
             'name' => config('mail.personal.name'),
             'email' => config('mail.personal.email'),
@@ -38,4 +41,12 @@ class Index extends Component
         return view('livewire.home.index');
     }
 
+    public function updated() 
+    {
+
+        if ($this->message !== null && $this->email !== null && $this->name !== null)
+        {
+            $this->isDisabled = false;
+        }
+    }
 }
