@@ -3,7 +3,7 @@
         <div class="h-full flex flex-col justify-center items-center">
             <div class="flex flex-row items-center">
                 {{-- <img src="{{ asset('storage/images/duck.png')}}" style="height: 150px;"/> --}}
-                <h1 class="text-white text-8xl font-bold title border-t-4 border-b-8 border-r-8 border-l-4 border-solid filter drop-shadow-lg">
+                <h1 class="text-white md:text-8xl text-6xl font-bold title border-t-2 border-b-4 border-r-4 border-l-2 md:border-t-4 md:border-b-8 md:border-r-8 md:border-l-4 border-solid filter drop-shadow-lg">
                     ERIC HENG
                 </h1>
             </div>
@@ -38,10 +38,10 @@
             </div>
         </div>
     </section>
-    <section class="gradientShadeWinter flex flex-col justify-center items-start px-40 pt-5" id="timeline">
+    <section class="gradientShadeWinter flex flex-col justify-center items-start md:px-40 pt-5" id="timeline">
         <div class="text-indigo-800 text-center ">
             <h2 class="font-bold text-2xl">Backend Developer</h2>
-            <p class="text-xl px-80 pt-2">
+            <p class="text-xl md:px-80 pt-2">
                 Ready for new challenges and finding new ways to level up. 
                 I enjoy working in a team environment where teamwork and communication skills is key. 
                 Been a programmer since 2014 which is about {{ $years }} years.
