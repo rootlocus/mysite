@@ -16,6 +16,15 @@ p, .content, ul>li {
     font-family: 'Ubuntu', sans-serif;
 }
 
+/* #content-desktop {
+} */
+#content-mobile {display: none;}
+
+@media screen and (max-width: 768px) {
+    #content-desktop {display: none;}
+    #content-mobile {display: block;}
+}
+
 .zigzag {
     background: 
     linear-gradient(135deg, black 25%, transparent 25%) -50px 0,
