@@ -12,7 +12,7 @@
             titleLink="https://www.supplycart.my/"
             year="2019 - 2021"
             tools="Laravel, Vue.Js, Tailwind, InertiaJs, MySQL, Postgres, Linux, PhpUnit"
-            image="{{  env('APP_ENV') == 'local' ? asset('storage/images/supplycart_logo.png' ) : secure_asset('storage/images/supplycart_logo.png' ) }}"
+            image="{{  config('app.env') == 'local' ? asset('storage/images/supplycart_logo.png' ) : secure_asset('storage/images/supplycart_logo.png' ) }}"
         >
             <li>Developed and improved procurement processes.</li>
             <li>Worked on both internal tools and product website.</li>
@@ -41,7 +41,7 @@
             titleLink="https://finatext.com/"
             year="2017 - 2019"
             tools="Ruby On Rails, Google Analytics, Adjust, FB Pixels, Google Scripts, Zapier"
-            image="{{ env('APP_ENV') == 'local' ? asset('storage/images/finatext_logo.png' ) : secure_asset('storage/images/finatext_logo.png' ) }}"
+            image="{{ config('app.env') == 'local' ? asset('storage/images/finatext_logo.png' ) : secure_asset('storage/images/finatext_logo.png' ) }}"
         >
             <li>Requirement gathering and testing of Pipster mobile application.</li>
             <li>Designing functional specifications for new mobile applications and change requests.</li>
@@ -57,7 +57,7 @@
             titleLink="https://www.dxc.com/my/en"
             year="2014 - 2017"
             tools="AS400, SMART400, CLLE, CL/400, IBM DB2//400 relational database"
-            image="{{ env('APP_ENV') == 'local' ? asset('storage/images/dxc_logo.png' ) : secure_asset('storage/images/dxc_logo.png' ) }}"
+            image="{{ config('app.env') == 'local' ? asset('storage/images/dxc_logo.png' ) : secure_asset('storage/images/dxc_logo.png' ) }}"
             
         >
             <li>Data migration to new GROUP/400 system.</li>
