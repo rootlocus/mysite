@@ -12,7 +12,7 @@
             titleLink="https://www.supplycart.my/"
             year="2019 - 2021"
             tools="Laravel, Vue.Js, Tailwind, InertiaJs, MySQL, Postgres, Linux, PhpUnit"
-            image="{{  config('app.env') == 'local' ? asset('storage/images/supplycart_logo.png' ) : secure_asset('storage/images/supplycart_logo.png' ) }}"
+            image="{{  config('app.env') == 'local' ? asset('storage/images/supplycart_logo.png') : secure_asset('storage/images/supplycart_logo.png' ) }}"
         >
             <li>Developed and improved procurement processes.</li>
             <li>Worked on both internal tools and product website.</li>

@@ -4,6 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="{{ config('app.env') == 'local' ? asset('css/app.css') : secure_asset('css/app.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ config('app.env') == 'local' ? asset('storage/images/favicon.png') : secure_asset('storage/images/favicon.png')}}">
     {{-- Awesome icons --}}
     <script src="https://kit.fontawesome.com/a17b9c82a3.js" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/6808795aaa.js"></script>

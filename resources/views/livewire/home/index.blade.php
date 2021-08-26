@@ -1,8 +1,8 @@
 <div class="h-full">
     <section class="gradientShadeGray h-screen">
         <div class="h-full flex flex-col justify-center items-center">
-            <div class="flex flex-row items-center">
-                {{-- <img src="{{ asset('storage/images/duck.png')}}" style="height: 150px;"/> --}}
+            <div class="flex flex-col flex-row space-y-2 items-center">
+                <img src="{{ asset('storage/images/myicon.svg')}}" style="height: 120px;"/>
                 <h1 class="text-white md:text-8xl text-6xl font-bold title border-t-2 border-b-4 border-r-4 border-l-2 md:border-t-4 md:border-b-8 md:border-r-8 md:border-l-4 border-solid filter drop-shadow-lg">
                     ERIC HENG
                 </h1>
