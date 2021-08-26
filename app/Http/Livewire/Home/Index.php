@@ -7,6 +7,7 @@ use Livewire\Component;
 
 class Index extends Component
 {
+    public $title = 'Web Developer, PC Gamer & Magic Enthusiast';
     public $years;
     public $email;
     public $name;
@@ -44,7 +45,7 @@ class Index extends Component
 
     public function render()
     {
-        return view('livewire.home.index');
+        return view('livewire.home.index')->layoutData([ 'title' => $this->title ]);
     }
 
     public function updated()

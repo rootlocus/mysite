@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@600&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link href="{{ config('app.env') == 'local' ? asset('css/home.css') : secure_asset('css/home.css') }}" rel="stylesheet"  type="text/css">
-    <title>Eric Heng - Web Developer, PC Gamer & Magic Enthusiast</title>
+    <title>Eric Heng - {{ $title ? $title : 'Web Developer, PC Gamer & Magic Enthusiast' }}</title>
     @livewireStyles
 </head>
 <body>
