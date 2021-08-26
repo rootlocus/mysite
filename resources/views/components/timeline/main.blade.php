@@ -72,7 +72,7 @@
     <div class="flex justify-center items-start">
         <span style="font-size: 1em;" class="text-indigo-800">
             <i class="fas fa-graduation-cap"></i>
-            <b><a href="https://monash.edu.my/" class="hover:underline hover:text-blue-800">Graduated (Sunway Monash)</a></b>
+            <b><a href="https://monash.edu.my/" class="hover:underline hover:text-blue-800">Graduated 2013 (Sunway Monash)</a></b>
         </span>
     </div>
 </div>
