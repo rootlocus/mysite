@@ -7,6 +7,8 @@
     {{-- Awesome icons --}}
     <script src="https://kit.fontawesome.com/a17b9c82a3.js" crossorigin="anonymous"></script>
     <script src="https://use.fontawesome.com/6808795aaa.js"></script>
+    {{-- alpine --}}
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.8.2/dist/alpine.min.js" defer></script>
     {{-- Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>

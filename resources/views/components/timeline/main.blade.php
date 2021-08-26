@@ -8,10 +8,11 @@
         <div class="absolute border-dashed border-2 border-indigo-800 h-full" style="left: 50%"></div>
         <x-timeline.section
             direction='right-timeline'
-            title='Supplycart Technologies Sdn. Bhd.'
+            title='Supplycart Technologies'
             titleLink="https://www.supplycart.my/"
             year="2019 - 2021"
             tools="Laravel, Vue.Js, Tailwind, InertiaJs, MySQL, Postgres, Linux, PhpUnit"
+            image="{{ asset('storage/images/supplycart_logo.png' ) }}"
         >
             <li>Developed and improved procurement processes.</li>
             <li>Worked on both internal tools and product website.</li>
@@ -36,10 +37,11 @@
 
         <x-timeline.section
             direction='left-timeline flex-row-reverse'
-            title='Finatext Malaysia Sdn. Bhd.'
+            title='Finatext Malaysia'
             titleLink="https://finatext.com/"
             year="2017 - 2019"
             tools="Ruby On Rails, Google Analytics, Adjust, FB Pixels, Google Scripts, Zapier"
+            image="{{ asset('storage/images/finatext_logo.png' ) }}"
         >
             <li>Requirement gathering and testing of Pipster mobile application.</li>
             <li>Designing functional specifications for new mobile applications and change requests.</li>
@@ -51,10 +53,12 @@
 
         <x-timeline.section
             direction='right-timeline'
-            title='DXC Technology (Previously known as CSC)'
+            title='DXC Technology'
             titleLink="https://www.dxc.com/my/en"
             year="2014 - 2017"
             tools="AS400, SMART400, CLLE, CL/400, IBM DB2//400 relational database"
+            image="{{ asset('storage/images/dxc_logo.png' ) }}"
+            
         >
             <li>Data migration to new GROUP/400 system.</li>
             <li>Develop new and enhance existing programs.</li>
