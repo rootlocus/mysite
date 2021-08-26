@@ -38,10 +38,10 @@
             </div>
         </div>
     </section>
-    <section class="gradientShadeWinter flex flex-col justify-center items-start md:px-40 pt-5" id="timeline">
+    <section class="gradientShadeWinter flex flex-col justify-center items-start md:px-40 py-5" id="timeline">
         <div class="text-indigo-800 text-center ">
             <h2 class="font-bold text-2xl">Backend Developer</h2>
-            <p class="text-xl md:px-80 pt-2">
+            <p class="text-l md:text-xl md:px-80 pt-2 px-8 md:px-0">
                 Ready for new challenges and finding new ways to level up. 
                 I enjoy working in a team environment where teamwork and communication skills is key. 
                 Been a programmer since 2014 which is about {{ $years }} years.
