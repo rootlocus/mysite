@@ -1,6 +1,6 @@
 <div class="flex flex-row md:h-screen h-full bg-gray-850">
     <div class="w-1/2 flex items-center justify-center"  id="content-desktop">
-        <img src="{{ asset('storage/images/myicon.svg')}}" style="height: 120px;"/>
+        <img src="{{ config('app.env') == 'local' ? asset('storage/images/myicon.svg') : secure_asset('storage/images/myicon.svg')}}" style="height: 120px;"/>
     </div>
     <div class="md:w-1/2 flex flex-row">
         <div class="bg-gray-750 text-gray-400 rounded shadow-xl py-5 px-5 md:w-3/4 flex flex-col">
@@ -8,7 +8,7 @@
                 <h1 class="text-4xl font-semibold leading-tight flex-1 title">About Me</h1>
             </div>
             <div class=""  id="content-mobile">
-                <img src="{{ asset('storage/images/myicon.svg')}}" style="height: 120px;"/>
+                <img src="{{ config('app.env') == 'local' ? asset('storage/images/myicon.svg') : secure_asset('storage/images/myicon.svg') }}" style="height: 120px;"/>
             </div>
             <div class="md:h-1/2 flex flex-col md:mt-40 mt-4 text-white content">
                 <div class="h-3/8 pb-4">
