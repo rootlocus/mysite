@@ -9,7 +9,9 @@
                 <h1 class="text-4xl font-semibold leading-tight flex-1 title">About Me</h1>
             </div>
             <div class=""  id="content-mobile">
-                <img src="{{ local_images('myicon.svg') }}" style="height: 120px;"/>
+                <x-about-me.gallery/>
+
+                {{-- <img src="{{ local_images('myicon.svg') }}" style="height: 120px;"/> --}}
             </div>
             <div class="md:h-1/2 flex flex-col md:mt-40 mt-4 text-white content">
                 <div class="h-3/8 pb-4">
