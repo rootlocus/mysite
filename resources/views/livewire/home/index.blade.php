@@ -40,14 +40,6 @@
     </section>
     <section class="gradientShadeWinter flex flex-col justify-center items-start md:px-40 py-5" id="timeline">
         <div class="text-indigo-800 text-center ">
-            {{-- <div x-data="{ isOpen: false }">
-                <button @click="isOpen = !isOpen">
-                    OPEN
-                </button>
-                <div x-show="isOpen">
-                    HERE
-                </div>
-            </div> --}}
             <h2 class="font-bold text-2xl">Backend Developer</h2>
             <p class="text-l md:text-xl md:px-80 pt-2 px-8 md:px-0">
                 Ready for new challenges and finding new ways to level up. 
