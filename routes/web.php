@@ -15,5 +15,9 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', App\Http\Livewire\Home\Index::class);
 Route::get('/about-me', App\Http\Livewire\AboutMe\Index::class);
-Route::get('/playground/steam', App\Http\Livewire\Playground\Steam::class);
+Route::prefix('playground')->group(function () {
+    Route::get('/', App\Http\Livewire\Playground\Index::class);
+    Route::get('/steam', App\Http\Livewire\Playground\Steam::class);
+});
+
 Route::get('/test', App\Http\Livewire\HelloWorld::class);
