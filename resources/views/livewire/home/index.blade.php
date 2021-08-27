@@ -18,13 +18,13 @@
                         <i class="fab fa-linkedin fa-2x"></i>
                     </a>
                 </span>
-                <span style="font-size: 1em; color: white;" target="_blank">
-                    <a href="https://github.com/rootlocus/">
+                <span style="font-size: 1em; color: white;">
+                    <a href="https://github.com/rootlocus/" target="_blank">
                         <i class="fab fa-github fa-2x"></i>
                     </a>
                 </span>
-                <span style="font-size: 1em; color: white;" target="_blank">
-                    <a href="https://www.instagram.com/erickokkuan/">
+                <span style="font-size: 1em; color: white;">
+                    <a href="https://www.instagram.com/erickokkuan/" target="_blank">
                         <i class="fab fa-instagram fa-2x"></i>
                     </a>
                 </span>

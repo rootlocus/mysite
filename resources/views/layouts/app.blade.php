@@ -20,6 +20,10 @@
     @livewireStyles
 </head>
 <body>
+    <div class="text-gray-400 space-x-4 content text-xl font-semibold flex flex-row justify-center items-center fixed filter drop-shadow-md h-10 p-4 pt-8">
+        <a class="active" href="/">home</a>
+        <a href="/about-me">about</a>
+    </div>
     {{ $slot }}
     @livewireScripts
 </body>
