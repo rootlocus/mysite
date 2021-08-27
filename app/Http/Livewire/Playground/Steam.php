@@ -13,6 +13,8 @@ class Steam extends Component
     public $totalGames;
     public $totalPlaytime;
     public $steamId;
+    public $username;
+    public $isExist = true;
 
     public function render()
     {
@@ -27,16 +29,43 @@ class Steam extends Component
 
     public function getData($steamId)
     {
+        $this->getUserData($steamId);
+        $this->getGameData($steamId);
+    }
+
+    public function getGameData($steamId)
+    {
         $steam = new SteamWebService();
         $url = $steam->steamId($steamId)->getOwnedGames();
 
         $httpClient = new Client();
         $request = $httpClient->get($url);
-
         $response = json_decode($request->getBody()->getContents());
 
-        $this->totalGames = data_get($response, 'response.game_count');
-        $this->totalPlaytime = $this->calculateTotalPlaytime($response);
+        if (!$this->isExist) {
+            $this->totalGames = 'N/A';
+            $this->totalPlaytime = 'N/A';
+        } else {
+            $this->totalGames = data_get($response, 'response.game_count');
+            $this->totalPlaytime = $this->calculateTotalPlaytime($response);
+        }
+    }
+
+    public function getUserData($steamId)
+    {
+        $steam = new SteamWebService();
+        $url = $steam->steamId($steamId)->getPlayerSummary();
+
+        $httpClient = new Client();
+        $request = $httpClient->get($url);
+
+        $response = json_decode($request->getBody()->getContents());
+        if ( empty(data_get($response, 'response.players')) ) {
+            $this->username = 'Not Found';
+            $this->isExist = false;
+        } else {
+            $this->username = Arr::pluck(data_get($response, 'response.players'), 'personaname')[0];
+        }
     }
 
     /**
