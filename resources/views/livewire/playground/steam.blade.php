@@ -14,6 +14,7 @@
                     <button wire:click="resetData" class="bg-blue-400 hover:bg-blue-dark text-white font-bold px-4 py-2 rounded">Reset</button>
                 </div>
             </div>
+            <a href="https://www.thegamer.com/how-to-find-your-steam-id/" class="content text-blue-500">How to get your steam id</a>
         </div>
     </section>
 </div>
