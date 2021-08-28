@@ -1,15 +1,18 @@
 <template>
     <div class="h-full">
-        <section class="bg-gray-750 h-screen">
+        <section class="bg-gray-850 h-screen">
             <div class="h-screen flex flex-col justify-center items-center">
-
-                <h1 class="title text-white text-2xl">
-                    <b>Username: </b>{{ userData.username }} <br>
-                    <b>Total Games: </b>{{ gameData.totalGames }} <br>
-                    <b>Total Playtime: </b>{{ gameData.totalPlaytime }}
-                </h1>
-                <div class="flex md:flex-row flex-col space-x-4">
-                    <div class="w-1/2 px-5 bg-gray-850 rounded-md shadow-2xl" style="height:300px;width:600px;">
+                <div class="flex md:flex-row flex-col" v-if="userData">
+                    <div class="px-4 py-2 mb-2 bg-gray-750 rounded-md shadow-2xl">
+                        <h1 class="title text-white text-2xl">
+                            <b>Username: </b>{{ userData.username }} <br>
+                            <b>Total Games: </b>{{ gameData.totalGames }} <br>
+                            <b>Total Playtime: </b>{{ gameData.totalPlaytime }}
+                        </h1>
+                    </div>
+                </div>
+                <div class="flex md:flex-row flex-col space-x-4" v-if="userData">
+                    <div class="w-1/2 px-5 bg-gray-750 rounded-md shadow-2xl" style="height:300px;width:600px;">
                         <vue3-chart-js
                             :id="barChart.id"
                             :type="barChart.type"
@@ -18,12 +21,15 @@
                             ref="chartRef"
                         ></vue3-chart-js>
                     </div>
-                    <div class="w-1/2 text-white bg-gray-850 rounded-md shadow-2xl px-5">
+                    <div class="w-1/2 text-white bg-gray-750 rounded-md shadow-2xl px-5">
                         <h2 class="text-2xl text-center">Top 10 Games</h2>
                         <ul class="" v-for="game in gameData.topGames.data" :key="game.id">
                             <li> <span class="font-bold">{{ game.name }}</span> - {{ game.time }}</li>
                         </ul>
                     </div>
+                </div>
+                <div class="flex md:flex-row flex-col space-x-4" v-if="!userData">
+                    <h2 class="text-2xl text-center text-white">Profile Not Found. Please check and try again.</h2>
                 </div>
                 <div class="flex flex-row justify-center items-center content-start space-x-10 pt-4 w-full">
                     <div class="relative mr-6 space-x-2">
@@ -90,6 +96,13 @@ export default {
             }
         }
     },
+    data() {
+        return {
+            data: {
+                steamid: null
+            },
+        }
+    },
     setup() {
         const chartRef = ref(null)
 
@@ -126,7 +139,7 @@ export default {
                         },
                         title: {
                             display: true,
-                            text: 'Time (min)',
+                            text: 'Game',
                             color: 'white',
                         }
                     },
@@ -136,7 +149,7 @@ export default {
                         },
                         title: {
                             display: true,
-                            text: 'Game',
+                            text: 'Time (min)', 
                             color: 'white',
                         }
                     },
@@ -152,29 +165,31 @@ export default {
                     },
                 },
             },
-
         }
 
         const updateChart = (data) => {
-            barChart.data.labels = data.meta.games
-            barChart.data.datasets = [{
-                backgroundColor: [
-                    '#B91C1C',
-                    '#B45309',
-                    '#047857',
-                    '#1D4ED8',
-                    '#4338CA',
-                    '#6D28D9',
-                    '#BE185D',
-                    '#111827',
-                    '#FDE68A',
-                    '#A7F3D0',
-                ],
-                data: data.meta.values,
-                label: 'Time Played'
-            }]
+            console.log(data !== null);
+            if (data !== null) {
+                barChart.data.labels = data.meta.games
+                barChart.data.datasets = [{
+                    backgroundColor: [
+                        '#B91C1C',
+                        '#B45309',
+                        '#047857',
+                        '#1D4ED8',
+                        '#4338CA',
+                        '#6D28D9',
+                        '#BE185D',
+                        '#111827',
+                        '#FDE68A',
+                        '#A7F3D0',
+                    ],
+                    data: data.meta.values,
+                    label: 'Time Played'
+                }]
 
-            chartRef.value.update()
+                chartRef.value.update()
+            }
         }
 
         return {
@@ -186,17 +201,9 @@ export default {
     mounted () {
         this.updateChart(this.gameData.topGames);
     },
-    data() {
-        return {
-            data: {
-                steamid: null
-            },
-        }
-    },
     methods: {
         submit() {
-            this.$inertia.post(route('playground.steam.submit'), this.data);
-            this.updateChart();
+            this.$inertia.get(route('playground.steam.index'), this.data);
         }
     },
 }

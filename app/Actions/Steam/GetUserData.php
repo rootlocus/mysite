@@ -21,8 +21,8 @@ class GetUserData
 
         $response = json_decode($request->getBody()->getContents());
         if ( empty(data_get($response, 'response.players')) ) {
-            return ['username' => 'Not Found'];
-        } 
+            return null;
+        }
 
         return ['username' =>  Arr::pluck(data_get($response, 'response.players'), 'personaname')[0]];
     }

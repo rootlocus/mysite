@@ -4,11 +4,12 @@ namespace App\Actions\Steam;
 
 use App\Http\Resources\TopGameResource;
 use App\Services\Steam\SteamWebService;
+use Exception;
 use Illuminate\Support\Arr;
 use GuzzleHttp\Client;
 use Lorisleiva\Actions\Concerns\AsAction;
 
-class GetSailData
+class GetGameData
 {
     use AsAction;
 
@@ -17,19 +18,32 @@ class GetSailData
         $steam = new SteamWebService();
         $url = $steam->steamId($steamId ?? env('STEAM_ID'))->getOwnedGames();
 
-        $httpClient = new Client();
-        $request = $httpClient->get($url);
-        $response = json_decode($request->getBody()->getContents());
+        try {
+            $httpClient = new Client();
+            $request = $httpClient->get($url);
+            $response = json_decode($request->getBody()->getContents());
+            $topGames = collect(data_get($response, 'response.games'))
+                ->sortByDesc('playtime_forever')
+                ->take(10);
+        } catch (Exception $e) {
+            info($e);
 
-        // if (!$this->isExist) {
-        //     $this->totalGames = 'N/A';
-        //     $this->totalPlaytime = 'N/A';
-        // } else {
-        // $this->totalGames = data_get($response, 'response.game_count');
-        // $this->totalPlaytime = $this->calculateTotalPlaytime($response);
-        $topGames = collect(data_get($response, 'response.games'))
-            ->sortByDesc('playtime_forever')
-            ->take(10);
+            return [
+                'totalGames' => 0,
+                'totalPlaytime' => 0,
+                'topGames' => [
+                    'data' => [],
+                    'meta' => [
+                        'games' => [],
+                        'values' => []
+                    ]
+                ]
+                // TopGameResource::collection($topGames)->additional(['meta' => [
+                //     'games' => $topGames->pluck('name'),
+                //     'values' => $topGames->pluck('playtime_forever'),
+                // ]]),
+            ];
+        }
 
         return [
             'totalGames' => data_get($response, 'response.game_count'),
@@ -39,7 +53,6 @@ class GetSailData
                 'values' => $topGames->pluck('playtime_forever'),
             ]]),
         ];
-        // }
     }
 
     public function calculateTotalPlaytime($response) 
