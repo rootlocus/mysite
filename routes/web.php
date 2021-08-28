@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,6 +19,11 @@ Route::get('/about-me', App\Http\Livewire\AboutMe\Index::class);
 Route::prefix('playground')->group(function () {
     Route::get('/', App\Http\Livewire\Playground\Index::class);
     Route::get('/steam', App\Http\Livewire\Playground\Steam::class);
+    Route::get('/abc', [TestController::class, 'index']);
 });
 
-Route::get('/test', App\Http\Livewire\HelloWorld::class);
+// Route::get('/abc', function(){
+//     return inertia('Hello');
+// });
+
+// Route::get('/test', App\Http\Livewire\HelloWorld::class);
