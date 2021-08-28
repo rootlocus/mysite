@@ -20110,18 +20110,65 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   setup: function setup() {
-    var chartRef = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    var chartRef = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null); // {
+    //   label: 'Dataset 1',
+    //   data: Utils.numbers(NUMBER_CFG),
+    //   borderColor: Utils.CHART_COLORS.red,
+    //   backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+    // },
+    // {
+    //   label: 'Dataset 2',
+    //   data: Utils.numbers(NUMBER_CFG),
+    //   borderColor: Utils.CHART_COLORS.blue,
+    //   backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
+    // }
+
     var barChart = {
       id: 'bar',
       type: 'bar',
       data: {
-        labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+        labels: [],
         datasets: [{
-          backgroundColor: ['#B91C1C', '#B45309', '#047857', '#1D4ED8', '#4338CA', '#6D28D9', '#BE185D'],
-          data: [40, 20, 80, 10],
-          label: 'Time Played',
+          backgroundColor: [],
+          data: [],
+          label: '',
           borderWidth: 1
-        }]
+        }, {}]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            ticks: {
+              color: 'white'
+            },
+            title: {
+              display: true,
+              text: 'Time (min)',
+              color: 'white'
+            }
+          },
+          y: {
+            ticks: {
+              color: 'white'
+            },
+            title: {
+              display: true,
+              text: 'Game',
+              color: 'white'
+            }
+          }
+        },
+        plugins: {
+          title: {
+            display: true,
+            color: 'white',
+            text: 'Top 10 Steam Games'
+          },
+          legend: {
+            display: false
+          }
+        }
       }
     };
 
@@ -20153,8 +20200,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     submit: function submit() {
-      // console.log('test');
-      // console.log(route('playground.steam.index'));
       this.$inertia.post(route('playground.steam.submit'), this.data);
       this.updateChart();
     }
@@ -20217,71 +20262,93 @@ var _hoisted_2 = {
   "class": "bg-gray-750 h-screen"
 };
 var _hoisted_3 = {
-  style: {
-    "height": "600px",
-    "width": "600px"
-  }
-};
-var _hoisted_4 = {
   "class": "h-screen flex flex-col justify-center items-center"
 };
-var _hoisted_5 = {
-  "class": "title text-white text-4xl"
+var _hoisted_4 = {
+  "class": "title text-white text-2xl"
 };
+
+var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Username: ", -1
+/* HOISTED */
+);
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Total Games: ", -1
 /* HOISTED */
 );
 
-var _hoisted_8 = {
-  "class": "text-white"
-};
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "text-3xl"
-}, "Top 10 Games", -1
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Total Playtime: ", -1
 /* HOISTED */
 );
 
 var _hoisted_10 = {
-  "class": "flex flex-row justify-center items-center content-start space-x-10 pt-4 w-full"
+  "class": "flex md:flex-row flex-col space-x-4"
 };
 var _hoisted_11 = {
+  "class": "w-1/2 px-5 bg-gray-850 rounded-md shadow-2xl",
+  style: {
+    "height": "300px",
+    "width": "600px"
+  }
+};
+var _hoisted_12 = {
+  "class": "w-1/2 text-white bg-gray-850 rounded-md shadow-2xl px-5"
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "text-2xl text-center"
+}, "Top 10 Games", -1
+/* HOISTED */
+);
+
+var _hoisted_14 = {
+  "class": "font-bold"
+};
+var _hoisted_15 = {
+  "class": "flex flex-row justify-center items-center content-start space-x-10 pt-4 w-full"
+};
+var _hoisted_16 = {
   "class": "relative mr-6 space-x-2"
 };
 
-var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"text-white content pt-10\"><h2 class=\"text-2xl font-bold\">FAQ</h2><ol class=\"list-decimal\"><li><h3 class=\"font-bold\">How to get your steam id ?</h3><p><a href=\"https://www.thegamer.com/how-to-find-your-steam-id/\" class=\"text-blue-700\">https://www.thegamer.com/how-to-find-your-steam-id/</a></p></li><li><h3 class=\"font-bold\">Why is there no data ?</h3><p>Either your steam id provided is invalid, or if the profile is private, friends-only, and other privacy settings are not supported unless you are asking for your own personal details.</p></li></ol></div>", 1);
+var _hoisted_17 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"text-white content pt-10\"><h2 class=\"text-2xl font-bold\">FAQ</h2><ol class=\"list-decimal\"><li><h3 class=\"font-bold\">How to get your steam id ?</h3><p><a href=\"https://www.thegamer.com/how-to-find-your-steam-id/\" class=\"text-blue-700\">https://www.thegamer.com/how-to-find-your-steam-id/</a></p></li><li><h3 class=\"font-bold\">Why is there no data ?</h3><p>Either your steam id provided is invalid, or if the profile is private, friends-only, and other privacy settings are not supported unless you are asking for your own personal details.</p></li></ol></div>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_vue3_chart_js = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("vue3-chart-js");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue3_chart_js, {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_4, [_hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.userData.username) + " ", 1
+  /* TEXT */
+  ), _hoisted_6, _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.gameData.totalGames) + " ", 1
+  /* TEXT */
+  ), _hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.gameData.totalPlaytime), 1
+  /* TEXT */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue3_chart_js, {
     id: $setup.barChart.id,
     type: $setup.barChart.type,
     data: $setup.barChart.data,
+    options: $setup.barChart.options,
     ref: "chartRef"
   }, null, 8
   /* PROPS */
-  , ["id", "type", "data"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <vue3-chart-js\n                    :id=\"doughnutChart.id\"\n                    :type=\"doughnutChart.type\"\n                    :data=\"doughnutChart.data\"\n                    @before-render=\"beforeRenderLogic\"\n                ></vue3-chart-js> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <bar-chart :chartdata=\"chartData\" :options=\"options\"/> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Username: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.userData.username) + " ", 1
-  /* TEXT */
-  ), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Total Games: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.gameData.totalGames) + " ", 1
-  /* TEXT */
-  ), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Total Playtime: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.gameData.totalPlaytime), 1
-  /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.gameData.topGames.data, function (game) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
+  , ["id", "type", "data", "options"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.gameData.topGames.data, function (game) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", {
       "class": "",
       key: game.id
-    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(game.name) + " " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(game.time), 1
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(game.name), 1
     /* TEXT */
-    );
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(game.time), 1
+    /* TEXT */
+    )])]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.data.steamid = $event;
     }),
@@ -20298,7 +20365,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.submit && $options.submit.apply($options, arguments);
     })
-  }, "Calculate")])]), _hoisted_12])])]);
+  }, "Calculate")])]), _hoisted_17])])]);
 }
 
 /***/ }),

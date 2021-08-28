@@ -1,32 +1,28 @@
 <template>
     <div class="h-full">
         <section class="bg-gray-750 h-screen">
-            <div style="height:600px;width:600px;">
-                <vue3-chart-js
-                    :id="barChart.id"
-                    :type="barChart.type"
-                    :data="barChart.data"
-                    ref="chartRef"
-                ></vue3-chart-js>
-                <!-- <vue3-chart-js
-                    :id="doughnutChart.id"
-                    :type="doughnutChart.type"
-                    :data="doughnutChart.data"
-                    @before-render="beforeRenderLogic"
-                ></vue3-chart-js> -->
-            </div>
             <div class="h-screen flex flex-col justify-center items-center">
-                <!-- <bar-chart :chartdata="chartData" :options="options"/> -->
-                <h1 class="title text-white text-4xl">
-                    Username: {{ userData.username }} <br>
-                    Total Games: {{ gameData.totalGames }} <br>
-                    Total Playtime: {{ gameData.totalPlaytime }}
+
+                <h1 class="title text-white text-2xl">
+                    <b>Username: </b>{{ userData.username }} <br>
+                    <b>Total Games: </b>{{ gameData.totalGames }} <br>
+                    <b>Total Playtime: </b>{{ gameData.totalPlaytime }}
                 </h1>
-                <div class="text-white">
-                    <h2 class="text-3xl">Top 10 Games</h2>
-                    <div class="" v-for="game in gameData.topGames.data" :key="game.id">
-                        {{ game.name }}
-                        {{ game.time }}
+                <div class="flex md:flex-row flex-col space-x-4">
+                    <div class="w-1/2 px-5 bg-gray-850 rounded-md shadow-2xl" style="height:300px;width:600px;">
+                        <vue3-chart-js
+                            :id="barChart.id"
+                            :type="barChart.type"
+                            :data="barChart.data"
+                            :options="barChart.options"
+                            ref="chartRef"
+                        ></vue3-chart-js>
+                    </div>
+                    <div class="w-1/2 text-white bg-gray-850 rounded-md shadow-2xl px-5">
+                        <h2 class="text-2xl text-center">Top 10 Games</h2>
+                        <ul class="" v-for="game in gameData.topGames.data" :key="game.id">
+                            <li> <span class="font-bold">{{ game.name }}</span> - {{ game.time }}</li>
+                        </ul>
                     </div>
                 </div>
                 <div class="flex flex-row justify-center items-center content-start space-x-10 pt-4 w-full">
@@ -97,26 +93,66 @@ export default {
     setup() {
         const chartRef = ref(null)
 
+    // {
+    //   label: 'Dataset 1',
+    //   data: Utils.numbers(NUMBER_CFG),
+    //   borderColor: Utils.CHART_COLORS.red,
+    //   backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
+    // },
+    // {
+    //   label: 'Dataset 2',
+    //   data: Utils.numbers(NUMBER_CFG),
+    //   borderColor: Utils.CHART_COLORS.blue,
+    //   backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
+    // }
         const barChart = {
             id: 'bar',
             type: 'bar',
             data: {
-                labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+                labels: [],
                 datasets: [{
-                    backgroundColor: [
-                        '#B91C1C',
-                        '#B45309',
-                        '#047857',
-                        '#1D4ED8',
-                        '#4338CA',
-                        '#6D28D9',
-                        '#BE185D',
-                    ],
-                    data: [40, 20, 80, 10],
-                    label:'Time Played',
+                    backgroundColor: [],
+                    data: [],
+                    label: '',
                     borderWidth: 1
-                }]
-            }
+                },{}]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    x: {
+                        ticks: {
+                            color: 'white'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Time (min)',
+                            color: 'white',
+                        }
+                    },
+                    y: {
+                        ticks: {
+                            color: 'white'
+                        },
+                        title: {
+                            display: true,
+                            text: 'Game',
+                            color: 'white',
+                        }
+                    },
+                },
+                plugins: {
+                    title: {
+                        display: true,
+                        color: 'white',
+                        text: 'Top 10 Steam Games'
+                    },
+                    legend: {
+                        display: false,
+                    },
+                },
+            },
+
         }
 
         const updateChart = (data) => {
@@ -159,8 +195,6 @@ export default {
     },
     methods: {
         submit() {
-            // console.log('test');
-            // console.log(route('playground.steam.index'));
             this.$inertia.post(route('playground.steam.submit'), this.data);
             this.updateChart();
         }
