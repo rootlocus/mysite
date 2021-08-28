@@ -930,6 +930,24 @@ var n,e=(n=__webpack_require__(/*! nprogress */ "./node_modules/nprogress/nprogr
 
 /***/ }),
 
+/***/ "./node_modules/@j-t-mcc/vue3-chartjs/dist/vue3-chartjs.es.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@j-t-mcc/vue3-chartjs/dist/vue3-chartjs.es.js ***!
+  \********************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ q)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
+var e=Object.defineProperty,t=Object.getOwnPropertySymbols,r=Object.prototype.hasOwnProperty,a=Object.prototype.propertyIsEnumerable,n=(t,r,a)=>r in t?e(t,r,{enumerable:!0,configurable:!0,writable:!0,value:a}):t[r]=a,o=(e,o)=>{for(var p in o||(o={}))r.call(o,p)&&n(e,p,o[p]);if(t)for(var p of t(o))a.call(o,p)&&n(e,p,o[p]);return e};const _=["install","start","stop","beforeInit","afterInit","beforeUpdate","afterUpdate","beforeElementsUpdate","reset","beforeDatasetsUpdate","afterDatasetsUpdate","beforeDatasetUpdate","afterDatasetUpdate","beforeLayout","afterLayout","afterLayout","beforeRender","afterRender","resize","destroy","uninstall","afterTooltipDraw","beforeTooltipDraw"];chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_1__.ArcElement,chart_js__WEBPACK_IMPORTED_MODULE_1__.LineElement,chart_js__WEBPACK_IMPORTED_MODULE_1__.BarElement,chart_js__WEBPACK_IMPORTED_MODULE_1__.PointElement,chart_js__WEBPACK_IMPORTED_MODULE_1__.BarController,chart_js__WEBPACK_IMPORTED_MODULE_1__.BubbleController,chart_js__WEBPACK_IMPORTED_MODULE_1__.DoughnutController,chart_js__WEBPACK_IMPORTED_MODULE_1__.LineController,chart_js__WEBPACK_IMPORTED_MODULE_1__.PieController,chart_js__WEBPACK_IMPORTED_MODULE_1__.PolarAreaController,chart_js__WEBPACK_IMPORTED_MODULE_1__.RadarController,chart_js__WEBPACK_IMPORTED_MODULE_1__.ScatterController,chart_js__WEBPACK_IMPORTED_MODULE_1__.CategoryScale,chart_js__WEBPACK_IMPORTED_MODULE_1__.LinearScale,chart_js__WEBPACK_IMPORTED_MODULE_1__.LogarithmicScale,chart_js__WEBPACK_IMPORTED_MODULE_1__.RadialLinearScale,chart_js__WEBPACK_IMPORTED_MODULE_1__.TimeScale,chart_js__WEBPACK_IMPORTED_MODULE_1__.TimeSeriesScale,chart_js__WEBPACK_IMPORTED_MODULE_1__.Decimation,chart_js__WEBPACK_IMPORTED_MODULE_1__.Filler,chart_js__WEBPACK_IMPORTED_MODULE_1__.Legend,chart_js__WEBPACK_IMPORTED_MODULE_1__.Title,chart_js__WEBPACK_IMPORTED_MODULE_1__.Tooltip);const q=(0,vue__WEBPACK_IMPORTED_MODULE_0__.defineComponent)({name:"Vue3ChartJs",props:{type:{type:String,required:!0},data:{type:Object,required:!0},options:{type:Object,default:()=>({})},plugins:{type:Array,default:()=>[]}},emits:_,setup(e,{emit:t}){const r=(0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null),a={chart:null,plugins:[_.reduce(((e,a)=>{const n=function(e,t=null){return{type:e,chartRef:t,preventDefault(){this._defaultPrevented=!0},isDefaultPrevented(){return!this._defaultPrevented},_defaultPrevented:!1}}(a,r);return o(o({},e),function(e,t){return{[t.type]:()=>(e(t.type,t),t.isDefaultPrevented())}}(t,n))}),{id:"Vue3ChartJsEventHookPlugin"}),...e.plugins],props:o({},e)},n=()=>a.chart?a.chart.update():a.chart=new chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart(r.value.getContext("2d"),{type:a.props.type,data:a.props.data,options:a.props.options,plugins:a.plugins});return (0,vue__WEBPACK_IMPORTED_MODULE_0__.onMounted)((()=>n())),{chartJSState:a,chartRef:r,render:n,resize:()=>a.chart&&a.chart.resize(),update:(e=750)=>{a.chart.data=o(o({},a.chart.data),a.props.data),a.chart.options=o(o({},a.chart.options),a.props.options),a.chart.update(e)},destroy:()=>{a.chart&&(a.chart.destroy(),a.chart=null)}}},render:()=>(0,vue__WEBPACK_IMPORTED_MODULE_0__.h)("canvas",{ref:"chartRef"})});q.registerGlobalPlugins=e=>{chart_js__WEBPACK_IMPORTED_MODULE_1__.Chart.register(...e)},q.install=(e,t={})=>{var r;e.component(q.name,q),(null==(r=null==t?void 0:t.plugins)?void 0:r.length)&&q.registerGlobalPlugins(t.plugins)};
+
+
+/***/ }),
+
 /***/ "./node_modules/@vue/compiler-core/dist/compiler-core.esm-bundler.js":
 /*!***************************************************************************!*\
   !*** ./node_modules/@vue/compiler-core/dist/compiler-core.esm-bundler.js ***!
@@ -20026,38 +20044,6 @@ module.exports = {
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/SteamChart.vue?vue&type=script&lang=js":
-/*!****************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/SteamChart.vue?vue&type=script&lang=js ***!
-  \****************************************************************************************************************************************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var vue_chartjs__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-chartjs */ "./node_modules/vue-chartjs/es/index.js");
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  mixins: [vue_chartjs__WEBPACK_IMPORTED_MODULE_0__.Bar],
-  props: {
-    data: {
-      type: Object,
-      "default": function _default() {}
-    },
-    options: {
-      type: Object,
-      "default": function _default() {}
-    }
-  },
-  mounted: function mounted() {
-    this.renderChart(this.data, this.options);
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Hello.vue?vue&type=script&lang=js":
 /*!******************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Hello.vue?vue&type=script&lang=js ***!
@@ -20084,15 +20070,14 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _Components_SteamChart__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/SteamChart */ "./resources/js/Components/SteamChart.vue");
-// import { Bar } from 'vue-chartjs';
- // import Test from '@/Components/Test';
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+/* harmony import */ var _j_t_mcc_vue3_chartjs__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @j-t-mcc/vue3-chartjs */ "./node_modules/@j-t-mcc/vue3-chartjs/dist/vue3-chartjs.es.js");
+// import Test from '@/Components/Test';
+
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  // extends: Bar,
   components: {
-    SteamChart: _Components_SteamChart__WEBPACK_IMPORTED_MODULE_0__.default // Test
-
+    Vue3ChartJs: _j_t_mcc_vue3_chartjs__WEBPACK_IMPORTED_MODULE_1__.default
   },
   props: {
     userData: {
@@ -20102,31 +20087,67 @@ __webpack_require__.r(__webpack_exports__);
     gameData: {
       type: Array,
       "default": []
+    },
+    type: {
+      type: String,
+      required: true
+    },
+    data: {
+      type: Object,
+      required: true
+    },
+    options: {
+      type: Object,
+      "default": function _default() {
+        return {};
+      }
+    },
+    plugins: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
     }
   },
-  mounted: function mounted() {// this.renderChart(this.chartData, this.options)
+  setup: function setup() {
+    var chartRef = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
+    var barChart = {
+      id: 'bar',
+      type: 'bar',
+      data: {
+        labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+        datasets: [{
+          backgroundColor: ['#B91C1C', '#B45309', '#047857', '#1D4ED8', '#4338CA', '#6D28D9', '#BE185D'],
+          data: [40, 20, 80, 10],
+          label: 'Time Played',
+          borderWidth: 1
+        }]
+      }
+    };
+
+    var updateChart = function updateChart(data) {
+      barChart.data.labels = data.meta.games;
+      barChart.data.datasets = [{
+        backgroundColor: ['#B91C1C', '#B45309', '#047857', '#1D4ED8', '#4338CA', '#6D28D9', '#BE185D', '#111827', '#FDE68A', '#A7F3D0'],
+        data: data.meta.values,
+        label: 'Time Played'
+      }];
+      chartRef.value.update();
+    };
+
+    return {
+      barChart: barChart,
+      updateChart: updateChart,
+      chartRef: chartRef
+    };
+  },
+  mounted: function mounted() {
+    this.updateChart(this.gameData.topGames);
   },
   data: function data() {
     return {
       data: {
         steamid: null
-      },
-      chartData: {
-        labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-        datasets: [{
-          label: '# of Votes',
-          data: [12, 19, 3, 5, 2, 3],
-          backgroundColor: ['rgba(255, 99, 132, 0.2)', 'rgba(54, 162, 235, 0.2)', 'rgba(255, 206, 86, 0.2)', 'rgba(75, 192, 192, 0.2)', 'rgba(153, 102, 255, 0.2)', 'rgba(255, 159, 64, 0.2)'],
-          borderColor: ['rgba(255, 99, 132, 1)', 'rgba(54, 162, 235, 1)', 'rgba(255, 206, 86, 1)', 'rgba(75, 192, 192, 1)', 'rgba(153, 102, 255, 1)', 'rgba(255, 159, 64, 1)'],
-          borderWidth: 1
-        }]
-      },
-      options: {
-        scales: {
-          y: {
-            beginAtZero: true
-          }
-        }
       }
     };
   },
@@ -20135,6 +20156,7 @@ __webpack_require__.r(__webpack_exports__);
       // console.log('test');
       // console.log(route('playground.steam.index'));
       this.$inertia.post(route('playground.steam.submit'), this.data);
+      this.updateChart();
     }
   }
 });
@@ -20195,56 +20217,62 @@ var _hoisted_2 = {
   "class": "bg-gray-750 h-screen"
 };
 var _hoisted_3 = {
-  "class": "h-screen flex flex-col justify-center items-center"
+  style: {
+    "height": "600px",
+    "width": "600px"
+  }
 };
 var _hoisted_4 = {
+  "class": "h-screen flex flex-col justify-center items-center"
+};
+var _hoisted_5 = {
   "class": "title text-white text-4xl"
 };
-
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
-/* HOISTED */
-);
 
 var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_7 = {
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+/* HOISTED */
+);
+
+var _hoisted_8 = {
   "class": "text-white"
 };
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
   "class": "text-3xl"
 }, "Top 10 Games", -1
 /* HOISTED */
 );
 
-var _hoisted_9 = {
+var _hoisted_10 = {
   "class": "flex flex-row justify-center items-center content-start space-x-10 pt-4 w-full"
 };
-var _hoisted_10 = {
+var _hoisted_11 = {
   "class": "relative mr-6 space-x-2"
 };
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"text-white content pt-10\"><h2 class=\"text-2xl font-bold\">FAQ</h2><ol class=\"list-decimal\"><li><h3 class=\"font-bold\">How to get your steam id ?</h3><p><a href=\"https://www.thegamer.com/how-to-find-your-steam-id/\" class=\"text-blue-700\">https://www.thegamer.com/how-to-find-your-steam-id/</a></p></li><li><h3 class=\"font-bold\">Why is there no data ?</h3><p>Either your steam id provided is invalid, or if the profile is private, friends-only, and other privacy settings are not supported unless you are asking for your own personal details.</p></li></ol></div>", 1);
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"text-white content pt-10\"><h2 class=\"text-2xl font-bold\">FAQ</h2><ol class=\"list-decimal\"><li><h3 class=\"font-bold\">How to get your steam id ?</h3><p><a href=\"https://www.thegamer.com/how-to-find-your-steam-id/\" class=\"text-blue-700\">https://www.thegamer.com/how-to-find-your-steam-id/</a></p></li><li><h3 class=\"font-bold\">Why is there no data ?</h3><p>Either your steam id provided is invalid, or if the profile is private, friends-only, and other privacy settings are not supported unless you are asking for your own personal details.</p></li></ol></div>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
-  var _component_SteamChart = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("SteamChart");
+  var _component_vue3_chart_js = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("vue3-chart-js");
 
-  var _component_Test = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Test");
-
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <bar-chart :chartdata=\"chartData\" :options=\"options\"/> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_SteamChart, {
-    data: $data.chartData,
-    options: $data.options
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue3_chart_js, {
+    id: $setup.barChart.id,
+    type: $setup.barChart.type,
+    data: $setup.barChart.data,
+    ref: "chartRef"
   }, null, 8
   /* PROPS */
-  , ["data", "options"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Test), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Username: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.userData.username) + " ", 1
+  , ["id", "type", "data"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <vue3-chart-js\n                    :id=\"doughnutChart.id\"\n                    :type=\"doughnutChart.type\"\n                    :data=\"doughnutChart.data\"\n                    @before-render=\"beforeRenderLogic\"\n                ></vue3-chart-js> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <bar-chart :chartdata=\"chartData\" :options=\"options\"/> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Username: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.userData.username) + " ", 1
   /* TEXT */
-  ), _hoisted_5, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Total Games: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.gameData.totalGames) + " ", 1
+  ), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Total Games: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.gameData.totalGames) + " ", 1
   /* TEXT */
-  ), _hoisted_6, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Total Playtime: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.gameData.totalPlaytime), 1
+  ), _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Total Playtime: " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.gameData.totalPlaytime), 1
   /* TEXT */
-  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_7, [_hoisted_8, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.gameData.topGames.data, function (game) {
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.gameData.topGames.data, function (game) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "",
       key: game.id
@@ -20253,7 +20281,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     );
   }), 128
   /* KEYED_FRAGMENT */
-  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  ))]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_10, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.data.steamid = $event;
     }),
@@ -20270,7 +20298,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.submit && $options.submit.apply($options, arguments);
     })
-  }, "Calculate")])]), _hoisted_11])])]);
+  }, "Calculate")])]), _hoisted_12])])]);
 }
 
 /***/ }),
@@ -40733,308 +40761,6 @@ module.exports = function getSideChannel() {
 
 /***/ }),
 
-/***/ "./node_modules/vue-chartjs/es/BaseCharts.js":
-/*!***************************************************!*\
-  !*** ./node_modules/vue-chartjs/es/BaseCharts.js ***!
-  \***************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "generateChart": () => (/* binding */ generateChart),
-/* harmony export */   "Bar": () => (/* binding */ Bar),
-/* harmony export */   "HorizontalBar": () => (/* binding */ HorizontalBar),
-/* harmony export */   "Doughnut": () => (/* binding */ Doughnut),
-/* harmony export */   "Line": () => (/* binding */ Line),
-/* harmony export */   "Pie": () => (/* binding */ Pie),
-/* harmony export */   "PolarArea": () => (/* binding */ PolarArea),
-/* harmony export */   "Radar": () => (/* binding */ Radar),
-/* harmony export */   "Bubble": () => (/* binding */ Bubble),
-/* harmony export */   "Scatter": () => (/* binding */ Scatter),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! chart.js */ "./node_modules/chart.js/dist/chart.esm.js");
-
-function generateChart(chartId, chartType) {
-  return {
-    render: function render(createElement) {
-      return createElement('div', {
-        style: this.styles,
-        class: this.cssClasses
-      }, [createElement('canvas', {
-        attrs: {
-          id: this.chartId,
-          width: this.width,
-          height: this.height
-        },
-        ref: 'canvas'
-      })]);
-    },
-    props: {
-      chartId: {
-        default: chartId,
-        type: String
-      },
-      width: {
-        default: 400,
-        type: Number
-      },
-      height: {
-        default: 400,
-        type: Number
-      },
-      cssClasses: {
-        type: String,
-        default: ''
-      },
-      styles: {
-        type: Object
-      },
-      plugins: {
-        type: Array,
-        default: function _default() {
-          return [];
-        }
-      }
-    },
-    data: function data() {
-      return {
-        _chart: null,
-        _plugins: this.plugins
-      };
-    },
-    methods: {
-      addPlugin: function addPlugin(plugin) {
-        this.$data._plugins.push(plugin);
-      },
-      generateLegend: function generateLegend() {
-        if (this.$data._chart) {
-          return this.$data._chart.generateLegend();
-        }
-      },
-      renderChart: function renderChart(data, options) {
-        if (this.$data._chart) this.$data._chart.destroy();
-        if (!this.$refs.canvas) throw new Error('Please remove the <template></template> tags from your chart component. See https://vue-chartjs.org/guide/#vue-single-file-components');
-        this.$data._chart = new chart_js__WEBPACK_IMPORTED_MODULE_0__.default(this.$refs.canvas.getContext('2d'), {
-          type: chartType,
-          data: data,
-          options: options,
-          plugins: this.$data._plugins
-        });
-      }
-    },
-    beforeDestroy: function beforeDestroy() {
-      if (this.$data._chart) {
-        this.$data._chart.destroy();
-      }
-    }
-  };
-}
-var Bar = generateChart('bar-chart', 'bar');
-var HorizontalBar = generateChart('horizontalbar-chart', 'horizontalBar');
-var Doughnut = generateChart('doughnut-chart', 'doughnut');
-var Line = generateChart('line-chart', 'line');
-var Pie = generateChart('pie-chart', 'pie');
-var PolarArea = generateChart('polar-chart', 'polarArea');
-var Radar = generateChart('radar-chart', 'radar');
-var Bubble = generateChart('bubble-chart', 'bubble');
-var Scatter = generateChart('scatter-chart', 'scatter');
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  Bar: Bar,
-  HorizontalBar: HorizontalBar,
-  Doughnut: Doughnut,
-  Line: Line,
-  Pie: Pie,
-  PolarArea: PolarArea,
-  Radar: Radar,
-  Bubble: Bubble,
-  Scatter: Scatter
-});
-
-/***/ }),
-
-/***/ "./node_modules/vue-chartjs/es/index.js":
-/*!**********************************************!*\
-  !*** ./node_modules/vue-chartjs/es/index.js ***!
-  \**********************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
-/* harmony export */   "VueCharts": () => (/* binding */ VueCharts),
-/* harmony export */   "Bar": () => (/* reexport safe */ _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.Bar),
-/* harmony export */   "HorizontalBar": () => (/* reexport safe */ _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.HorizontalBar),
-/* harmony export */   "Doughnut": () => (/* reexport safe */ _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.Doughnut),
-/* harmony export */   "Line": () => (/* reexport safe */ _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.Line),
-/* harmony export */   "Pie": () => (/* reexport safe */ _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.Pie),
-/* harmony export */   "PolarArea": () => (/* reexport safe */ _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.PolarArea),
-/* harmony export */   "Radar": () => (/* reexport safe */ _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.Radar),
-/* harmony export */   "Bubble": () => (/* reexport safe */ _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.Bubble),
-/* harmony export */   "Scatter": () => (/* reexport safe */ _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.Scatter),
-/* harmony export */   "mixins": () => (/* reexport safe */ _mixins_index_js__WEBPACK_IMPORTED_MODULE_0__.default),
-/* harmony export */   "generateChart": () => (/* reexport safe */ _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.generateChart)
-/* harmony export */ });
-/* harmony import */ var _mixins_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./mixins/index.js */ "./node_modules/vue-chartjs/es/mixins/index.js");
-/* harmony import */ var _BaseCharts__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./BaseCharts */ "./node_modules/vue-chartjs/es/BaseCharts.js");
-
-
-var VueCharts = {
-  Bar: _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.Bar,
-  HorizontalBar: _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.HorizontalBar,
-  Doughnut: _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.Doughnut,
-  Line: _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.Line,
-  Pie: _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.Pie,
-  PolarArea: _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.PolarArea,
-  Radar: _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.Radar,
-  Bubble: _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.Bubble,
-  Scatter: _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.Scatter,
-  mixins: _mixins_index_js__WEBPACK_IMPORTED_MODULE_0__.default,
-  generateChart: _BaseCharts__WEBPACK_IMPORTED_MODULE_1__.generateChart,
-  render: function render() {
-    return console.error('[vue-chartjs]: This is not a vue component. It is the whole object containing all vue components. Please import the named export or access the components over the dot notation. For more info visit https://vue-chartjs.org/#/home?id=quick-start');
-  }
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (VueCharts);
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-chartjs/es/mixins/index.js":
-/*!*****************************************************!*\
-  !*** ./node_modules/vue-chartjs/es/mixins/index.js ***!
-  \*****************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "reactiveData": () => (/* binding */ reactiveData),
-/* harmony export */   "reactiveProp": () => (/* binding */ reactiveProp),
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-function dataHandler(newData, oldData) {
-  if (oldData) {
-    var chart = this.$data._chart;
-    var newDatasetLabels = newData.datasets.map(function (dataset) {
-      return dataset.label;
-    });
-    var oldDatasetLabels = oldData.datasets.map(function (dataset) {
-      return dataset.label;
-    });
-    var oldLabels = JSON.stringify(oldDatasetLabels);
-    var newLabels = JSON.stringify(newDatasetLabels);
-
-    if (newLabels === oldLabels && oldData.datasets.length === newData.datasets.length) {
-      newData.datasets.forEach(function (dataset, i) {
-        var oldDatasetKeys = Object.keys(oldData.datasets[i]);
-        var newDatasetKeys = Object.keys(dataset);
-        var deletionKeys = oldDatasetKeys.filter(function (key) {
-          return key !== '_meta' && newDatasetKeys.indexOf(key) === -1;
-        });
-        deletionKeys.forEach(function (deletionKey) {
-          delete chart.data.datasets[i][deletionKey];
-        });
-
-        for (var attribute in dataset) {
-          if (dataset.hasOwnProperty(attribute)) {
-            chart.data.datasets[i][attribute] = dataset[attribute];
-          }
-        }
-      });
-
-      if (newData.hasOwnProperty('labels')) {
-        chart.data.labels = newData.labels;
-        this.$emit('labels:update');
-      }
-
-      if (newData.hasOwnProperty('xLabels')) {
-        chart.data.xLabels = newData.xLabels;
-        this.$emit('xlabels:update');
-      }
-
-      if (newData.hasOwnProperty('yLabels')) {
-        chart.data.yLabels = newData.yLabels;
-        this.$emit('ylabels:update');
-      }
-
-      chart.update();
-      this.$emit('chart:update');
-    } else {
-      if (chart) {
-        chart.destroy();
-        this.$emit('chart:destroy');
-      }
-
-      this.renderChart(this.chartData, this.options);
-      this.$emit('chart:render');
-    }
-  } else {
-    if (this.$data._chart) {
-      this.$data._chart.destroy();
-
-      this.$emit('chart:destroy');
-    }
-
-    this.renderChart(this.chartData, this.options);
-    this.$emit('chart:render');
-  }
-}
-
-var reactiveData = {
-  data: function data() {
-    return {
-      chartData: null
-    };
-  },
-  watch: {
-    'chartData': dataHandler
-  }
-};
-var reactiveProp = {
-  props: {
-    chartData: {
-      type: Object,
-      required: true,
-      default: function _default() {}
-    }
-  },
-  watch: {
-    'chartData': dataHandler
-  }
-};
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
-  reactiveData: reactiveData,
-  reactiveProp: reactiveProp
-});
-
-/***/ }),
-
-/***/ "./resources/js/Components/SteamChart.vue":
-/*!************************************************!*\
-  !*** ./resources/js/Components/SteamChart.vue ***!
-  \************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
-/* harmony export */ });
-/* harmony import */ var _SteamChart_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./SteamChart.vue?vue&type=script&lang=js */ "./resources/js/Components/SteamChart.vue?vue&type=script&lang=js");
-
-
-/* hot reload */
-if (false) {}
-
-_SteamChart_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default.__file = "resources/js/Components/SteamChart.vue"
-
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_SteamChart_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default);
-
-/***/ }),
-
 /***/ "./resources/js/Pages/Hello.vue":
 /*!**************************************!*\
   !*** ./resources/js/Pages/Hello.vue ***!
@@ -41110,22 +40836,6 @@ if (false) {}
 _Test_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/Pages/Playground/Test.vue"
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_Test_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
-
-/***/ }),
-
-/***/ "./resources/js/Components/SteamChart.vue?vue&type=script&lang=js":
-/*!************************************************************************!*\
-  !*** ./resources/js/Components/SteamChart.vue?vue&type=script&lang=js ***!
-  \************************************************************************/
-/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_SteamChart_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default)
-/* harmony export */ });
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_SteamChart_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./SteamChart.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/SteamChart.vue?vue&type=script&lang=js");
- 
 
 /***/ }),
 

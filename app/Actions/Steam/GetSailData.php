@@ -34,7 +34,10 @@ class GetSailData
         return [
             'totalGames' => data_get($response, 'response.game_count'),
             'totalPlaytime' => $this->calculateTotalPlaytime($response),
-            'topGames' => TopGameResource::collection($topGames),
+            'topGames' => TopGameResource::collection($topGames)->additional(['meta' => [
+                'games' => $topGames->pluck('name'),
+                'values' => $topGames->pluck('playtime_forever'),
+            ]]),
         ];
         // }
     }

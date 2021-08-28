@@ -1,10 +1,22 @@
 <template>
     <div class="h-full">
         <section class="bg-gray-750 h-screen">
+            <div style="height:600px;width:600px;">
+                <vue3-chart-js
+                    :id="barChart.id"
+                    :type="barChart.type"
+                    :data="barChart.data"
+                    ref="chartRef"
+                ></vue3-chart-js>
+                <!-- <vue3-chart-js
+                    :id="doughnutChart.id"
+                    :type="doughnutChart.type"
+                    :data="doughnutChart.data"
+                    @before-render="beforeRenderLogic"
+                ></vue3-chart-js> -->
+            </div>
             <div class="h-screen flex flex-col justify-center items-center">
                 <!-- <bar-chart :chartdata="chartData" :options="options"/> -->
-                <SteamChart :data="chartData" :options="options"/>
-                <Test/>
                 <h1 class="title text-white text-4xl">
                     Username: {{ userData.username }} <br>
                     Total Games: {{ gameData.totalGames }} <br>
@@ -44,15 +56,13 @@
 </template>
 
 <script>
-// import { Bar } from 'vue-chartjs';
-import SteamChart from '@/Components/SteamChart';
 // import Test from '@/Components/Test';
+import { ref } from 'vue';
+import Vue3ChartJs from '@j-t-mcc/vue3-chartjs';
 
 export default {
-    // extends: Bar,
     components: {
-        SteamChart,
-        // Test
+            Vue3ChartJs
     },
     props: {
         userData: {
@@ -62,46 +72,88 @@ export default {
         gameData: {
             type: Array,
             default: []
+        },
+        type: {
+            type: String,
+            required: true
+        },
+        data: {
+            type: Object,
+            required: true
+        },
+        options: {
+            type: Object,
+            default () {
+                return {}
+            },
+        },
+        plugins: {
+            type: Array,
+            default () {
+                return []
+            }
+        }
+    },
+    setup() {
+        const chartRef = ref(null)
+
+        const barChart = {
+            id: 'bar',
+            type: 'bar',
+            data: {
+                labels: ['VueJs', 'EmberJs', 'ReactJs', 'AngularJs'],
+                datasets: [{
+                    backgroundColor: [
+                        '#B91C1C',
+                        '#B45309',
+                        '#047857',
+                        '#1D4ED8',
+                        '#4338CA',
+                        '#6D28D9',
+                        '#BE185D',
+                    ],
+                    data: [40, 20, 80, 10],
+                    label:'Time Played',
+                    borderWidth: 1
+                }]
+            }
+        }
+
+        const updateChart = (data) => {
+            barChart.data.labels = data.meta.games
+            barChart.data.datasets = [{
+                backgroundColor: [
+                    '#B91C1C',
+                    '#B45309',
+                    '#047857',
+                    '#1D4ED8',
+                    '#4338CA',
+                    '#6D28D9',
+                    '#BE185D',
+                    '#111827',
+                    '#FDE68A',
+                    '#A7F3D0',
+                ],
+                data: data.meta.values,
+                label: 'Time Played'
+            }]
+
+            chartRef.value.update()
+        }
+
+        return {
+            barChart,
+            updateChart,
+            chartRef,
         }
     },
     mounted () {
-        // this.renderChart(this.chartData, this.options)
+        this.updateChart(this.gameData.topGames);
     },
     data() {
         return {
             data: {
                 steamid: null
-            },
-            chartData: {
-                labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-                datasets: [{
-                    label: '# of Votes',
-                    data: [12, 19, 3, 5, 2, 3],
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)',
-                        'rgba(54, 162, 235, 0.2)',
-                        'rgba(255, 206, 86, 0.2)',
-                        'rgba(75, 192, 192, 0.2)',
-                        'rgba(153, 102, 255, 0.2)',
-                        'rgba(255, 159, 64, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255, 99, 132, 1)',
-                        'rgba(54, 162, 235, 1)',
-                        'rgba(255, 206, 86, 1)',
-                        'rgba(75, 192, 192, 1)',
-                        'rgba(153, 102, 255, 1)',
-                        'rgba(255, 159, 64, 1)'
-                    ],
-                    borderWidth: 1
-                }]
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                }
             },
         }
     },
@@ -110,6 +162,7 @@ export default {
             // console.log('test');
             // console.log(route('playground.steam.index'));
             this.$inertia.post(route('playground.steam.submit'), this.data);
+            this.updateChart();
         }
     },
 }
