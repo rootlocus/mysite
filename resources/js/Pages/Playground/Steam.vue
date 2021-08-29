@@ -203,6 +203,7 @@ export default {
     },
     methods: {
         submit() {
+            console.log(route('playground.steam.index'));
             this.$inertia.get(route('playground.steam.index'), this.data);
         }
     },

@@ -5,6 +5,8 @@ import { InertiaProgress } from '@inertiajs/progress'
 import route from 'ziggy';
 import { Ziggy } from './ziggy';
 
+route('home', undefined, undefined, Ziggy);
+
 InertiaProgress.init()
 
 createInertiaApp({
