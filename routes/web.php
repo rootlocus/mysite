@@ -1,6 +1,5 @@
 <?php
 
-use App\Http\Controllers\Steam\SteamController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,9 +17,8 @@ Route::get('/', App\Http\Livewire\Home\Index::class);
 Route::get('/about-me', App\Http\Livewire\AboutMe\Index::class);
 Route::prefix('playground')->group(function () {
     Route::get('/', App\Http\Livewire\Playground\Index::class);
-    // Route::get('/steam', App\Http\Livewire\Playground\Steam::class);
-    Route::get('/steam', [SteamController::class, 'index'])->name('playground.steam.index');
-    Route::post('/steam', [SteamController::class, 'submit'])->name('playground.steam.submit');
+    Route::get('/steam', [App\Http\Controllers\Steam\SteamController::class, 'index'])->name('playground.steam.index');
+    Route::get('/shop', [App\Http\Controllers\Steam\ShopController::class, 'index'])->name('playground.shop.index');
 });
 
 // Route::get('/abc', function(){

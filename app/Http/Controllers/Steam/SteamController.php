@@ -19,10 +19,4 @@ class SteamController extends Controller
         ]);
     }
 
-    public function submit(Request $request)
-    {
-        dd($request->steamid);
-
-        return Redirect::route('playground.steam.index');
-    }
 }
