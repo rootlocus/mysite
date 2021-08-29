@@ -19546,7 +19546,6 @@ __webpack_require__.r(__webpack_exports__);
 
 
 
-ziggy__WEBPACK_IMPORTED_MODULE_3___default()('home', undefined, undefined, _ziggy__WEBPACK_IMPORTED_MODULE_4__.Ziggy);
 _inertiajs_progress__WEBPACK_IMPORTED_MODULE_2__.InertiaProgress.init();
 (0,_inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.createInertiaApp)({
   resolve: function resolve(name) {
