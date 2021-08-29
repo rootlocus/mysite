@@ -19224,19 +19224,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   setup: function setup() {
-    var chartRef = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null); // {
-    //   label: 'Dataset 1',
-    //   data: Utils.numbers(NUMBER_CFG),
-    //   borderColor: Utils.CHART_COLORS.red,
-    //   backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
-    // },
-    // {
-    //   label: 'Dataset 2',
-    //   data: Utils.numbers(NUMBER_CFG),
-    //   borderColor: Utils.CHART_COLORS.blue,
-    //   backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
-    // }
-
+    var chartRef = (0,vue__WEBPACK_IMPORTED_MODULE_0__.ref)(null);
     var barChart = {
       id: 'bar',
       type: 'bar',
@@ -19287,14 +19275,12 @@ __webpack_require__.r(__webpack_exports__);
     };
 
     var updateChart = function updateChart(data) {
-      console.log(data !== null);
-
       if (data !== null) {
         barChart.data.labels = data.meta.games;
         barChart.data.datasets = [{
           backgroundColor: ['#B91C1C', '#B45309', '#047857', '#1D4ED8', '#4338CA', '#6D28D9', '#BE185D', '#111827', '#FDE68A', '#A7F3D0'],
           data: data.meta.values,
-          label: 'Time Played'
+          label: 'Time Played(min)'
         }];
         chartRef.value.update();
       }
@@ -19367,128 +19353,108 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "h-full"
+  "class": "min-h-screen bg-gray-850"
 };
 var _hoisted_2 = {
-  "class": "bg-gray-850 h-screen"
+  "class": "py-10 px-4 pt-20 space-y-4"
 };
 var _hoisted_3 = {
-  "class": "h-screen flex flex-col justify-center items-center"
+  "class": ""
 };
-var _hoisted_4 = {
-  key: 0,
-  "class": "flex md:flex-row flex-col"
-};
+
+var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
+  "class": "title font-semibold text-white text-center text-2xl"
+}, "STEAM INFOGRAPICS", -1
+/* HOISTED */
+);
+
 var _hoisted_5 = {
-  "class": "px-4 py-2 mb-2 bg-gray-750 rounded-md shadow-2xl"
+  "class": "flex flex-row space-x-2"
 };
 var _hoisted_6 = {
-  "class": "title text-white text-2xl"
+  key: 0,
+  "class": "text-sm text-red-500"
+};
+var _hoisted_7 = {
+  key: 0,
+  "class": "flex flex-col justify-center"
+};
+var _hoisted_8 = {
+  "class": "px-4 py-2 mb-2 bg-gray-750 rounded-md shadow-2xl"
+};
+var _hoisted_9 = {
+  "class": "title text-white text-l md:text-xl lg:text-2xl"
 };
 
-var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Username: ", -1
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Username: ", -1
 /* HOISTED */
 );
 
-var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Total Games: ", -1
+var _hoisted_12 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Total Games: ", -1
 /* HOISTED */
 );
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("br", null, null, -1
 /* HOISTED */
 );
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Total Playtime: ", -1
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Total Playtime: ", -1
 /* HOISTED */
 );
 
-var _hoisted_12 = {
-  key: 1,
-  "class": "flex flex-row space-x-4"
+var _hoisted_15 = {
+  "class": "md:space-x-4 md:space-y-0 space-y-4 md:flex"
 };
-var _hoisted_13 = {
-  "class": "w-1/2 px-5 bg-gray-750 rounded-md shadow-2xl",
-  style: {
-    "height": "300px",
-    "width": "600px"
-  }
+var _hoisted_16 = {
+  "class": "md:w-1/2 bg-gray-750 rounded-md shadow-2xl"
 };
-var _hoisted_14 = {
-  "class": "w-1/2 text-white bg-gray-750 rounded-md shadow-2xl px-5"
+var _hoisted_17 = {
+  "class": "md:w-1/2 text-white bg-gray-750 rounded-md shadow-2xl p-4"
 };
 
-var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "text-2xl text-center"
+var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+  "class": "text-2xl"
 }, "Top 10 Games", -1
 /* HOISTED */
 );
 
-var _hoisted_16 = {
-  "class": "font-bold"
-};
-var _hoisted_17 = {
-  key: 2,
-  "class": "flex flex-row space-x-4"
+var _hoisted_19 = {
+  "class": "table-fixed border-2 border-gray-500 w-full content"
 };
 
-var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "text-2xl text-center text-white"
-}, "Profile Not Found. Please check and try again.", -1
+var _hoisted_20 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("tr", {
+  "class": "border-2 border-gray-500"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  "class": "w-1/2 border-2 border-gray-500"
+}, "Name"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("th", {
+  "class": "w-1/2 border-2 border-gray-500"
+}, "Time Played")], -1
 /* HOISTED */
 );
 
-var _hoisted_19 = [_hoisted_18];
-var _hoisted_20 = {
-  "class": "flex flex-row justify-center items-center content-start space-x-10 pt-4 w-full"
-};
 var _hoisted_21 = {
-  "class": "relative mr-6 space-x-2"
+  "class": "border-2 border-gray-500"
+};
+var _hoisted_22 = {
+  "class": "border-2 border-gray-500"
 };
 
-var _hoisted_22 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"text-white content pt-10\"><h2 class=\"text-2xl font-bold\">FAQ</h2><ol class=\"list-decimal\"><li><h3 class=\"font-bold\">How to get your steam id ?</h3><p><a href=\"https://www.thegamer.com/how-to-find-your-steam-id/\" class=\"text-blue-700\">https://www.thegamer.com/how-to-find-your-steam-id/</a></p></li><li><h3 class=\"font-bold\">Why is there no data ?</h3><p>Either your steam id provided is invalid, or if the profile is private, friends-only, and other privacy settings are not supported unless you are asking for your own personal details.</p></li></ol></div>", 1);
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"px-8 pb-8 space-y-4\"><div class=\"text-white content\"><h2 class=\"text-2xl font-bold\">FAQ</h2><ol class=\"list-decimal space-y-2\"><li><h3 class=\"font-bold\">How to get your steam id ?</h3><p><a href=\"https://www.thegamer.com/how-to-find-your-steam-id/\" class=\"text-blue-700\">https://www.thegamer.com/how-to-find-your-steam-id/</a></p></li><li><h3 class=\"font-bold\">Why is there no data ?</h3><p>Either your steam id provided is invalid, or if the profile is private, friends-only, and other privacy settings are not supported unless you are asking for your own personal details.</p></li></ol></div></div>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_vue3_chart_js = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("vue3-chart-js");
 
-  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("section", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [$props.userData ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_6, [_hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.userData.username) + " ", 1
-  /* TEXT */
-  ), _hoisted_8, _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.gameData.totalGames) + " ", 1
-  /* TEXT */
-  ), _hoisted_10, _hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.gameData.totalPlaytime), 1
-  /* TEXT */
-  )])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.userData ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_13, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue3_chart_js, {
-    id: $setup.barChart.id,
-    type: $setup.barChart.type,
-    data: $setup.barChart.data,
-    options: $setup.barChart.options,
-    ref: "chartRef"
-  }, null, 8
-  /* PROPS */
-  , ["id", "type", "data", "options"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_14, [_hoisted_15, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.gameData.topGames.data, function (game) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("ul", {
-      "class": "",
-      key: game.id
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("li", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_16, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(game.name), 1
-    /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" - " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(game.time), 1
-    /* TEXT */
-    )])]);
-  }), 128
-  /* KEYED_FRAGMENT */
-  ))])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$props.userData ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_17, _hoisted_19)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_20, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_21, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.data.steamid = $event;
     }),
     type: "search",
     placeholder: "Steam Id (eg; 76561197972495328)",
-    "class": "bg-purple-white shadow rounded border-0 p-2",
-    style: {
-      "width": "500px"
-    }
+    "class": "w-full p-2 bg-purple-white shadow rounded border-0"
   }, null, 512
   /* NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.data.steamid]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
@@ -19496,7 +19462,32 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[1] || (_cache[1] = function () {
       return $options.submit && $options.submit.apply($options, arguments);
     })
-  }, "Calculate")])]), _hoisted_22])])]);
+  }, "Calculate")]), !$props.userData ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_6, "Profile Not Found. Please check and try again.")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), $props.userData ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_7, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.userData.username) + " ", 1
+  /* TEXT */
+  ), _hoisted_11, _hoisted_12, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.gameData.totalGames) + " ", 1
+  /* TEXT */
+  ), _hoisted_13, _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.gameData.totalPlaytime), 1
+  /* TEXT */
+  )])])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_vue3_chart_js, {
+    id: $setup.barChart.id,
+    type: $setup.barChart.type,
+    data: $setup.barChart.data,
+    options: $setup.barChart.options,
+    ref: "chartRef"
+  }, null, 8
+  /* PROPS */
+  , ["id", "type", "data", "options"])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_17, [_hoisted_18, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("table", _hoisted_19, [_hoisted_20, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.gameData.topGames.data, function (game) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("tr", {
+      key: game.id,
+      "class": "border-2 border-gray-500"
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_21, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(game.name), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("td", _hoisted_22, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(game.time), 1
+    /* TEXT */
+    )]);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))])])])]), _hoisted_23]);
 }
 
 /***/ }),

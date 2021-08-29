@@ -1,59 +1,65 @@
 <template>
-    <div class="h-full">
-        <section class="bg-gray-850 h-screen">
-            <div class="h-screen flex flex-col justify-center items-center">
-                <div class="flex md:flex-row flex-col" v-if="userData">
-                    <div class="px-4 py-2 mb-2 bg-gray-750 rounded-md shadow-2xl">
-                        <h1 class="title text-white text-2xl">
-                            <b>Username: </b>{{ userData.username }} <br>
-                            <b>Total Games: </b>{{ gameData.totalGames }} <br>
-                            <b>Total Playtime: </b>{{ gameData.totalPlaytime }}
-                        </h1>
-                    </div>
+    <div class="min-h-screen bg-gray-850">
+        <div class="py-10 px-4 pt-20 space-y-4">
+            <div class="">
+                <h1 class="title font-semibold text-white text-center text-2xl">STEAM INFOGRAPICS</h1>
+                <div class="flex flex-row space-x-2">
+                    <input v-model="data.steamid" type="search" placeholder="Steam Id (eg; 76561197972495328)" class="w-full p-2 bg-purple-white shadow rounded border-0">
+                    <button class="bg-blue-400 hover:bg-blue-dark text-white font-bold px-4 py-2 rounded" @click="submit">Calculate</button>
                 </div>
-                <div class="flex flex-row space-x-4" v-if="userData">
-                    <div class="w-1/2 px-5 bg-gray-750 rounded-md shadow-2xl" style="height:300px;width:600px;">
-                        <vue3-chart-js
-                            :id="barChart.id"
-                            :type="barChart.type"
-                            :data="barChart.data"
-                            :options="barChart.options"
-                            ref="chartRef"
-                        ></vue3-chart-js>
-                    </div>
-                    <div class="w-1/2 text-white bg-gray-750 rounded-md shadow-2xl px-5">
-                        <h2 class="text-2xl text-center">Top 10 Games</h2>
-                        <ul class="" v-for="game in gameData.topGames.data" :key="game.id">
-                            <li> <span class="font-bold">{{ game.name }}</span> - {{ game.time }}</li>
-                        </ul>
-                    </div>
-                </div>
-                <div class="flex flex-row space-x-4" v-if="!userData">
-                    <h2 class="text-2xl text-center text-white">Profile Not Found. Please check and try again.</h2>
-                </div>
-                <div class="flex flex-row justify-center items-center content-start space-x-10 pt-4 w-full">
-                    <div class="relative mr-6 space-x-2">
-                        <input v-model="data.steamid" type="search" placeholder="Steam Id (eg; 76561197972495328)" class="bg-purple-white shadow rounded border-0 p-2" style="width: 500px;">
-                        <button class="bg-blue-400 hover:bg-blue-dark text-white font-bold px-4 py-2 rounded" @click="submit">Calculate</button>
-                    </div>
-                </div>
-                <div class="text-white content pt-10">
-                    <h2 class="text-2xl font-bold">FAQ</h2>
-                    <ol class="list-decimal">
-                        <li>
-                            <h3 class="font-bold">How to get your steam id ?</h3>
-                            <p>
-                                <a href="https://www.thegamer.com/how-to-find-your-steam-id/" class="text-blue-700">https://www.thegamer.com/how-to-find-your-steam-id/</a>
-                            </p>
-                        </li>
-                        <li>
-                            <h3 class="font-bold">Why is there no data ?</h3>
-                            <p>Either your steam id provided is invalid, or if the profile is private, friends-only, and other privacy settings are not supported unless you are asking for your own personal details.</p>
-                        </li>
-                    </ol>
+                <p class="text-sm text-red-500" v-if="!userData">Profile Not Found. Please check and try again.</p>
+            </div>
+            <div class="flex flex-col justify-center" v-if="userData">
+                <div class="px-4 py-2 mb-2 bg-gray-750 rounded-md shadow-2xl">
+                    <h1 class="title text-white text-l md:text-xl lg:text-2xl">
+                        <b>Username: </b>{{ userData.username }} <br>
+                        <b>Total Games: </b>{{ gameData.totalGames }} <br>
+                        <b>Total Playtime: </b>{{ gameData.totalPlaytime }}
+                    </h1>
                 </div>
             </div>
-        </section>
+            <div class="md:space-x-4 md:space-y-0 space-y-4 md:flex">
+                <div class="md:w-1/2 bg-gray-750 rounded-md shadow-2xl">
+                    <vue3-chart-js
+                        :id="barChart.id"
+                        :type="barChart.type"
+                        :data="barChart.data"
+                        :options="barChart.options"
+                        ref="chartRef"
+                    ></vue3-chart-js>
+                </div>
+                <div class="md:w-1/2 text-white bg-gray-750 rounded-md shadow-2xl p-4">
+                    <h2 class="text-2xl">Top 10 Games</h2>
+                    <table class="table-fixed border-2 border-gray-500 w-full content">
+                        <tr class="border-2 border-gray-500">
+                            <th class="w-1/2 border-2 border-gray-500">Name</th>
+                            <th class="w-1/2 border-2 border-gray-500">Time Played</th>
+                        </tr>
+                        <tr v-for="game in gameData.topGames.data" :key="game.id" class="border-2 border-gray-500">
+                            <td class="border-2 border-gray-500">{{ game.name }}</td>
+                            <td class="border-2 border-gray-500">{{ game.time }}</td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="px-8 pb-8 space-y-4">
+            <div class="text-white content">
+                <h2 class="text-2xl font-bold">FAQ</h2>
+                <ol class="list-decimal space-y-2">
+                    <li>
+                        <h3 class="font-bold">How to get your steam id ?</h3>
+                        <p>
+                            <a href="https://www.thegamer.com/how-to-find-your-steam-id/" class="text-blue-700">https://www.thegamer.com/how-to-find-your-steam-id/</a>
+                        </p>
+                    </li>
+                    <li>
+                        <h3 class="font-bold">Why is there no data ?</h3>
+                        <p>Either your steam id provided is invalid, or if the profile is private, friends-only, and other privacy settings are not supported unless you are asking for your own personal details.</p>
+                    </li>
+                </ol>
+            </div>
+        </div>
     </div>
 </template>
 
@@ -106,18 +112,6 @@ export default {
     setup() {
         const chartRef = ref(null)
 
-    // {
-    //   label: 'Dataset 1',
-    //   data: Utils.numbers(NUMBER_CFG),
-    //   borderColor: Utils.CHART_COLORS.red,
-    //   backgroundColor: Utils.transparentize(Utils.CHART_COLORS.red, 0.5),
-    // },
-    // {
-    //   label: 'Dataset 2',
-    //   data: Utils.numbers(NUMBER_CFG),
-    //   borderColor: Utils.CHART_COLORS.blue,
-    //   backgroundColor: Utils.transparentize(Utils.CHART_COLORS.blue, 0.5),
-    // }
         const barChart = {
             id: 'bar',
             type: 'bar',
@@ -168,7 +162,6 @@ export default {
         }
 
         const updateChart = (data) => {
-            console.log(data !== null);
             if (data !== null) {
                 barChart.data.labels = data.meta.games
                 barChart.data.datasets = [{
@@ -185,7 +178,7 @@ export default {
                         '#A7F3D0',
                     ],
                     data: data.meta.values,
-                    label: 'Time Played'
+                    label: 'Time Played(min)'
                 }]
 
                 chartRef.value.update()
