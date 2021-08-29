@@ -1,6 +1,6 @@
 <template>
-    <div class="min-h-screen bg-gray-850">
-        <div class="py-10 px-4 pt-20 space-y-4">
+    <div class="min-h-screen bg-gray-850 pt-20">
+        <div class="py-10 px-4 md:px-20 space-y-4">
             <div class="">
                 <h1 class="title font-semibold text-white text-center text-2xl">STEAM INFOGRAPICS</h1>
                 <div class="flex flex-row space-x-2">
@@ -29,7 +29,7 @@
                     ></vue3-chart-js>
                 </div>
                 <div class="md:w-1/2 text-white bg-gray-750 rounded-md shadow-2xl p-4">
-                    <h2 class="text-2xl">Top 10 Games</h2>
+                    <h2 class="text-2xl text-center font-semibold">Top 10 Games</h2>
                     <table class="table-fixed border-2 border-gray-500 w-full content">
                         <tr class="border-2 border-gray-500">
                             <th class="w-1/2 border-2 border-gray-500">Name</th>
@@ -43,7 +43,7 @@
                 </div>
             </div>
         </div>
-        <div class="px-8 pb-8 space-y-4">
+        <div class="px-8 pb-8 md:px-20 space-y-4">
             <div class="text-white content">
                 <h2 class="text-2xl font-bold">FAQ</h2>
                 <ol class="list-decimal space-y-2">

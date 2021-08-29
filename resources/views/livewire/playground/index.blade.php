@@ -1,27 +1,25 @@
-<div class="bg-gray-850">
-    <div class="w-screen h-screen flex justify-center items-center">
-        <div class="w-1/2 h-1/4 space-x-10 flex flex-row">
-            <x-playground.card
-                style="w-1/3 bg-gray-750"
-                title="Steam API"
-                image="steam.png"
-                link="/playground/steam"
-                description="Using Steam API to get some interesting data on your own profile"
-            />
-            <x-playground.card
-                style="w-1/3 bg-gray-750"
-                title="TBA"
-                image="placeholder.png"
-                link="#"
-                description="TBA"
-            />
-            <x-playground.card
-                style="w-1/3 bg-gray-750"
-                title="TBA"
-                image="placeholder.png"
-                link="#"
-                description="TBA"
-            />
-        </div>
+<div class="min-h-screen bg-gray-850 pt-20">
+    <div class="p-20 md:mx-96 md:px-20 md:flex md:flex-col space-y-12">
+        <x-playground.card
+            style="bg-gray-750 w-full"
+            title="Steam API"
+            image="steam.png"
+            link="/playground/steam"
+            description="Using Steam API to get some interesting data on your own profile"
+        />
+        <x-playground.card
+            style="bg-gray-750 w-full"
+            title="TBA"
+            image="placeholder.png"
+            link="#"
+            description="TBA"
+        />
+        <x-playground.card
+            style="bg-gray-750 w-full"
+            title="TBA"
+            image="placeholder.png"
+            link="#"
+            description="TBA"
+        />
     </div>
 </div>
