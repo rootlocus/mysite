@@ -23,6 +23,9 @@
         "@inertiajs/inertia": "^0.10.1",
         "@inertiajs/inertia-vue3": "^0.5.2",
         "@inertiajs/progress": "^0.2.6",
+        "@j-t-mcc/vue3-chartjs": "^1.1.4",
+        "chart.js": "^3.5.1",
+        "cross-env": "^7.0.3",
         "vue": "^3.2.6"
     }
 }
