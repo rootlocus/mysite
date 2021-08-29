@@ -19353,10 +19353,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "min-h-screen bg-gray-850"
+  "class": "min-h-screen bg-gray-850 pt-20"
 };
 var _hoisted_2 = {
-  "class": "py-10 px-4 pt-20 space-y-4"
+  "class": "py-10 px-4 md:px-20 space-y-4"
 };
 var _hoisted_3 = {
   "class": ""
@@ -19417,7 +19417,7 @@ var _hoisted_17 = {
 };
 
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
-  "class": "text-2xl"
+  "class": "text-2xl text-center font-semibold"
 }, "Top 10 Games", -1
 /* HOISTED */
 );
@@ -19443,7 +19443,7 @@ var _hoisted_22 = {
   "class": "border-2 border-gray-500"
 };
 
-var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"px-8 pb-8 space-y-4\"><div class=\"text-white content\"><h2 class=\"text-2xl font-bold\">FAQ</h2><ol class=\"list-decimal space-y-2\"><li><h3 class=\"font-bold\">How to get your steam id ?</h3><p><a href=\"https://www.thegamer.com/how-to-find-your-steam-id/\" class=\"text-blue-700\">https://www.thegamer.com/how-to-find-your-steam-id/</a></p></li><li><h3 class=\"font-bold\">Why is there no data ?</h3><p>Either your steam id provided is invalid, or if the profile is private, friends-only, and other privacy settings are not supported unless you are asking for your own personal details.</p></li></ol></div></div>", 1);
+var _hoisted_23 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"px-8 pb-8 md:px-20 space-y-4\"><div class=\"text-white content\"><h2 class=\"text-2xl font-bold\">FAQ</h2><ol class=\"list-decimal space-y-2\"><li><h3 class=\"font-bold\">How to get your steam id ?</h3><p><a href=\"https://www.thegamer.com/how-to-find-your-steam-id/\" class=\"text-blue-700\">https://www.thegamer.com/how-to-find-your-steam-id/</a></p></li><li><h3 class=\"font-bold\">Why is there no data ?</h3><p>Either your steam id provided is invalid, or if the profile is private, friends-only, and other privacy settings are not supported unless you are asking for your own personal details.</p></li></ol></div></div>", 1);
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_vue3_chart_js = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("vue3-chart-js");
