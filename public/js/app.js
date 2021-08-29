@@ -19408,7 +19408,7 @@ var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 
 var _hoisted_12 = {
   key: 1,
-  "class": "flex md:flex-row flex-col space-x-4"
+  "class": "flex flex-col md:flex-row space-x-4"
 };
 var _hoisted_13 = {
   "class": "w-1/2 px-5 bg-gray-750 rounded-md shadow-2xl",
@@ -19432,7 +19432,7 @@ var _hoisted_16 = {
 };
 var _hoisted_17 = {
   key: 2,
-  "class": "flex md:flex-row flex-col space-x-4"
+  "class": "flex flex-col md:flex-row space-x-4"
 };
 
 var _hoisted_18 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
