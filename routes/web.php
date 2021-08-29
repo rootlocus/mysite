@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Steam\SteamController;
-use App\Http\Controllers\TestController;
 use Illuminate\Support\Facades\Route;
 
 /*
