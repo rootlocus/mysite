@@ -11,7 +11,7 @@
                         </h1>
                     </div>
                 </div>
-                <div class="flex flex-col md:flex-row space-x-4" v-if="userData">
+                <div class="flex flex-row space-x-4" v-if="userData">
                     <div class="w-1/2 px-5 bg-gray-750 rounded-md shadow-2xl" style="height:300px;width:600px;">
                         <vue3-chart-js
                             :id="barChart.id"
@@ -28,7 +28,7 @@
                         </ul>
                     </div>
                 </div>
-                <div class="flex flex-col md:flex-row space-x-4" v-if="!userData">
+                <div class="flex flex-row space-x-4" v-if="!userData">
                     <h2 class="text-2xl text-center text-white">Profile Not Found. Please check and try again.</h2>
                 </div>
                 <div class="flex flex-row justify-center items-center content-start space-x-10 pt-4 w-full">
