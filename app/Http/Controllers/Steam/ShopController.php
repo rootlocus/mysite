@@ -22,11 +22,22 @@ class ShopController extends Controller
                         $query->whereIn('name', $request->categories);
                     });
                 })
+                ->when($request->minPrice || $request->maxPrice, function($query) use($request) {
+                    $query
+                        ->when($request->maxPrice, function($query) use($request) {
+                            $query->where('price', '<=', $request->maxPrice);
+                        })
+                        ->when($request->minPrice, function($query) use($request) {
+                            $query->where('price', '>=', $request->minPrice);
+                        });
+                })
                 ->paginate(20),
             'categories' => Category::query()->get(),
             'filters' => [
                 'search' => $request->search ?? null,
-                'categories' => !empty($request->categories) ? $request->categories : []
+                'categories' => !empty($request->categories) ? $request->categories : [],
+                'minPrice' => $request->minPrice ?? null,
+                'maxPrice' => $request->maxPrice ?? null,
             ]
         ]);
     }

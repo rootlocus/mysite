@@ -12,8 +12,6 @@
     </div>
 </template>
 <script>
-import {remove} from 'lodash'; 
-
 export default {
     props: {
         filters: {

@@ -17,15 +17,17 @@
                             <b>Price Range</b>
                         </span>
                         <div class="flex flex-col font-semibold">
-                            Minimum Price<input type="text" name="min" placeholder="Min">
-                            Maximum Price<input type="text" name="min" placeholder="Max">
+                            Minimum Price<input type="text" name="min" placeholder="Min" v-model="filters.minPrice" class="rounded-xl px-2">
+                            Maximum Price<input type="text" name="min" placeholder="Max" v-model="filters.maxPrice" class="rounded-xl px-2">
                         </div>
+                        <button class="p-0.5 px-2 mt-2 bg-gray-600 text-gray-300 rounded-xl" @click="filter">Filter</button>
+                        <button class="p-0.5 ml-2 px-2 mt-2  text-gray-600 rounded-xl" @click="clearPrice">Clear</button>
                     </div>
                 </div>
             </div>
             <div class="w-10/12 flex flex-col">
                 <div class="flex flex-row items-center pl-2">
-                    Search <input v-model="filters.search" @keyup="search" type="text" name="min" placeholder="Search Products" class="border border-black rounded-xl p-1 m-2 w-full">
+                    Search <input v-model="filters.search" @keyup="filter" type="text" name="min" placeholder="Search Products" class="border border-black rounded-xl p-1 m-2 w-full">
                 </div>
                 <FilterTags :filters="filters" @remove="removeCategory"/>
                 <div class="flex flex-wrap h-1/3">
@@ -71,18 +73,23 @@ export default {
     mounted () {
     },
     methods: {
-        search: debounce( function() {
+        filter: debounce( function() {
             this.$inertia.get(route('playground.shop.index'), this.filters, { preserveState: true });
         }, 300),
         filterCategory: debounce( function(category) {
             this.filters.categories.push(category.name);
-            this.$inertia.get(route('playground.shop.index'), this.filters, { preserveState: true });
+            this.filter();
         }, 200),
         removeCategory(removedCategory) {
             this.filters.categories = this.filters.categories.filter(function(category) {
                 return category != removedCategory;
             });
-            this.$inertia.get(route('playground.shop.index'), this.filters, { preserveState: true });
+            this.filter();
+        },
+        clearPrice() {
+            this.filters.minPrice = null;
+            this.filters.maxPrice = null;
+            this.filter();
         }
     },
 
