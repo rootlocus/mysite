@@ -17,16 +17,16 @@ class ShopController extends Controller
                 ->when($request->search, function($query) use ($request) {
                     $query->where('name', 'LIKE', '%'. $request->search . '%');
                 })
-                ->when($request->category, function($query) use($request) {
+                ->when(!empty($request->categories), function($query) use($request) {
                     $query->whereHas('category', function($query) use($request) {
-                        $query->where('name', 'LIKE', '%' . $request->category . '%');
+                        $query->whereIn('name', $request->categories);
                     });
                 })
                 ->paginate(20),
             'categories' => Category::query()->get(),
             'filters' => [
                 'search' => $request->search ?? null,
-                'category' => $request->category ?? null
+                'categories' => !empty($request->categories) ? $request->categories : []
             ]
         ]);
     }

@@ -3,12 +3,12 @@
         <Navbar class="mb-2"/>
         <div class="flex flex-row lg:mx-40 md:mx-10">
             <div class="md:w-64 w-2/12">
-                <div class="bg-gray-300 h-full flex flex-col p-4 space-y-10">
+                <div class="bg-gray-300 h-screen flex flex-col p-4 space-y-10">
                     <div>
                         <span>
                             <b>Categories</b>
                         </span>
-                        <div class="flex flex-col space-y-2" v-for="category in categories">
+                        <div class="flex flex-col space-y-2 cursor-pointer" v-for="category in categories">
                             <span @click="filterCategory(category)">{{ category.name }}</span>
                         </div>
                     </div>
@@ -27,7 +27,7 @@
                 <div class="flex flex-row items-center pl-2">
                     Search <input v-model="filters.search" @keyup="search" type="text" name="min" placeholder="Search Products" class="border border-black rounded-xl p-1 m-2 w-full">
                 </div>
-                <FilterTags :filters="filters"/>
+                <FilterTags :filters="filters" @remove="removeCategory"/>
                 <div class="flex flex-wrap h-1/3">
                     <div v-for="product in products.data" class="w-1/5">
                         <ProductCard class="m-4" :name="product.name" :price="product.price" :currency="'RM'"/>
@@ -75,12 +75,15 @@ export default {
             this.$inertia.get(route('playground.shop.index'), this.filters, { preserveState: true });
         }, 300),
         filterCategory: debounce( function(category) {
-            this.filters.category = category.name;
+            this.filters.categories.push(category.name);
             this.$inertia.get(route('playground.shop.index'), this.filters, { preserveState: true });
         }, 200),
-        // clearAll
-        // removeCategory
-        // clear search
+        removeCategory(removedCategory) {
+            this.filters.categories = this.filters.categories.filter(function(category) {
+                return category != removedCategory;
+            });
+            this.$inertia.get(route('playground.shop.index'), this.filters, { preserveState: true });
+        }
     },
 
 }
