@@ -1,28 +1,15 @@
 <template>
-    <div class="min-h-screen bg-gray-850 pt-20">
-        <div class="flex flex-row mx-60">
-            <div class="w-1/6">
-                <div class="bg-white h-screen">
+    <div class="min-h-screen bg-white pt-12">
+        <Navbar class="mb-2"/>
+        <div class="flex flex-row lg:mx-40 md:mx-10 border border-red-600">
+            <div class="md:w-64 w-2/12">
+                <div class="bg-gray-600 h-full">
                     Filter here
                 </div>
             </div>
-            <div class="mx-10 flex flex-col w-5/6 space-y-4">
-                <div class="flex flex-row space-x-10 h-48" v-for="x in y">
-                    <div class="bg-white w-1/5">
-                        item 1
-                    </div>
-                    <div class="bg-red-400 w-1/5">
-                    item 2
-                    </div>
-                    <div class="bg-blue-400 w-1/5">
-                    item 3
-                    </div>
-                    <div class="bg-blue-400 w-1/5">
-                    item 4
-                    </div>
-                    <div class="bg-blue-400 w-1/5">
-                    item 5
-                    </div>
+            <div class="flex flex-wrap h-1/3 w-10/12">
+                <div v-for="x in y" class="w-1/5">
+                    <ProductCard class="m-4" :name="'PRODUCT A'" :price="'RM 99.99'"/>
                 </div>
             </div>
         </div>
@@ -30,15 +17,20 @@
 </template>
 
 <script>
-// import Test from '@/Components/Test';
+import Navbar from '@/Components/Shop/Navbar';
+import ProductCard from '@/Components/Shop/ProductCard';
 
 export default {
+    components: {
+        Navbar,
+        ProductCard,
+    },
     props: {
 
     },
     data() {
         return {
-            y: [ 1, 2, 3, 4 ]
+            y: [ 1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15]
         }
     },
     mounted () {
