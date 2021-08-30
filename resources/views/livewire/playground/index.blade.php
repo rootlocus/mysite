@@ -9,10 +9,10 @@
         />
         <x-playground.card
             style="bg-gray-750 w-full"
-            title="TBA"
+            title="E-Commerce"
             image="placeholder.png"
-            link="#"
-            description="TBA"
+            link="/playground/shop"
+            description="E-Commerce Example. Contains, login experience."
         />
         <x-playground.card
             style="bg-gray-750 w-full"

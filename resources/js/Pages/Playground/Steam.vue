@@ -5,7 +5,7 @@
                 <h1 class="title font-semibold text-white text-center text-2xl">STEAM INFOGRAPICS</h1>
                 <div class="flex flex-row space-x-2">
                     <input v-model="data.steamid" type="search" placeholder="Steam Id (eg; 76561197972495328)" class="w-full p-2 bg-purple-white shadow rounded border-0">
-                    <button class="bg-blue-400 hover:bg-blue-dark text-white font-bold px-4 py-2 rounded" @click="submit">Calculate</button>
+                    <button class="bg-blue-400 hover:bg-blue-dark text-white font-bold px-4 py-2 rounded" @click="submit">Search</button>
                 </div>
                 <p class="text-sm text-red-500" v-if="!userData">Profile Not Found. Please check and try again.</p>
             </div>
@@ -46,6 +46,7 @@
         <div class="px-8 pb-8 md:px-20 space-y-4">
             <div class="text-white content">
                 <h2 class="text-2xl font-bold">FAQ</h2>
+                API:  <a class="text-blue-700" href="https://steamcommunity.com/dev">https://steamcommunity.com/dev</a>
                 <ol class="list-decimal space-y-2">
                     <li>
                         <h3 class="font-bold">How to get your steam id ?</h3>
