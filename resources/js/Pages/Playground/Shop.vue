@@ -1,7 +1,7 @@
 <template>
     <div class="min-h-screen bg-white pt-12">
         <Navbar class="mb-2"/>
-        <div class="flex flex-row lg:mx-40 md:mx-10 border border-red-600">
+        <div class="flex flex-row lg:mx-40 md:mx-10 border border-gray-600">
             <div class="md:w-64 w-2/12">
                 <div class="bg-gray-600 h-full flex flex-col p-4 space-y-10">
                     <div>
@@ -9,7 +9,7 @@
                             <b>Categories</b>
                         </span>
                         <div class="flex flex-col space-y-2" v-for="category in categories">
-                            <span>{{ category }}</span>
+                            <span>{{ category.name }}</span>
                         </div>
                     </div>
                     <div>
@@ -27,8 +27,8 @@
                 <div class="flex flex-row items-center pl-2">Search <input type="text" name="min" placeholder="Search Products" class="border border-black rounded-xl p-1 m-2 w-full"></div>
                 <FilterTags/>
                 <div class="flex flex-wrap h-1/3">
-                    <div v-for="x in y" class="w-1/5">
-                        <ProductCard class="m-4" :name="'PRODUCT A'" :price="'RM 99.99'"/>
+                    <div v-for="product in products.data" class="w-1/5">
+                        <ProductCard class="m-4" :name="product.name" :price="product.price" :currency="'RM'"/>
                     </div>
                 </div>
             </div>
@@ -48,12 +48,17 @@ export default {
         FilterTags,
     },
     props: {
-
+        products: {
+            type: Object,
+            default: {}
+        },
+        categories: {
+            type: Object,
+            default: {}
+        },
     },
     data() {
         return {
-            y: [ 1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15,1, 2, 3, 4, 5, 6, 7,8,9,10,11,12,13,14,15],
-            categories: ['Pantry', 'Technology', 'Office']
         }
     },
     mounted () {

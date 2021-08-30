@@ -1,11 +1,11 @@
 <template>
-    <div class="bg-gray-600 h-64 border border-red-600">
+    <div class="bg-gray-600 h-64 border border-gray-600">
         <div class="bg-white">
             <img src="https://fakeimg.pl/200/" class="mx-auto">
         </div>
-        <div class="p-2 text-xs">
+        <div class="p-2 text-xs text-gray-300 font-semibold">
             <p>{{ name }}</p>
-            <p>{{ price }}</p>
+            <p>{{ currency }} {{ price }}</p>
         </div>
     </div>
 </template>
@@ -19,6 +19,10 @@ export default {
         price: {
             type: String,
             default: 'N/A'
+        },
+        currency: {
+            type: String,
+            default: 'RM',
         }
     },
 }
