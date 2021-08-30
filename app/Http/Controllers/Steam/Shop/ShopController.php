@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Steam;
+namespace App\Http\Controllers\Steam\Shop;
 
 use App\Http\Controllers\Controller;
 use App\Models\Shop\Category;
@@ -12,7 +12,7 @@ class ShopController extends Controller
 {
     public function index(Request $request)
     {
-        return Inertia::render('Playground/Shop', [
+        return Inertia::render('Playground/Shop/Index', [
             'products' => Product::query()
                 ->when($request->search, function($query) use ($request) {
                     $query->where('name', 'LIKE', '%'. $request->search . '%');

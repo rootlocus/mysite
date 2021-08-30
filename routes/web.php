@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,7 +17,11 @@ Route::get('/about-me', App\Http\Livewire\AboutMe\Index::class);
 Route::prefix('playground')->group(function () {
     Route::get('/', App\Http\Livewire\Playground\Index::class);
     Route::get('/steam', [App\Http\Controllers\Steam\SteamController::class, 'index'])->name('playground.steam.index');
-    Route::get('/shop', [App\Http\Controllers\Steam\ShopController::class, 'index'])->name('playground.shop.index');
+    Route::prefix('shop')->group(function () {
+        Route::get('/', [App\Http\Controllers\Steam\Shop\ShopController::class, 'index'])->name('playground.shop.index');
+        Route::get('/cart', [App\Http\Controllers\Steam\Shop\CartController::class, 'index'])->name('playground.shop.cart');
+        Route::get('/product/{product}', [App\Http\Controllers\Steam\Shop\ProductController::class, 'show'])->name('playground.shop.product.show');
+    });
 });
 
 // Route::get('/abc', function(){

@@ -27,12 +27,12 @@
             </div>
             <div class="w-10/12 flex flex-col">
                 <div class="flex flex-row items-center pl-2">
-                    Search <input v-model="filters.search" @keyup="filter" type="text" name="min" placeholder="Search Products" class="border border-black rounded-xl p-1 m-2 w-full">
+                    Search <input v-model="filters.search" @keyup="filter" type="text" name="min" placeholder="Search Products" class="border border-gray-400 rounded-xl p-1 m-2 w-full">
                 </div>
                 <FilterTags :filters="filters" @remove="removeCategory"/>
-                <div class="flex flex-wrap h-1/3">
+                <div class="flex flex-wrap h-1/3 cursor-pointer">
                     <div v-for="product in products.data" class="w-1/5">
-                        <ProductCard class="m-4" :name="product.name" :price="product.price" :currency="'RM'"/>
+                        <ProductCard class="m-4" :name="product.name" :price="product.price" :currency="'RM'"  @click="viewDetails(product.id)"/>
                     </div>
                 </div>
             </div>
@@ -90,6 +90,9 @@ export default {
             this.filters.minPrice = null;
             this.filters.maxPrice = null;
             this.filter();
+        },
+        viewDetails(product) {
+            this.$inertia.visit(route('playground.shop.product.show', product));
         }
     },
 
