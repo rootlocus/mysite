@@ -15,6 +15,10 @@ class CartItem extends Model
         'image',
     ];
 
+    protected $appends = [
+        'total_amount',
+    ];
+
     public function product()
     {
         return $this->belongsTo(Product::class);
@@ -23,5 +27,10 @@ class CartItem extends Model
     public function cart()
     {
         return $this->belongsTo(Cart::class);
+    }
+
+    public function getTotalAmountAttribute()
+    {
+        return number_format($this->price * $this->quantity, 2);
     }
 }

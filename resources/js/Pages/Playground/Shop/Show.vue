@@ -14,16 +14,7 @@
                         <h3 class="text-xl text-bold">Description</h3>
                         <p>{{ product.description }}</p>
                     </div>
-                    <div class="flex space-x-2 mt-4">
-                        <div class="text-l">
-                            Quantity
-                        </div>
-                        <div class="flex flex-row">
-                            <button class="bg-gray-750  px-3 text-gray-300" @click="removeItem">-</button>
-                            <input type="number" class="w-16 text-center pl-2  focus:bg-blue-200" v-model="cartItem.quantity" @change="updateCart(cartItem.quantity)">
-                            <button class="bg-gray-750  px-3 text-gray-300" @click="addItem">+</button>
-                        </div>
-                    </div>
+                    <QuantityInput :quantity="cartItem?.quantity" @remove="removeItem" @add="addItem" @update="updateCart"/>
                 </div>
             </div>
         </div>
@@ -33,6 +24,7 @@
 <script>
 import Navbar from '@/Components/Shop/Navbar';
 import BackButton from '@/Components/Shop/BackButton';
+import QuantityInput from '@/Components/Shop/QuantityInput';
 import { Link } from '@inertiajs/inertia-vue3';
 import { debounce } from 'lodash';
 
@@ -41,6 +33,7 @@ export default {
         Navbar,
         Link,
         BackButton,
+        QuantityInput,
     },
     props: {
         product: {
