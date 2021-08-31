@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Steam\Shop;
 
+use App\Actions\Shop\UpdateCartQuantity;
 use App\Http\Controllers\Controller;
 use App\Models\Shop\Cart;
 use App\Models\Shop\Product;
@@ -21,4 +22,18 @@ class ProductController extends Controller
         ]);
     }
 
+    public function addToCart(Request $request, Product $product)
+    {
+        $data = [
+            'cart_id' => $request->cart,
+            'product_id' => $product->id,
+            'price' => $product->price,
+            'type' => $request->type,
+            'quantity' => $request->quantity
+        ];
+
+        UpdateCartQuantity::run($data);
+        
+        return redirect()->route('playground.shop.product.show', $product->id); 
+    }
 }

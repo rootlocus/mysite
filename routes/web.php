@@ -20,8 +20,11 @@ Route::prefix('playground')->group(function () {
     Route::prefix('shop')->group(function () {
         Route::get('/', [App\Http\Controllers\Steam\Shop\ShopController::class, 'index'])->name('playground.shop.index');
         Route::get('/cart', [App\Http\Controllers\Steam\Shop\CartController::class, 'index'])->name('playground.shop.cart');
+        Route::delete('/cart/{cart}', [App\Http\Controllers\Steam\Shop\CartController::class, 'clearAll'])->name('playground.shop.cart.clearAll');
         Route::put('/cart/{cart}/product', [App\Http\Controllers\Steam\Shop\CartController::class, 'update'])->name('playground.shop.cart.update');
+        Route::delete('/cart/{cart}/product/{product}', [App\Http\Controllers\Steam\Shop\CartController::class, 'destroy'])->name('playground.shop.cart.product.destroy');
         Route::get('/product/{product}', [App\Http\Controllers\Steam\Shop\ProductController::class, 'show'])->name('playground.shop.product.show');
+        Route::put('/product/{product}/add', [App\Http\Controllers\Steam\Shop\ProductController::class, 'addToCart'])->name('playground.shop.product.add');
     });
 });
 

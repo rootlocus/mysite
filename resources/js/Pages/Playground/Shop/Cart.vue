@@ -6,22 +6,20 @@
             <div class="bg-white-500 text-4xl pb-4">Shopping Bag</div>
             <div class="flex flex-row space-x-10 mb-10">
                 <div class="w-1/2">
-                    <div class="border-1 border-b-4 border-black">
-                        <h3 class="text-2xl">
-                        {{ cart.items_count }} ITEM(S)
-                        </h3>
+                    <div class="border-1 border-b-4 border-black flex flex-row space-x-4 items-center">
+                        <h3 class="text-2xl">{{ cart.items_count }} ITEM(S)</h3>
+                        <h4 class="hover:text-blue-700 cursor-pointer" @click="clearAll">Clear All</h4>
                     </div>
                     <div class="flex flex-row space-x-4 pt-2" v-for="item in cart.items" :key="item.id">
                         <img src="https://fakeimg.pl/200/" class="">
                         <div>
                             <p>{{ item.name }}</p>
-                            <p>PRICE: RM {{ item.price }} </p>
-                            <QuantityInput :quantity="item.quantity" @remove="removeItem" @add="addItem" @update="updateCart"/>
-                            <button>Remove</button>
+                            <p>PRICE: {{currency}} {{ item.price }} </p>
+                            <QuantityInput :quantity="item.quantity" @remove="removeItem(item.product)" @add="addItem(item.product)" @update="updateCart($event, null ,item.product)"/>
+                            <button @click="clearProduct(item.product)">Remove</button>
                         </div>
                     </div>
                 </div>
-
                 <div class="bg-gray-300 w-1/2 flex flex-col p-4 ">
                     <div class="border-1 border-b-4 border-black">
                         <h2 class="text-4xl">Order Summary</h2>
@@ -30,8 +28,8 @@
                         <div class="flex flex-row font-semibold">
                             <div class="w-6/12">Product Name</div>
                             <div class="w-2/12 text-center">Quantity</div>
-                            <div class="w-2/12">Price(RM)</div>
-                            <div class="w-2/12">Total(RM)</div>
+                            <div class="w-2/12">Price({{currency}})</div>
+                            <div class="w-2/12">Total({{currency}})</div>
                         </div>
                         <div v-for="item in cart.items" :key="item.id" class="flex flex-row">
                             <div class="w-6/12">{{ item.product.name }}</div>
@@ -40,7 +38,7 @@
                             <div class="w-2/12">{{ item.total_amount }}</div>
                         </div>
                         <div class="border-1 border-t-4 border-black flex flex-row pt-2">
-                            <div class="w-10/12 font-bold">Order Total(RM):</div>
+                            <div class="w-10/12 font-bold">Order Total({{currency}}):</div>
                             <div class="w-2/12">{{ cart.total_amount }}</div>
                         </div>
                         <button class="p-4 bg-gray-750 text-gray-300">
@@ -76,22 +74,26 @@ export default {
     data() {
         return {
             currency: 'RM',
-            y: [1,2,3,4]
         }
     },
     mounted () {
     },
     methods: {
-        addItem: debounce (function() {
-            console.log('test');
-            this.updateCart(null, 'add');
+        addItem: debounce (function(item) {
+            this.updateCart(null, 'add', item);
         }, 100),
-        removeItem: debounce (function() {
-            this.updateCart(null, 'remove');
+        removeItem: debounce (function(item) {
+            this.updateCart(null, 'remove', item);
         }, 100),
-        updateCart: debounce( function(quantity = null, type = null) {
-            this.$inertia.put(route('playground.shop.cart.update', this.cart.id), {quantity: quantity, type: type, product: this.product}, { preserveState: true });
-        })
+        updateCart: debounce( function(quantity = null, type = null, product = null) {
+            this.$inertia.put(route('playground.shop.cart.update', this.cart.id), {quantity: quantity, type: type, product: product}, { preserveState: true });
+        }),
+        clearProduct(product) {
+            this.$inertia.delete(route('playground.shop.cart.product.destroy', {'cart': this.cart.id, 'product': product.id}), null, { preserveState: true });
+        },
+        clearAll() {
+            this.$inertia.delete(route('playground.shop.cart.clearAll', {'cart': this.cart.id}), null, { preserveState: true });
+        }
     },
 
 }

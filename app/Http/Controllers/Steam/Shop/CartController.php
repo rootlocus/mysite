@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers\Steam\Shop;
 
+use App\Actions\Shop\UpdateCartQuantity;
 use App\Http\Controllers\Controller;
 use App\Models\Shop\Cart;
-use App\Models\Shop\CartItem;
+use App\Models\Shop\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 
@@ -19,21 +20,31 @@ class CartController extends Controller
 
     public function update(Request $request, Cart $cart)
     {
-        $item = CartItem::firstOrNew([
+        $data = [
             'cart_id' => $cart->id,
             'product_id' => data_get($request->product, 'id'),
-        ],
-        [
             'price' => data_get($request->product, 'price'),
-            'quantity' => 0,
-        ]);
-        $item->save();
+            'type' => $request->type,
+            'quantity' => $request->quantity
+        ];
 
-        $quantity = $request->quantity ?? ($request->type == 'add' ? $item->quantity + 1 : $item->quantity - 1);
+        UpdateCartQuantity::run($data);
+        
+        return redirect()->route('playground.shop.cart', data_get($request->product, 'id'));
+    }
 
-        $quantity <= 0 ? $item->delete() : $item->update(['quantity' => $quantity]);
+    public function destroy(Request $request, Cart $cart, Product $product)
+    {
+        $cart->items()->where('product_id', $product->id)->delete();
 
-        return redirect()->route('playground.shop.product.show', data_get($request->product, 'id')); 
+        return redirect()->route('playground.shop.cart', data_get($request->product, 'id'));
+    }
+
+    public function clearAll(Request $request, Cart $cart)
+    {
+        $cart->items()->delete();
+
+        return redirect()->route('playground.shop.cart', data_get($request->product, 'id'));
     }
 
 }
