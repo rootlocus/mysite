@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Steam\Shop;
 
 use App\Http\Controllers\Controller;
+use App\Models\Shop\Cart;
 use App\Models\Shop\Category;
 use App\Models\Shop\Product;
 use Illuminate\Http\Request;
@@ -12,6 +13,9 @@ class ShopController extends Controller
 {
     public function index(Request $request)
     {
+        //TODO change when add user
+        Cart::query()->get()->isEmpty() && Cart::create([]);
+
         return Inertia::render('Playground/Shop/Index', [
             'products' => Product::query()
                 ->when($request->search, function($query) use ($request) {
@@ -31,8 +35,10 @@ class ShopController extends Controller
                             $query->where('price', '>=', $request->minPrice);
                         });
                 })
-                ->paginate(20)->withQueryString(),
+                ->paginate(20)
+                ->withQueryString(),
             'categories' => Category::query()->get(),
+            'cart' => Cart::query()->withCount(['items'])->first(),
             'filters' => [
                 'search' => $request->search ?? null,
                 'categories' => !empty($request->categories) ? $request->categories : [],

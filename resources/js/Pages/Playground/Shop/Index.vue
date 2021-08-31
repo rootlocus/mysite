@@ -1,6 +1,6 @@
 <template>
     <div class="min-h-screen bg-white pt-12">
-        <Navbar class="mb-2"/>
+        <Navbar class="mb-2" :cart="cart"/>
         <div class="flex flex-row xl:mx-40 md:mx-10">
             <div class="md:w-64 w-2/12 hidden md:block xl:block">
                 <div class="bg-gray-300 h-screen flex flex-col p-4 space-y-10">
@@ -36,7 +36,7 @@
                         <ProductCard class="m-4" :name="product.name" :price="product.price" :currency="'RM'"  @click="viewDetails(product.id)"/>
                     </div>
                 </div>
-                <Pagination class="mb-10" :data="products"/>
+                <Pagination class="flex flex-row items-center pl-2 mb-10" :data="products"/>
             </div>
         </div>
     </div>
@@ -68,7 +68,11 @@ export default {
         filters: {
             type: Object,
             default: {}
-        }
+        },
+        cart: {
+            type: Object,
+            default: {}
+        },
     },
     data() {
         return {

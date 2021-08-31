@@ -1,10 +1,8 @@
 <template>
     <div class="min-h-screen bg-white pt-12">
-        <Navbar class="mb-2"/>
+        <Navbar class="mb-2" :cart="cart"/>
         <div class="flex flex-col lg:mx-40 md:mx-10 mt-20">
-            <div class="mx-40 text-xl">
-                <Link href="/playground/shop">Back</Link>
-            </div>
+            <BackButton :link="'/playground/shop'" class="mx-40 mb-2"/>
             <div class="flex flex-row">
                 <div class="bg-white-500 w-1/2 shadow-xl">
                     <img src="https://fakeimg.pl/500/" class="mx-auto">
@@ -16,13 +14,15 @@
                         <h3 class="text-xl text-bold">Description</h3>
                         <p>{{ product.description }}</p>
                     </div>
-                    <div class="text-2xl pt-4">
-                        Quantity
-                    </div>
-                    <div class="flex flex-row">
-                        <button class="bg-gray-750  px-4 text-gray-300">-</button>
-                        <input type="number" class="w-20">
-                        <button class="bg-gray-750  px-4 text-gray-300">+</button>
+                    <div class="flex space-x-2 mt-4">
+                        <div class="text-l">
+                            Quantity
+                        </div>
+                        <div class="flex flex-row">
+                            <button class="bg-gray-750  px-3 text-gray-300" @click="removeItem">-</button>
+                            <input type="number" class="w-16 text-center pl-2  focus:bg-blue-200" v-model="cartItem.quantity" @change="updateCart(cartItem.quantity)">
+                            <button class="bg-gray-750  px-3 text-gray-300" @click="addItem">+</button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -32,18 +32,29 @@
 
 <script>
 import Navbar from '@/Components/Shop/Navbar';
+import BackButton from '@/Components/Shop/BackButton';
 import { Link } from '@inertiajs/inertia-vue3';
+import { debounce } from 'lodash';
 
 export default {
     components: {
         Navbar,
         Link,
+        BackButton,
     },
     props: {
         product: {
             type: Object,
             default: {}
         },
+        cart: {
+            type: Object,
+            default: {}
+        },
+        cartItem: {
+            type: Object,
+            default: {}
+        }
     },
     data() {
         return {
@@ -53,7 +64,15 @@ export default {
     mounted () {
     },
     methods: {
-  
+        addItem: debounce (function() {
+            this.updateCart(null, 'add');
+        }, 100),
+        removeItem: debounce (function() {
+            this.updateCart(null, 'remove');
+        }, 100),
+        updateCart: debounce( function(quantity = null, type = null) {
+            this.$inertia.put(route('playground.shop.cart.update', this.cart.id), {quantity: quantity, type: type, product: this.product}, { preserveState: true });
+        })
     },
 
 }

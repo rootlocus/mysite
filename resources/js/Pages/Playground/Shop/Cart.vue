@@ -1,10 +1,8 @@
 <template>
     <div class="min-h-screen bg-white pt-12">
-        <Navbar class="mb-2"/>
+        <Navbar class="mb-2" :cart="cart"/>
         <div class="flex flex-col lg:mx-40 md:mx-10 mt-20">
-            <div class="mx-40 text-xl">
-                <Link href="/playground/shop">Back</Link>
-            </div>
+            <BackButton :link="'/playground/shop'"/>
             <div class="flex flex-row space-x-10">
                 <div class="w-1/2">
                     <div class="bg-white-500 text-4xl pb-4">Shopping Bag</div>
@@ -56,11 +54,13 @@
 
 <script>
 import Navbar from '@/Components/Shop/Navbar';
+import BackButton from '@/Components/Shop/BackButton';
 import { Link } from '@inertiajs/inertia-vue3'
 
 export default {
     components: {
         Navbar,
+        BackButton,
         Link,
     },
     props: {

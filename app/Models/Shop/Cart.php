@@ -3,13 +3,18 @@
 namespace App\Models\Shop;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cart extends Model
 {
+    use SoftDeletes;
+    
     protected $fillable = [
-        'product_id',
-        'price',
-        'description',
-        'image',
+        'user_id',
     ];
+
+    public function items()
+    {
+        return $this->hasMany(CartItem::class);
+    }
 }
