@@ -1,8 +1,8 @@
 <template>
     <div class="min-h-screen bg-white pt-12">
         <Navbar class="mb-2"/>
-        <div class="flex flex-row lg:mx-40 md:mx-10">
-            <div class="md:w-64 w-2/12">
+        <div class="flex flex-row xl:mx-40 md:mx-10">
+            <div class="md:w-64 w-2/12 hidden md:block xl:block">
                 <div class="bg-gray-300 h-screen flex flex-col p-4 space-y-10">
                     <div>
                         <span>
@@ -25,16 +25,18 @@
                     </div>
                 </div>
             </div>
-            <div class="w-10/12 flex flex-col">
+            <div class="xl:w-10/12 md:w-10/12 flex flex-col">
                 <div class="flex flex-row items-center pl-2">
                     Search <input v-model="filters.search" @keyup="filter" type="text" name="min" placeholder="Search Products" class="border border-gray-400 rounded-xl p-1 m-2 w-full">
                 </div>
-                <FilterTags :filters="filters" @remove="removeCategory"/>
-                <div class="flex flex-wrap h-1/3 cursor-pointer">
-                    <div v-for="product in products.data" class="w-1/5">
+                <FilterTags :filters="filters" @remove="removeCategory" class="flex flex-row items-center pl-2"/>
+                <Pagination :data="products" class="flex flex-row items-center pl-2"/>
+                <div class="flex flex-wrap cursor-pointer mx-4 lg:mx-0">
+                    <div v-for="product in products.data" class="2xl:w-1/5 xl:w-1/3 l:w-1/2 md:w-1/2 w-full">
                         <ProductCard class="m-4" :name="product.name" :price="product.price" :currency="'RM'"  @click="viewDetails(product.id)"/>
                     </div>
                 </div>
+                <Pagination class="mb-10" :data="products"/>
             </div>
         </div>
     </div>
@@ -44,6 +46,7 @@
 import Navbar from '@/Components/Shop/Navbar';
 import ProductCard from '@/Components/Shop/ProductCard';
 import FilterTags from '@/Components/Shop/FilterTags';
+import Pagination from '@/Components/Shop/Pagination';
 import { debounce } from 'lodash';
 
 export default {
@@ -51,6 +54,7 @@ export default {
         Navbar,
         ProductCard,
         FilterTags,
+        Pagination,
     },
     props: {
         products: {
