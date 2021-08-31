@@ -1,5 +1,5 @@
 <template>
-    <div class="bg-gray-600 h-64 border border-gray-600">
+    <div class="bg-gray-600 h-64 border border-gray-600 hover:opacity-60">
         <div class="bg-white">
             <img src="https://fakeimg.pl/200/" class="mx-auto">
         </div>
