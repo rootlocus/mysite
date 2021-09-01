@@ -20988,7 +20988,7 @@ var _hoisted_1 = {
   "class": "min-h-screen bg-white pt-12"
 };
 var _hoisted_2 = {
-  "class": "flex flex-col lg:mx-40 md:mx-10 mt-5"
+  "class": "flex flex-col lg:mx-96 md:mx-10 mt-5"
 };
 var _hoisted_3 = {
   "class": "flex flex-row space-x-10 mb-10"
