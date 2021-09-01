@@ -17,7 +17,7 @@ export default {
             default: 'N/A'
         },
         price: {
-            type: Number,
+            type: Number || String,
             default: 'N/A'
         },
         currency: {

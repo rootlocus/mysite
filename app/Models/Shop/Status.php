@@ -7,11 +7,17 @@ use Illuminate\Database\Eloquent\Model;
 class Status extends Model
 {
     protected $fillable = [
-        'category_id',
+        'status_timestamp_at',
         'name',
-        'slug',
-        'price',
-        'description',
-        'image',
+        'model_type',
+        'model_id',
     ];
+
+    /**
+     * Get the parent imageable model (user or post).
+     */
+    public function statusable()
+    {
+        return $this->morphTo();
+    }
 }

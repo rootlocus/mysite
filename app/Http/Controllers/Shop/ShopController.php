@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Controllers\Steam\Shop;
+namespace App\Http\Controllers\Shop;
 
 use App\Http\Controllers\Controller;
 use App\Models\Shop\Cart;

@@ -16,7 +16,6 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
             $table->foreignId('cart_id');
-            $table->foreignId('status_id');
             $table->timestamps();
         });
     }

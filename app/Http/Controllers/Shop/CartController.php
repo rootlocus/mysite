@@ -1,13 +1,17 @@
 <?php
 
-namespace App\Http\Controllers\Steam\Shop;
+namespace App\Http\Controllers\Shop;
 
 use App\Actions\Shop\UpdateCartQuantity;
 use App\Http\Controllers\Controller;
 use App\Models\Shop\Cart;
+use App\Models\Shop\CartItem;
+use App\Models\Shop\Order;
 use App\Models\Shop\Product;
+use App\Models\Shop\Status;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Throwable;
 
 class CartController extends Controller
 {
@@ -47,4 +51,36 @@ class CartController extends Controller
         return redirect()->route('playground.shop.cart', data_get($request->product, 'id'));
     }
 
+    public function checkout(Request $request, Cart $cart)
+    {
+        // basic status processing -> delivering -> delivered
+        try {
+            $order = Order::create([
+                'cart_id' => $cart->id,
+            ]);
+    
+            Status::create([
+                'name' => 'PROCESSING',
+                'status_timestamp_at' => now(),
+                'model_type' => Order::class,
+                'model_id' => $order->id
+            ]);
+
+            $items = CartItem::query()
+                ->select('cart_id', 'product_id', 'price', 'quantity', 'image')
+                ->where('cart_id', $cart->id)
+                ->get()
+                ->toArray();
+    
+            $order->items()->createMany($items);
+    
+            $cart->delete();
+        } catch (Throwable $e) {
+            report($e);
+
+            abort(404);
+        }
+
+        return redirect()->route('playground.shop.index'); 
+    }
 }
