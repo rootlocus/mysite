@@ -4,7 +4,7 @@
         <div class="order-1 bg-green-500 shadow-xl rounded-lg p-1 filter drop-shadow-lg">
             <h1 class="mx-auto font-semibold text-lg text-white content">{{ $year }}</h1>
         </div>
-        <div class="order-1 bg-indigo-900 rounded-lg shadow-xl w-5/12 px-6 py-4 filter drop-shadow-lg hover:bg-indigo-800" @click="isShow = !isShow">
+        <div class="order-1 bg-indigo-900 rounded-lg shadow-xl w-5/12 px-6 py-4 filter drop-shadow-lg hover:bg-indigo-800 cursor-pointer" @click="isShow = !isShow">
             <div class="flex flex-row">
                 <img src="{{ $image }}" class="max-h-20"/>
                 <h3 class="mb-1 font-bold text-white text-xl hover:underline hover:text-green-500 py-4 pl-2"><a href="{{$titleLink}}" target="_blank">{{ $title }}</a></h3>
@@ -13,7 +13,7 @@
                 <p class="text-sm leading-snug tracking-wide text-white text-opacity-100 py-2 font-mono">
                     <b class="text-l">Tools:</b> {{ $tools }}
                 </p>
-                <ul class="list-disc text-sm leading-snug tracking-wide text-white text-opacity-100 leading-relaxed">
+                <ul class="list-disc text-sm leading-snug tracking-wide text-white text-opacity-100">
                     {{ $slot }}
                 </ul>
             </div>
@@ -32,7 +32,7 @@
                 <p class="text-xs leading-snug tracking-wide text-white text-opacity-100 py-2 font-mono">
                     <b class="text-l">Tools:</b> {{ $tools }}
                 </p>
-                <ul class="list-disc text-xs leading-snug tracking-wide text-white text-opacity-100 leading-relaxed">
+                <ul class="list-disc text-xs leading-snug tracking-wide text-white text-opacity-100">
                     {{ $slot }}
                 </ul>
             </div>

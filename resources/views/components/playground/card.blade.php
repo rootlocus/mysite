@@ -1,4 +1,4 @@
-<div class="{{$style}} p-4 text-gray-400">
+<div class="{{$style}} p-4 text-gray-400 hover:opacity-80">
     <a href="{{$link}}">
         <div class="border-1 border-b-4 border-black flex flex-row space-x-4 items-center justify-center">
             <h3 class="text-2xl">{{ $title }}</h3>
