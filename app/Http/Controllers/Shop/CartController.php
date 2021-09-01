@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Http\Controllers\Steam\Shop;
+namespace App\Http\Controllers\Shop;
 
 use App\Actions\Shop\UpdateCartQuantity;
 use App\Http\Controllers\Controller;
 use App\Models\Shop\Cart;
 use App\Models\Shop\CartItem;
 use App\Models\Shop\Order;
-use App\Models\Shop\OrderItem;
 use App\Models\Shop\Product;
 use App\Models\Shop\Status;
-use Exception;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Throwable;

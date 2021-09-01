@@ -2,7 +2,6 @@
     <div class="min-h-screen bg-white pt-12">
         <Navbar class="mb-2" :cart="cart"/>
         <div class="flex flex-col lg:mx-40 md:mx-10 mt-5">
-            <BackButton :link="'/playground/shop'" class="mb-5"/>
             <div class="bg-white-500 text-4xl pb-4">Shopping Bag</div>
             <div class="flex flex-row space-x-10 mb-10">
                 <div class="w-1/2">
@@ -25,23 +24,23 @@
                         <h2 class="text-4xl">Order Summary</h2>
                     </div>
                     <div class="flex flex-col space-y-4">
-                        <div class="flex flex-row font-semibold">
+                        <div class="flex flex-row font-semibold space-x-2">
                             <div class="w-6/12">Product Name</div>
                             <div class="w-2/12 text-center">Quantity</div>
                             <div class="w-2/12">Price({{currency}})</div>
                             <div class="w-2/12">Total({{currency}})</div>
                         </div>
-                        <div v-for="item in cart.items" :key="item.id" class="flex flex-row">
+                        <div v-for="item in cart.items" :key="item.id" class="flex flex-row space-x-2">
                             <div class="w-6/12">{{ item.product.name }}</div>
                             <div class="w-2/12 text-center">{{ item.quantity }}</div>
                             <div class="w-2/12">{{ item.price }}</div>
                             <div class="w-2/12">{{ item.total_amount }}</div>
                         </div>
-                        <div class="border-1 border-t-4 border-black flex flex-row pt-2">
+                        <div class="border-1 border-t-4 border-black flex flex-row pt-2 space-x-6">
                             <div class="w-10/12 font-bold">Order Total({{currency}}):</div>
                             <div class="w-2/12">{{ cart.total_amount }}</div>
                         </div>
-                        <button class="p-4 bg-gray-750 text-gray-300 hover:opacity-80" @click="checkout">
+                        <button class="p-4 bg-gray-750 text-gray-300 hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed" @click="checkout" :disabled="!cart.items_count">
                             Checkout Now
                         </button>
                     </div>
@@ -53,7 +52,6 @@
 
 <script>
 import Navbar from '@/Components/Shop/Navbar';
-import BackButton from '@/Components/Shop/BackButton';
 import { Link } from '@inertiajs/inertia-vue3'
 import QuantityInput from '@/Components/Shop/QuantityInput';
 import { debounce } from 'lodash';
@@ -61,7 +59,6 @@ import { debounce } from 'lodash';
 export default {
     components: {
         Navbar,
-        BackButton,
         Link,
         QuantityInput,
     },

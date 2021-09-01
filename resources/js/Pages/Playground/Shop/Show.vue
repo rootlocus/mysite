@@ -2,7 +2,7 @@
     <div class="min-h-screen bg-white pt-12">
         <Navbar class="mb-2" :cart="cart"/>
         <div class="flex flex-col lg:mx-40 md:mx-10 mt-20">
-            <BackButton :link="'/playground/shop'" class="mb-2"/>
+            <BackButton class="mb-2"/>
             <div class="flex flex-row">
                 <div class="bg-white-500 w-1/2 shadow-xl">
                     <img src="https://fakeimg.pl/500/" class="mx-auto">
