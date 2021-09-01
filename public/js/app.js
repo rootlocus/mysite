@@ -19680,6 +19680,19 @@ __webpack_require__.r(__webpack_exports__);
       var quantity = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var product = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
+
+      if (type == null) {
+        if (quantity === 0) {
+          this.$toast.show("Product removed from cart!", {
+            duration: 3000
+          });
+        } else {
+          this.$toast.success("Product quantity updated!", {
+            duration: 3000
+          });
+        }
+      }
+
       this.$inertia.put(route('playground.shop.cart.update', this.cart.id), {
         quantity: quantity,
         type: type,
@@ -19947,6 +19960,19 @@ __webpack_require__.r(__webpack_exports__);
     updateCart: (0,lodash__WEBPACK_IMPORTED_MODULE_4__.debounce)(function () {
       var quantity = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
+
+      if (type == null) {
+        if (quantity === 0) {
+          this.$toast.show("Product removed from cart!", {
+            duration: 3000
+          });
+        } else {
+          this.$toast.success("Product quantity updated!", {
+            duration: 3000
+          });
+        }
+      }
+
       this.$inertia.put(route('playground.shop.product.add', this.product.id), {
         quantity: quantity,
         type: type,

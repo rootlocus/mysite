@@ -66,6 +66,13 @@ export default {
             this.$toast.show(`Product Removed!`, { duration: 3000});
         }, 100),
         updateCart: debounce( function(quantity = null, type = null) {
+            if (type == null) {
+                if (quantity === 0) {
+                    this.$toast.show(`Product removed from cart!`, { duration: 3000})
+                } else {
+                    this.$toast.success(`Product quantity updated!`, { duration: 3000});
+                }
+            }
             this.$inertia.put(route('playground.shop.product.add', this.product.id), {quantity: quantity, type: type, cart: this.cart.id}, { replace: true });
         })
     },
