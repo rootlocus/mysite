@@ -41,7 +41,7 @@
                             <div class="w-10/12 font-bold">Order Total({{currency}}):</div>
                             <div class="w-2/12">{{ cart.total_amount }}</div>
                         </div>
-                        <button class="p-4 bg-gray-750 text-gray-300">
+                        <button class="p-4 bg-gray-750 text-gray-300 hover:opacity-80" @click="checkout">
                             Checkout Now
                         </button>
                     </div>
@@ -93,6 +93,9 @@ export default {
         },
         clearAll() {
             this.$inertia.delete(route('playground.shop.cart.clearAll', {'cart': this.cart.id}), null, { preserveState: true });
+        },
+        checkout() {
+            this.$inertia.post(route('playground.shop.cart.checkout', this.cart.id));
         }
     },
 
