@@ -85,8 +85,10 @@ export default {
             this.$inertia.get(route('playground.shop.index'), this.filters, { preserveState: true });
         }, 300),
         filterCategory: debounce( function(category) {
-            this.filters.categories.push(category.name);
-            this.filter();
+            if (this.filters.categories.indexOf(category.name) < 0) {
+                this.filters.categories.push(category.name);
+                this.filter();
+            }
         }, 200),
         removeCategory(removedCategory) {
             this.filters.categories = this.filters.categories.filter(function(category) {
