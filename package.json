@@ -24,8 +24,10 @@
         "@inertiajs/inertia-vue3": "^0.5.2",
         "@inertiajs/progress": "^0.2.6",
         "@j-t-mcc/vue3-chartjs": "^1.1.4",
+        "@meforma/vue-toaster": "^1.2.2",
         "chart.js": "^3.5.1",
         "cross-env": "^7.0.3",
+        "sweetalert": "^2.1.2",
         "vue": "^3.2.6"
     }
 }

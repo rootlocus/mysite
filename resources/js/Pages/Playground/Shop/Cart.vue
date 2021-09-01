@@ -55,6 +55,7 @@ import Navbar from '@/Components/Shop/Navbar';
 import { Link } from '@inertiajs/inertia-vue3'
 import QuantityInput from '@/Components/Shop/QuantityInput';
 import { debounce } from 'lodash';
+import swal from 'sweetalert';
 
 export default {
     components: {
@@ -78,21 +79,35 @@ export default {
     methods: {
         addItem: debounce (function(item) {
             this.updateCart(null, 'add', item);
+            this.$toast.success(`Product Added!`, { duration: 3000});
         }, 100),
         removeItem: debounce (function(item) {
             this.updateCart(null, 'remove', item);
+            this.$toast.show(`Product Removed!`, { duration: 3000});
         }, 100),
         updateCart: debounce( function(quantity = null, type = null, product = null) {
             this.$inertia.put(route('playground.shop.cart.update', this.cart.id), {quantity: quantity, type: type, product: product}, { preserveState: true });
         }),
         clearProduct(product) {
             this.$inertia.delete(route('playground.shop.cart.product.destroy', {'cart': this.cart.id, 'product': product.id}), null, { preserveState: true });
+            this.$toast.show(product.name + ` is removed from cart`, { duration: 3000});
         },
         clearAll() {
             this.$inertia.delete(route('playground.shop.cart.clearAll', {'cart': this.cart.id}), null, { preserveState: true });
+            this.$toast.show(`Cart is cleared!`, { duration: 3000});
         },
         checkout() {
-            this.$inertia.post(route('playground.shop.cart.checkout', this.cart.id));
+            swal({
+                title: "Are you sure you want to checkout ?",
+                icon: "warning",
+                buttons: ["Cancel", "Checkout"],
+                dangerMode: false,
+            })
+            .then((isConfirm) => {
+                if (isConfirm) {
+                    this.$inertia.post(route('playground.shop.cart.checkout', this.cart.id));
+                }
+            });
         }
     },
 
