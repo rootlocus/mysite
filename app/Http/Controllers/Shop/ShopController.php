@@ -35,9 +35,10 @@ class ShopController extends Controller
                             $query->where('price', '>=', $request->minPrice);
                         });
                 })
+                ->orderBy('name')
                 ->paginate(20)
                 ->withQueryString(),
-            'categories' => Category::query()->get(),
+            'categories' => Category::query()->orderBy('name')->get(),
             'cart' => Cart::query()->withCount(['items'])->first(),
             'filters' => [
                 'search' => $request->search ?? null,

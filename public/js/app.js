@@ -19468,8 +19468,10 @@ __webpack_require__.r(__webpack_exports__);
       });
     }, 300),
     filterCategory: (0,lodash__WEBPACK_IMPORTED_MODULE_4__.debounce)(function (category) {
-      this.filters.categories.push(category.name);
-      this.filter();
+      if (this.filters.categories.indexOf(category.name) < 0) {
+        this.filters.categories.push(category.name);
+        this.filter();
+      }
     }, 200),
     removeCategory: function removeCategory(removedCategory) {
       this.filters.categories = this.filters.categories.filter(function (category) {
