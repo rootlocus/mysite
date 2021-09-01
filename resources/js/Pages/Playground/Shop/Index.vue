@@ -8,7 +8,7 @@
                         <span>
                             <b>Categories</b>
                         </span>
-                        <div class="flex flex-col space-y-2 cursor-pointer hover:text-blue-700" v-for="category in categories">
+                        <div class="flex flex-col space-y-2 cursor-pointer hover:text-blue-800" v-for="category in categories" :key="category.id">
                             <span @click="filterCategory(category)">{{ category.name }}</span>
                         </div>
                     </div>

@@ -4,8 +4,14 @@
         <div class="flex flex-col lg:mx-40 md:mx-10 mt-5">
             <div class="flex flex-row space-x-10 mb-10">
                 <div class="bg-gray-300 w-full flex flex-col p-4 ">
-                    <div class="border-1 border-b-4 border-black">
+                    <div class="border-1 border-b-4 border-black flex justify-between">
                         <h2 class="text-4xl">My Orders</h2>
+                        <div class="flex cursor-pointer hover:text-blue-800">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+                            </svg>
+                            <span>Download Statement</span>
+                        </div>
                     </div>
                     <div class="flex flex-col border-double border-b-4 border-black mt-2" v-for="item in orders" :key="item.id">
                         <span class="text-2xl font-semibold">Order #{{ item.id }} ({{item.status}}) <span class="text-xs">{{ item.status_timestamp }}</span></span>
