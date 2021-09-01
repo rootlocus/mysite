@@ -1,6 +1,6 @@
 const mix = require('laravel-mix');
 const path = require('path');
-// const webpack = require('webpack');
+const webpack = require('webpack');
 
 /*
  |--------------------------------------------------------------------------
@@ -18,7 +18,9 @@ mix.js('resources/js/app.js', 'public/js')
     .vue()
     .webpackConfig(require('./webpack.config.js'))
     .postCss('resources/css/app.css', 'public/css', [
-        require("tailwindcss"),
+        require('postcss-import'),
+        require('tailwindcss'),
+        require('autoprefixer'),
     ]);
 
 mix.alias({
@@ -29,11 +31,11 @@ mix.alias({
 //Getting this warning. 
 // You are running the esm-bundler build of Vue. 
 // It is recommended to configure your bundler to explicitly replace feature flag globals with boolean literals
-// mix.webpackConfig ({
-//     plugins: [
-//         new webpack.DefinePlugin({
-//         __VUE_OPTIONS_API__: true,
-//         __VUE_PROD_DEVTOOLS__: false,
-//         }),
-//     ],
-//     })
+mix.webpackConfig ({
+    plugins: [
+        new webpack.DefinePlugin({
+        __VUE_OPTIONS_API__: true,
+        __VUE_PROD_DEVTOOLS__: false,
+        }),
+    ],
+    })

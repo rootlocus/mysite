@@ -12,6 +12,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/dashboard', function () {
+    return view('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
 Route::get('/', App\Http\Livewire\Home\Index::class);
 Route::get('/about-me', App\Http\Livewire\AboutMe\Index::class);
 
@@ -44,3 +49,5 @@ Route::prefix('playground')->group(function () {
 // });
 
 // Route::get('/test', App\Http\Livewire\HelloWorld::class);
+
+require __DIR__.'/auth.php';
