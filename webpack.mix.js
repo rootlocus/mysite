@@ -1,5 +1,6 @@
 const mix = require('laravel-mix');
 const path = require('path');
+const webpack = require('webpack')
 
 /*
  |--------------------------------------------------------------------------
@@ -20,7 +21,19 @@ mix.js('resources/js/app.js', 'public/js')
         require("tailwindcss"),
     ]);
 
-    mix.alias({
+mix.alias({
         ziggy: path.resolve('vendor/tightenco/ziggy/dist'), // or 'vendor/tightenco/ziggy/dist/vue' if you're using the Vue plugin
     });
+   
     
+//Getting this warning. 
+// You are running the esm-bundler build of Vue. 
+// It is recommended to configure your bundler to explicitly replace feature flag globals with boolean literals
+mix.webpackConfig ({
+    plugins: [
+        new webpack.DefinePlugin({
+        __VUE_OPTIONS_API__: true,
+        __VUE_PROD_DEVTOOLS__: false,
+        }),
+    ],
+    })

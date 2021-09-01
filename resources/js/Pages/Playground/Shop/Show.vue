@@ -64,7 +64,7 @@ export default {
             this.updateCart(null, 'remove');
         }, 100),
         updateCart: debounce( function(quantity = null, type = null) {
-            this.$inertia.put(route('playground.shop.product.add', this.product.id), {quantity: quantity, type: type, cart: this.cart.id}, { preserveState: true });
+            this.$inertia.put(route('playground.shop.product.add', this.product.id), {quantity: quantity, type: type, cart: this.cart.id}, { replace: true });
         })
     },
 

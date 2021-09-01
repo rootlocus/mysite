@@ -8,7 +8,7 @@
                 <div class="w-1/2">
                     <div class="border-1 border-b-4 border-black flex flex-row space-x-4 items-center">
                         <h3 class="text-2xl">{{ cart.items_count }} ITEM(S)</h3>
-                        <h4 class="hover:text-blue-700 cursor-pointer" @click="clearAll">Clear All</h4>
+                        <h4 class="hover:text-red-600 cursor-pointer" @click="clearAll" v-if="cart.items_count">Clear All</h4>
                     </div>
                     <div class="flex flex-row space-x-4 pt-2" v-for="item in cart.items" :key="item.id">
                         <img src="https://fakeimg.pl/200/" class="">
