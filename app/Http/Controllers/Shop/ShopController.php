@@ -7,6 +7,7 @@ use App\Models\Shop\Cart;
 use App\Models\Shop\Category;
 use App\Models\Shop\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ShopController extends Controller
@@ -45,7 +46,7 @@ class ShopController extends Controller
                 'categories' => !empty($request->categories) ? $request->categories : [],
                 'minPrice' => $request->minPrice ?? null,
                 'maxPrice' => $request->maxPrice ?? null,
-            ]
+            ],
         ]);
     }
 

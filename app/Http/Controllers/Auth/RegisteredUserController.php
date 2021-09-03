@@ -8,8 +8,11 @@ use App\Providers\RouteServiceProvider;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+// use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
+use Illuminate\Support\Facades\Route;
+use Inertia\Inertia;
 
 class RegisteredUserController extends Controller
 {
@@ -20,7 +23,8 @@ class RegisteredUserController extends Controller
      */
     public function create()
     {
-        return view('auth.register');
+        // return view('auth.register');
+        return Inertia::render('Playground/Shop/Auth/Register');
     }
 
     /**
@@ -47,7 +51,7 @@ class RegisteredUserController extends Controller
 
         event(new Registered($user));
 
-        // Auth::login($user);
+        Auth::login($user);
 
         return redirect(RouteServiceProvider::HOME);
     }
