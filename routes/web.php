@@ -33,7 +33,7 @@ Route::prefix('playground')->name('playground.')->group(function () {
             Route::delete('/{cart}/product/{product}', [App\Http\Controllers\Shop\CartController::class, 'destroy'])->name('product.destroy');
         });
         /** Product */
-        Route::prefix('/product')->name('product.')->group(function () {
+        Route::prefix('/product')->name('product.')->middleware('auth')->group(function () {
             Route::get('/{product}', [App\Http\Controllers\Shop\ProductController::class, 'show'])->name('show');
             Route::put('/{product}/add', [App\Http\Controllers\Shop\ProductController::class, 'addToCart'])->name('add');
         });
