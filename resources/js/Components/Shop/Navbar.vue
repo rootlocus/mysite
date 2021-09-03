@@ -7,11 +7,11 @@
                 </svg>
                 <span>Home</span>
             </Link>
-            <Link v-if="isLogin" class="flex flex-col md:flex-row items-center space-x-2 hover:text-blue-800" href="/playground/shop/my-orders">
+            <Link v-if="isLogin" class="flex flex-col md:flex-row items-center space-x-2 hover:text-blue-800" href="/playground/shop/orders">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 8h14M5 8a2 2 0 110-4h14a2 2 0 110 4M5 8v10a2 2 0 002 2h10a2 2 0 002-2V8m-9 4h4" />
                 </svg>
-                <span>My Orders</span>
+                <span>Orders</span>
             </Link>
             <Link v-if="!isLogin" class="flex flex-col md:flex-row items-center space-x-2 hover:text-blue-800" href="/playground/shop/login">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -19,14 +19,6 @@
                 </svg>
                 <span>Login</span>
             </Link>
-            <button v-if="isLogin" class="flex flex-col md:flex-row items-center space-x-2 hover:text-blue-800" @click="logout">
-                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
-                </svg>
-                <span>Sign out</span>
-            </button>
-        </div>
-        <div class="flex space-x-4">
             <button class="flex flex-col md:flex-row items-center hover:text-blue-800">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 3h2l.4 2M7 13h10l4-8H5.4M7 13L5.4 5M7 13l-2.293 2.293c-.63.63-.184 1.707.707 1.707H17m0 0a2 2 0 100 4 2 2 0 000-4zm-8 2a2 2 0 11-4 0 2 2 0 014 0z" />
@@ -35,12 +27,22 @@
                     <Link href="/playground/shop/cart">CART ({{ cart?.items_count ?? 0 }})</Link>
                 </span>
             </button>
-            <Link v-if="isLogin" class="flex flex-col md:flex-row items-center space-x-2 hover:text-blue-800 space-2-x" href="/playground/shop/my-orders">
+        </div>
+        <div class="flex space-x-4">
+            <Link v-if="isLogin" class="flex flex-col md:flex-row items-center space-x-2 hover:text-blue-800 space-2-x" href="/playground/shop/profile">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5.121 17.804A13.937 13.937 0 0112 16c2.5 0 4.847.655 6.879 1.804M15 10a3 3 0 11-6 0 3 3 0 016 0zm6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
                 </svg>
+                <span>
                 Profile
+                </span>
             </Link>
+            <button v-if="isLogin" class="flex flex-col md:flex-row items-center space-x-2 hover:text-blue-800" @click="logout">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
+                </svg>
+                <span>Logout</span>
+            </button>
         </div>
     </div>
 </template>

@@ -22,7 +22,8 @@ Route::prefix('playground')->name('playground.')->group(function () {
     /** Shop */
     Route::prefix('shop')->name('shop.')->group(function () {
         Route::get('/', [App\Http\Controllers\Shop\ShopController::class, 'index'])->name('index');
-        Route::get('/my-orders', [App\Http\Controllers\Shop\MyOrderController::class, 'index'])->middleware('auth')->name('my-orders.index');
+        Route::get('/orders', [App\Http\Controllers\Shop\MyOrderController::class, 'index'])->middleware('auth')->name('orders.index');
+        Route::get('/profile', [App\Http\Controllers\Shop\ProfileController::class, 'index'])->middleware('auth')->name('profile.index');
         /** Cart */
         Route::prefix('/cart')->name('cart.')->middleware('auth')->group(function () {
             Route::get('/', [App\Http\Controllers\Shop\CartController::class, 'index']);
