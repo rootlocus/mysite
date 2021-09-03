@@ -1,4 +1,5 @@
 <template>
+    <Head title="Steam Infographics"/>
     <div class="min-h-screen bg-gray-850 pt-20">
         <div class="py-10 px-4 md:px-20 space-y-4">
             <div class="">
@@ -65,13 +66,14 @@
 </template>
 
 <script>
-// import Test from '@/Components/Test';
 import { ref } from 'vue';
 import Vue3ChartJs from '@j-t-mcc/vue3-chartjs';
+import { Head } from '@inertiajs/inertia-vue3';
 
 export default {
     components: {
-            Vue3ChartJs
+        Vue3ChartJs,
+        Head,
     },
     props: {
         userData: {

@@ -1,4 +1,5 @@
 <template>
+    <Head title="Home"/>
     <div class="min-h-screen bg-white pt-12">
         <Navbar class="mb-2" :cart="cart"/>
         <div class="flex flex-row xl:mx-40 md:mx-10">
@@ -48,9 +49,11 @@ import ProductCard from '@/Components/Shop/ProductCard';
 import FilterTags from '@/Components/Shop/FilterTags';
 import Pagination from '@/Components/Shop/Pagination';
 import { debounce } from 'lodash';
+import { Head } from '@inertiajs/inertia-vue3';
 
 export default {
     components: {
+        Head,
         Navbar,
         ProductCard,
         FilterTags,

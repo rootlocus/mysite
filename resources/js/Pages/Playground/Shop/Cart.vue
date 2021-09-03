@@ -1,4 +1,5 @@
 <template>
+    <Head title="My Cart"/>
     <div class="min-h-screen bg-white pt-12">
         <Navbar class="mb-2" :cart="cart"/>
         <div class="flex flex-col lg:mx-40 md:mx-10 mt-5">
@@ -56,11 +57,13 @@ import { Link } from '@inertiajs/inertia-vue3'
 import QuantityInput from '@/Components/Shop/QuantityInput';
 import { debounce } from 'lodash';
 import swal from 'sweetalert';
+import { Head } from '@inertiajs/inertia-vue3';
 
 export default {
     components: {
         Navbar,
         Link,
+        Head,
         QuantityInput,
     },
     props: {

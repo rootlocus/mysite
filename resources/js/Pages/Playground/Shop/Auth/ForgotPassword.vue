@@ -1,4 +1,5 @@
 <template>
+    <Head title="Forgot Password"/>
     <div class="min-h-screen bg-white pt-12">
         <Navbar class="" />
         <div class="bg-gray-750 h-screen">
@@ -44,10 +45,12 @@
 </template>
 <script>
 import Navbar from '@/Components/Shop/Navbar';
+import { Head } from '@inertiajs/inertia-vue3';
 
 export default {
     components: {
         Navbar,
+        Head
     },
     data() {
         return {

@@ -1,4 +1,5 @@
 <template>
+    <Head title="My Profile"/>
     <div class="min-h-screen bg-white pt-12">
         <Navbar class="mb-2" :cart="cart"/>
         <div class="bg-gray-300 flex flex-col p-4 lg:mx-96 md:mx-10 mt-5">
@@ -43,14 +44,6 @@
                 </div>
             </div>
         </div>
-
-        <!-- <div class="flex flex-col lg:mx-96 md:mx-10 mt-5">
-            <div class="flex">
-                <div>
-                    adasd
-                </div>
-            </div>
-        </div> -->
     </div>
 </template>
 
@@ -59,13 +52,14 @@ import Navbar from '@/Components/Shop/Navbar';
 import BackButton from '@/Components/Shop/BackButton';
 import { Link } from '@inertiajs/inertia-vue3'
 import QuantityInput from '@/Components/Shop/QuantityInput';
-import { debounce } from 'lodash';
+import { Head } from '@inertiajs/inertia-vue3';
 
 export default {
     components: {
         Navbar,
         BackButton,
         Link,
+        Head,
         QuantityInput,
     },
     props: {

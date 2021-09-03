@@ -1,4 +1,5 @@
 <template>
+    <Head title="My Profile"/>
     <div class="min-h-screen bg-white pt-12">
         <Navbar class="mb-2" :cart="cart"/>
         <div class="flex flex-col lg:mx-40 md:mx-10 mt-20">
@@ -27,6 +28,7 @@ import BackButton from '@/Components/Shop/BackButton';
 import QuantityInput from '@/Components/Shop/QuantityInput';
 import { Link } from '@inertiajs/inertia-vue3';
 import { debounce } from 'lodash';
+import { Head } from '@inertiajs/inertia-vue3';
 
 export default {
     components: {
@@ -34,6 +36,7 @@ export default {
         Link,
         BackButton,
         QuantityInput,
+        Head,
     },
     props: {
         product: {
