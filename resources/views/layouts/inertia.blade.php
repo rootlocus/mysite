@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0" />
     <link rel="icon" href="{{ local_images('favicon.png') }}">
     <link href="{{ config('app.env') == 'local' ? mix('/css/app.css') : asset(mix('/css/app.css')) }}" rel="stylesheet" />
-    <script src="{{ config('app.env') == 'local' ? mix('/js/app.js') : asset(mix('/css/app.js')) }}" defer></script>
+    <script src="{{ config('app.env') == 'local' ? mix('/js/app.js') : asset(mix('/js/app.js')) }}" defer></script>
     {{-- Fonts --}}
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
