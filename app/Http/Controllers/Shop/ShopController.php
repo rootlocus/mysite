@@ -7,14 +7,14 @@ use App\Models\Shop\Cart;
 use App\Models\Shop\Category;
 use App\Models\Shop\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 
 class ShopController extends Controller
 {
     public function index(Request $request)
     {
-        //TODO change when add user
-        Cart::query()->get()->isEmpty() && Cart::create([]);
+        Auth::check() && Cart::firstOrCreate([ 'user_id' => Auth::user()->id ]);
 
         return Inertia::render('Playground/Shop/Index', [
             'products' => Product::query()
@@ -45,7 +45,7 @@ class ShopController extends Controller
                 'categories' => !empty($request->categories) ? $request->categories : [],
                 'minPrice' => $request->minPrice ?? null,
                 'maxPrice' => $request->maxPrice ?? null,
-            ]
+            ],
         ]);
     }
 

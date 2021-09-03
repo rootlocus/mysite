@@ -57,6 +57,7 @@ class CartController extends Controller
         try {
             $order = Order::create([
                 'cart_id' => $cart->id,
+                'user_id' => $cart->user_id
             ]);
     
             Status::create([
