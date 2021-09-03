@@ -6,7 +6,6 @@ use App\Actions\Steam\GetGameData;
 use App\Actions\Steam\GetUserData;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class SteamController extends Controller
