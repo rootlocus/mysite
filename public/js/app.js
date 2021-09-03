@@ -21584,7 +21584,7 @@ var _hoisted_3 = {
   "class": "flex flex-row space-x-10 mb-10"
 };
 var _hoisted_4 = {
-  "class": "bg-gray-300 w-full flex flex-col p-4 "
+  "class": "bg-gray-300 w-full flex flex-col p-4"
 };
 
 var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {

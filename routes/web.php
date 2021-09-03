@@ -26,7 +26,7 @@ Route::prefix('playground')->name('playground.')->group(function () {
         Route::get('/profile', [App\Http\Controllers\Shop\ProfileController::class, 'index'])->middleware('auth')->name('profile.index');
         /** Cart */
         Route::prefix('/cart')->name('cart.')->middleware('auth')->group(function () {
-            Route::get('/', [App\Http\Controllers\Shop\CartController::class, 'index']);
+            Route::get('/', [App\Http\Controllers\Shop\CartController::class, 'index'])->name('index');
             Route::delete('/{cart}', [App\Http\Controllers\Shop\CartController::class, 'clearAll'])->name('clearAll');
             Route::post('/{cart}', [App\Http\Controllers\Shop\CartController::class, 'checkout'])->name('checkout');
             Route::put('/{cart}/product', [App\Http\Controllers\Shop\CartController::class, 'update'])->name('update');

@@ -38,4 +38,8 @@ mix.webpackConfig ({
         __VUE_PROD_DEVTOOLS__: false,
         }),
     ],
-    })
+})
+
+if (mix.inProduction()) {
+    mix.version();
+}

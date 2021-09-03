@@ -3,7 +3,7 @@
         <Navbar class="mb-2" :cart="cart"/>
         <div class="flex flex-col lg:mx-96 md:mx-10 mt-5">
             <div class="flex flex-row space-x-10 mb-10">
-                <div class="bg-gray-300 w-full flex flex-col p-4 ">
+                <div class="bg-gray-300 w-full flex flex-col p-4">
                     <div class="border-1 border-b-4 border-black">
                         <h2 class="text-4xl">My Orders</h2>
                     </div>

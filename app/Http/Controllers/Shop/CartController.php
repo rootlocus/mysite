@@ -34,21 +34,21 @@ class CartController extends Controller
 
         UpdateCartQuantity::run($data);
         
-        return redirect()->route('playground.shop.cart', data_get($request->product, 'id'));
+        return redirect()->route('playground.shop.cart.index', data_get($request->product, 'id'));
     }
 
     public function destroy(Request $request, Cart $cart, Product $product)
     {
         $cart->items()->where('product_id', $product->id)->delete();
 
-        return redirect()->route('playground.shop.cart', data_get($request->product, 'id'));
+        return redirect()->route('playground.shop.cart.index', data_get($request->product, 'id'));
     }
 
     public function clearAll(Request $request, Cart $cart)
     {
         $cart->items()->delete();
 
-        return redirect()->route('playground.shop.cart', data_get($request->product, 'id'));
+        return redirect()->route('playground.shop.cart.index', data_get($request->product, 'id'));
     }
 
     public function checkout(Request $request, Cart $cart)
