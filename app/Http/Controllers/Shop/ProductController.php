@@ -19,7 +19,7 @@ class ProductController extends Controller
         return Inertia::render('Playground/Shop/Show', [
             'product' => Product::query()->with('category:id,name')->where('id', $product->id)->first(),
             'cart' => $cart,
-            'cartItem' => $cart->items()->where('product_id', $product->id)->first(),
+            'cartItem' => $cart ? $cart->items()->where('product_id', $product->id)->first() : null,
         ]);
     }
 
