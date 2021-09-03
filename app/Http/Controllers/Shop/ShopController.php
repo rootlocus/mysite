@@ -14,8 +14,7 @@ class ShopController extends Controller
 {
     public function index(Request $request)
     {
-        //TODO change when add user
-        Cart::query()->get()->isEmpty() && Cart::create([]);
+        Auth::check() && Cart::firstOrCreate([ 'user_id' => Auth::user()->id ]);
 
         return Inertia::render('Playground/Shop/Index', [
             'products' => Product::query()

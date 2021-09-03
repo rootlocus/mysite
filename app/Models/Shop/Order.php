@@ -3,18 +3,22 @@
 namespace App\Models\Shop;
 
 use App\Traits\Shop\HasStatuses;
+use App\Traits\Uuid;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Auth;
 
 class Order extends Model
 {
-    use HasStatuses;
+    use HasStatuses, Uuid;
     
     protected $fillable = [
+        'uuid',
         'cart_id',
         'status',
-        //address
-        //user
+        'user_id',
+        'address_id',
     ];
 
     protected $appends = [
@@ -24,6 +28,14 @@ class Order extends Model
         'order_placed_at',
     ];
 
+    protected static function booted()
+    {
+        static::addGlobalScope('user', function (Builder $builder) {
+            $builder->where('user_id', Auth::check() ? Auth::user()->id : null);
+        });
+    }
+
+    
     public function items()
     {
         return $this->hasMany(OrderItem::class);

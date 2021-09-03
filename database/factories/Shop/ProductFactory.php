@@ -4,6 +4,7 @@ namespace Database\Factories\Shop;
 
 use App\Models\Shop\Category;
 use App\Models\Shop\Product;
+use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class ProductFactory extends Factory
@@ -23,6 +24,7 @@ class ProductFactory extends Factory
     public function definition()
     {
         return [
+            'uuid' => (string) Str::uuid(),
             'category_id' => Category::all()->random()->id,
             'name' => $this->faker->name,
             'slug' => $this->faker->name,
