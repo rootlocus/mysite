@@ -76,24 +76,6 @@ export default {
         viewProductPage(product) {
             this.$inertia.visit(route('playground.shop.product.show', product));
         }
-        // addItem: debounce (function(item) {
-        //     this.updateCart(null, 'add', item);
-        // }, 100),
-        // removeItem: debounce (function(item) {
-        //     this.updateCart(null, 'remove', item);
-        // }, 100),
-        // updateCart: debounce( function(quantity = null, type = null, product = null) {
-        //     this.$inertia.put(route('playground.shop.cart.update', this.cart.id), {quantity: quantity, type: type, product: product}, { preserveState: true });
-        // }),
-        // clearProduct(product) {
-        //     this.$inertia.delete(route('playground.shop.cart.product.destroy', {'cart': this.cart.id, 'product': product.id}), null, { preserveState: true });
-        // },
-        // clearAll() {
-        //     this.$inertia.delete(route('playground.shop.cart.clearAll', {'cart': this.cart.id}), null, { preserveState: true });
-        // },
-        // checkout() {
-        //     this.$inertia.post(route('playground.shop.cart.checkout', this.cart.id));
-        // }
     },
 
 }

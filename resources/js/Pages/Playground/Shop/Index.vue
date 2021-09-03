@@ -32,7 +32,7 @@
                 <FilterTags :filters="filters" @remove="removeCategory" class="flex flex-row items-center pl-2"/>
                 <Pagination :data="products" class="flex flex-row items-center pl-2"/>
                 <div class="flex flex-wrap cursor-pointer mx-4 lg:mx-0">
-                    <div v-for="product in products.data" class="2xl:w-1/5 xl:w-1/3 l:w-1/2 md:w-1/2 w-full">
+                    <div v-for="product in products.data" :key="product.id" class="2xl:w-1/5 xl:w-1/3 l:w-1/2 md:w-1/2 w-full">
                         <ProductCard class="m-4" :name="product.name" :price="product.price" :currency="'RM'"  @click="viewDetails(product.id)"/>
                     </div>
                 </div>
