@@ -49,4 +49,9 @@ class ShopController extends Controller
         ]);
     }
 
+    public function logs()
+    {
+        return Inertia::render('Playground/Shop/Logs');
+    }
+
 }

@@ -12,10 +12,15 @@ class SteamController extends Controller
 {
     public function index(Request $request)
     {
-        return Inertia::render('Playground/Steam', [
+        return Inertia::render('Playground/Steam/Index', [
             'userData' => GetUserData::run($request->steamid),
             'gameData' => GetGameData::run($request->steamid)
         ]);
+    }
+
+    public function logs(Request $request)
+    {
+        return Inertia::render('Playground/Steam/Logs');
     }
 
 }
