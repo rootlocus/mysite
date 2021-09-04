@@ -13,7 +13,7 @@ class GetUserData
 
     public function handle($steamId = null)
     {
-        $steam = new SteamWebService();
+        // $steam = new SteamWebService();
         $url = $steam->steamId($steamId ?? env('STEAM_ID'))->getPlayerSummary();
 
         $httpClient = new Client();

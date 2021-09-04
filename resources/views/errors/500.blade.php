@@ -19,14 +19,14 @@
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Thai:wght@600&family=Ubuntu:wght@300&display=swap" rel="stylesheet">
     <link href="{{ config('app.env') == 'local' ? asset('css/home.css') : asset(mix('css/home.css'), true) }}" rel="stylesheet"  type="text/css">
-    <title>505 Server Error - Eric Heng</title>
+    <title>500 Server Error - Eric Heng</title>
     @livewireStyles
 </head>
 <body class="bg-gray-850">
     <div class="h-screen w-screen bg-gray-100 flex items-center">
         <div class="container flex flex-col md:flex-row items-center justify-center px-5 text-gray-700">
                <div class="max-w-md">
-                  <div class="text-5xl font-dark font-bold">505</div>
+                  <div class="text-5xl font-dark font-bold">500</div>
                 <p
                   class="text-2xl md:text-3xl font-light leading-normal"
                 >Sorry our servers encountered an isssue. </p>
