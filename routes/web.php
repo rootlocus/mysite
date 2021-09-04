@@ -18,6 +18,7 @@ Route::get('/about-me', App\Http\Livewire\AboutMe\Index::class);
 Route::prefix('playground')->name('playground.')->group(function () {
     Route::get('/', App\Http\Livewire\Playground\Index::class);
     Route::get('/steam', [App\Http\Controllers\Steam\SteamController::class, 'index'])->name('steam.index');
+    Route::get('/steam/logs', [App\Http\Controllers\Steam\SteamController::class, 'logs'])->name('steam.logs');
 
     /** Shop */
     Route::prefix('shop')->name('shop.')->group(function () {
@@ -26,6 +27,8 @@ Route::prefix('playground')->name('playground.')->group(function () {
         Route::get('/profile', [App\Http\Controllers\Shop\ProfileController::class, 'index'])->middleware('auth')->name('profile.index');
         Route::get('/address', [App\Http\Controllers\Shop\AddressController::class, 'index'])->middleware('auth')->name('address.index');
         Route::post('/address', [App\Http\Controllers\Shop\AddressController::class, 'store'])->middleware('auth')->name('address.store');
+        Route::get('/logs', [App\Http\Controllers\Shop\ShopController::class, 'logs'])->name('logs');
+
         /** Cart */
         Route::prefix('/cart')->name('cart.')->middleware('auth')->group(function () {
             Route::get('/', [App\Http\Controllers\Shop\CartController::class, 'index'])->name('index');
