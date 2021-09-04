@@ -21,8 +21,8 @@
                             Minimum Price<input type="text" name="min" placeholder="Min" v-model="filters.minPrice" class="rounded-xl px-2">
                             Maximum Price<input type="text" name="min" placeholder="Max" v-model="filters.maxPrice" class="rounded-xl px-2">
                         </div>
-                        <button class="p-0.5 px-2 mt-2 bg-gray-600 text-gray-300 rounded-xl" @click="filter">Filter</button>
-                        <button class="p-0.5 ml-2 px-2 mt-2  text-gray-600 rounded-xl" @click="clearPrice">Clear</button>
+                        <button class="p-0.5 px-2 mt-2 bg-gray-600 text-gray-300 rounded" @click="filter">Filter</button>
+                        <button class="p-0.5 ml-2 px-2 mt-2  text-gray-600" @click="clearPrice">Clear</button>
                     </div>
                 </div>
             </div>

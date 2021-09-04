@@ -3,8 +3,11 @@
     <div class="min-h-screen bg-white pt-12">
         <Navbar class="mb-2" :cart="cart"/>
         <div class="bg-gray-300 flex flex-col p-4 lg:mx-96 md:mx-10 mt-5">
-            <div class="border-1 border-b-4 border-black">
+            <div class="border-1 border-b-4 border-black flex flex-row justify-between">
                 <h2 class="text-4xl">My Profile</h2>
+                <a href="/playground/shop/address">
+                    <button class="bg-gray-850 p-2 mb-2 rounded text-gray-300">My Addresses ></button>
+                </a>
             </div>
             <div class="p-2 flex space-x-10">
                 <div class="mb-4 w-1/2">

@@ -24,11 +24,15 @@ InertiaProgress.init({
 
 Inertia.on('start', (event) => {
     //hide all buttons that is non disable and turn on loader
-    document.getElementById('loader').style.display = 'flex';
+    if (document.getElementById('loader')) {
+        document.getElementById('loader').style.display = 'flex';
+    }
 });
 
 Inertia.on('finish', (event) => {
-    document.getElementById('loader').style.display = 'none';
+    if (document.getElementById('loader')) {
+        document.getElementById('loader').style.display = 'none';
+    }
 })
 
 createInertiaApp({
