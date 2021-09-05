@@ -19823,8 +19823,42 @@ __webpack_require__.r(__webpack_exports__);
     return {
       form: {
         email: null
-      }
+      },
+      isLoading: false,
+      isSubmited: false
     };
+  },
+  methods: {
+    reset: function reset() {
+      var _this = this;
+
+      this.isLoading = true;
+      this.$inertia.post(route('password.email'), this.form, {
+        onSuccess: function onSuccess(page) {
+          _this.isSubmited = true;
+
+          _this.onSuccess('You logged in!');
+        },
+        onError: function onError(errors) {
+          _this.isSubmited = false;
+          _this.isLoading = false;
+
+          _this.onError(errors);
+        }
+      });
+    },
+    onError: function onError(data) {
+      for (var key in data) {
+        this.$toast.error(data[key], {
+          duration: false
+        });
+      }
+    },
+    onSuccess: function onSuccess(msg) {
+      this.$toast.success(msg, {
+        duration: 3000
+      });
+    }
   }
 });
 
@@ -21839,19 +21873,46 @@ var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_8 = {
+  key: 0,
+  "class": "bg-gray-400 mt-2 p-2"
+};
+var _hoisted_9 = {
+  key: 1,
   "class": "mb-4 mt-2"
 };
 
-var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
   "class": "block text-gray-700 text-sm font-normal mb-2",
   "for": "username"
 }, " Email ", -1
 /* HOISTED */
 );
 
-var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "w-full px-4 py-2 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700",
-  type: "submit"
+var _hoisted_11 = ["disabled"];
+var _hoisted_12 = {
+  key: 0,
+  "class": "pl-2"
+};
+
+var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  "class": "animate-spin h-6 w-6",
+  fill: "none",
+  viewBox: "0 0 24 24",
+  stroke: "currentColor"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  "stroke-linecap": "round",
+  "stroke-linejoin": "round",
+  "stroke-width": "2",
+  d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_14 = [_hoisted_13];
+
+var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "mx-auto"
 }, "Email Password Reset Link", -1
 /* HOISTED */
 );
@@ -21865,7 +21926,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     title: "Forgot Password"
   }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Navbar, {
     "class": ""
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" @csrf "), _hoisted_6, _hoisted_7, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_8, [_hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("form", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" @csrf "), _hoisted_6, _hoisted_7, $data.isSubmited ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_8, " A link to reset your password has been sent to your email. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.isSubmited ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
     name: "email",
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
@@ -21877,7 +21938,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     placeholder: "Email"
   }, null, 512
   /* NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]])]), _hoisted_10]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p class=\"text-center text-gray-500 text-xs\">\n                        &copy;2020 Gau Corp. All rights reserved.\n                    </p> ")])])])])], 64
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.isSubmited ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 2,
+    disabled: $data.isLoading || !$data.form.email,
+    onClick: _cache[1] || (_cache[1] = function () {
+      return $options.reset && $options.reset.apply($options, arguments);
+    }),
+    "class": "disabled:opacity-50 disabled:bg-blue-500 disabled:cursor-not-allowed w-full flex px-4 py-2 rounded text-white shadow-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700",
+    type: "submit"
+  }, [$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_12, _hoisted_14)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_15], 8
+  /* PROPS */
+  , _hoisted_11)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
