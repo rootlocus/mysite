@@ -19795,10 +19795,28 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     login: function login() {
-      this.$toast.success("You are now logged in!", {
-        duration: 6000
+      var _this = this;
+
+      this.$inertia.post(route('shop.login.post'), this.form, {
+        onSuccess: function onSuccess(page) {
+          _this.onSuccess('You logged in!');
+        },
+        onError: function onError(errors) {
+          _this.onError(errors);
+        }
       });
-      this.$inertia.post(route('shop.login.post'), this.form);
+    },
+    onError: function onError(data) {
+      for (var key in data) {
+        this.$toast.error(data[key], {
+          duration: false
+        });
+      }
+    },
+    onSuccess: function onSuccess(msg) {
+      this.$toast.success(msg, {
+        duration: 3000
+      });
     }
   }
 });
@@ -19892,64 +19910,77 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     addItem: (0,lodash__WEBPACK_IMPORTED_MODULE_3__.debounce)(function (item) {
       this.updateCart(null, 'add', item);
-      this.$toast.success("Product Added!", {
-        duration: 3000
-      });
     }, 100),
     removeItem: (0,lodash__WEBPACK_IMPORTED_MODULE_3__.debounce)(function (item) {
       this.updateCart(null, 'remove', item);
-      this.$toast.show("Product Removed!", {
-        duration: 3000
-      });
     }, 100),
     updateCart: (0,lodash__WEBPACK_IMPORTED_MODULE_3__.debounce)(function () {
+      var _this = this;
+
       var quantity = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : null;
       var type = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : null;
       var product = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : null;
-
-      if (type == null) {
-        if (quantity === 0) {
-          this.$toast.show("Product removed from cart!", {
-            duration: 3000
-          });
-        } else {
-          this.$toast.success("Product quantity updated!", {
-            duration: 3000
-          });
-        }
-      }
-
       this.$inertia.put(route('playground.shop.cart.update', this.cart.id), {
         quantity: quantity,
         type: type,
         product: product
       }, {
-        preserveState: true
+        preserveState: true,
+        onSuccess: function onSuccess(page) {
+          if (type === null) {
+            quantity === 0 ? _this.$toast.show("Product removed from cart!", {
+              duration: 3000
+            }) : _this.$toast.success("Product quantity updated!", {
+              duration: 3000
+            });
+          } else if (type === 'add') {
+            _this.$toast.success("Product Added!", {
+              duration: 3000
+            });
+          } else if (type === 'remove') {
+            _this.$toast.show("Product Removed!", {
+              duration: 3000
+            });
+          }
+        },
+        onError: function onError(errors) {
+          _this.onError(errors);
+        }
       });
     }),
     clearProduct: function clearProduct(product) {
+      var _this2 = this;
+
       this.$inertia["delete"](route('playground.shop.cart.product.destroy', {
         'cart': this.cart.id,
         'product': product.id
-      }), null, {
-        preserveState: true
-      });
-      this.$toast.show(product.name + " is removed from cart", {
-        duration: 3000
+      }), {
+        preserveState: true,
+        onSuccess: function onSuccess(page) {
+          _this2.onSuccess(product.name + " is removed from cart");
+        },
+        onError: function onError(errors) {
+          _this2.onError(errors);
+        }
       });
     },
     clearAll: function clearAll() {
+      var _this3 = this;
+
       this.$inertia["delete"](route('playground.shop.cart.clearAll', {
         'cart': this.cart.id
       }), null, {
-        preserveState: true
-      });
-      this.$toast.show("Cart is cleared!", {
-        duration: 3000
+        preserveState: true,
+        onSuccess: function onSuccess(page) {
+          _this3.onSuccess('Cart is cleared!');
+        },
+        onError: function onError(errors) {
+          _this3.onError(errors);
+        }
       });
     },
     checkout: function checkout() {
-      var _this = this;
+      var _this4 = this;
 
       sweetalert__WEBPACK_IMPORTED_MODULE_4___default()({
         title: "Are you sure you want to checkout ?",
@@ -19958,8 +19989,20 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: false
       }).then(function (isConfirm) {
         if (isConfirm) {
-          _this.$inertia.post(route('playground.shop.cart.checkout', _this.cart.id));
+          _this4.$inertia.post(route('playground.shop.cart.checkout', _this4.cart.id));
         }
+      });
+    },
+    onError: function onError(data) {
+      for (var key in data) {
+        this.$toast.error(data[key], {
+          duration: false
+        });
+      }
+    },
+    onSuccess: function onSuccess(msg) {
+      this.$toast.success(msg, {
+        duration: 3000
       });
     }
   }

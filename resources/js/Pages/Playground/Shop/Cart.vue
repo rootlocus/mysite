@@ -85,29 +85,38 @@ export default {
     methods: {
         addItem: debounce (function(item) {
             this.updateCart(null, 'add', item);
-            this.$toast.success(`Product Added!`, { duration: 3000});
         }, 100),
         removeItem: debounce (function(item) {
             this.updateCart(null, 'remove', item);
-            this.$toast.show(`Product Removed!`, { duration: 3000});
         }, 100),
         updateCart: debounce( function(quantity = null, type = null, product = null) {
-            if (type == null) {
-                if (quantity === 0) {
-                    this.$toast.show(`Product removed from cart!`, { duration: 3000})
-                } else {
-                    this.$toast.success(`Product quantity updated!`, { duration: 3000});
-                }
-            }
-            this.$inertia.put(route('playground.shop.cart.update', this.cart.id), {quantity: quantity, type: type, product: product}, { preserveState: true });
+            this.$inertia.put(route('playground.shop.cart.update', this.cart.id), {quantity: quantity, type: type, product: product}, { 
+                preserveState: true,
+                onSuccess: page => {
+                    if (type === null) {
+                        quantity === 0 ? this.$toast.show(`Product removed from cart!`, { duration: 3000}) : this.$toast.success(`Product quantity updated!`, { duration: 3000})
+                    } else if (type === 'add') {
+                        this.$toast.success(`Product Added!`, { duration: 3000});
+                    } else if (type === 'remove') {
+                        this.$toast.show(`Product Removed!`, { duration: 3000});
+                    }
+                },
+                onError: errors => { this.onError(errors);},
+            });
         }),
         clearProduct(product) {
-            this.$inertia.delete(route('playground.shop.cart.product.destroy', {'cart': this.cart.id, 'product': product.id}), null, { preserveState: true });
-            this.$toast.show(product.name + ` is removed from cart`, { duration: 3000});
+            this.$inertia.delete(route('playground.shop.cart.product.destroy', {'cart': this.cart.id, 'product': product.id}), { 
+                preserveState: true,
+                onSuccess: page => { this.onSuccess(product.name + ` is removed from cart`);},
+                onError: errors => { this.onError(errors);},
+            });
         },
         clearAll() {
-            this.$inertia.delete(route('playground.shop.cart.clearAll', {'cart': this.cart.id}), null, { preserveState: true });
-            this.$toast.show(`Cart is cleared!`, { duration: 3000});
+            this.$inertia.delete(route('playground.shop.cart.clearAll', {'cart': this.cart.id}), null, { 
+                preserveState: true,
+                onSuccess: page => { this.onSuccess('Cart is cleared!');},
+                onError: errors => { this.onError(errors);},
+            });
         },
         checkout() {
             swal({
@@ -121,7 +130,15 @@ export default {
                     this.$inertia.post(route('playground.shop.cart.checkout', this.cart.id));
                 }
             });
-        }
+        },
+        onError(data) {
+            for (let key in data) {
+                this.$toast.error(data[key], {duration: false});
+            }
+        },
+        onSuccess(msg) {
+            this.$toast.success(msg, {duration: 3000});
+        },
     },
 
 }

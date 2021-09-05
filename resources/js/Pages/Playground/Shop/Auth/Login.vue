@@ -94,9 +94,20 @@ export default {
     },
     methods: {
         login() {
-            this.$toast.success(`You are now logged in!`, { duration: 6000});
-            this.$inertia.post(route('shop.login.post'), this.form);
-        }
+            this.$inertia.post(route('shop.login.post'), this.form, 
+            {
+                onSuccess: page => { this.onSuccess('You logged in!');},
+                onError: errors => { this.onError(errors);},
+            });
+        },
+        onError(data) {
+            for (let key in data) {
+                this.$toast.error(data[key], {duration: false});
+            }
+        },
+        onSuccess(msg) {
+            this.$toast.success(msg, {duration: 3000});
+        },
     },
 }
 </script>
