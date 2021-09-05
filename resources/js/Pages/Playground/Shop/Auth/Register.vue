@@ -88,12 +88,12 @@
                             </div>
                             Register
                         </button>
-                        <div v-if="Object.keys($attrs.errors).length" class="text-red-500" v-for="errors in $attrs.errors">
+                        <!-- <div v-if="Object.keys($attrs.errors).length" class="text-red-500" v-for="errors in $attrs.errors">
                             * {{ errors }}
                         </div>
                         <div v-if="form.password_confirmation && form.password_confirmation != form.password" class="text-red-600">
                             Confirmed password does not match
-                        </div>
+                        </div> -->
                     </div>
 
                     <!-- <p class="text-center text-gray-500 text-xs">
@@ -127,8 +127,19 @@ export default {
     },
     methods: {
         register() {
-            this.$inertia.post(route('shop.register.store'), this.form);
-        }
+            this.$inertia.post(route('shop.register.store'), this.form,{
+                onSuccess: page => { this.onSuccess('Successfully registered! Please check your email to complete verification.');},
+                onError: errors => { this.onError(errors);},
+            });
+        },
+        onError(data) {
+            for (let key in data) {
+                this.$toast.error(data[key], {duration: false});
+            }
+        },
+        onSuccess(msg) {
+            this.$toast.success(msg, {duration: 3000});
+        },
     },
 }
 </script>

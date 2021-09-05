@@ -19857,7 +19857,28 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     register: function register() {
-      this.$inertia.post(route('shop.register.store'), this.form);
+      var _this = this;
+
+      this.$inertia.post(route('shop.register.store'), this.form, {
+        onSuccess: function onSuccess(page) {
+          _this.onSuccess('Successfully registered! Please check your email to complete verification.');
+        },
+        onError: function onError(errors) {
+          _this.onError(errors);
+        }
+      });
+    },
+    onError: function onError(data) {
+      for (var key in data) {
+        this.$toast.error(data[key], {
+          duration: false
+        });
+      }
+    },
+    onSuccess: function onSuccess(msg) {
+      this.$toast.success(msg, {
+        duration: 3000
+      });
     }
   }
 });
@@ -21887,13 +21908,6 @@ var _hoisted_15 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" Register ");
 
 var _hoisted_17 = [_hoisted_15, _hoisted_16];
-var _hoisted_18 = {
-  "class": "text-red-500"
-};
-var _hoisted_19 = {
-  key: 1,
-  "class": "text-red-600"
-};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
@@ -21957,15 +21971,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[4] || (_cache[4] = function () {
       return $options.register && $options.register.apply($options, arguments);
     })
-  }, _hoisted_17), Object.keys(_ctx.$attrs.errors).length ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, {
-    key: 0
-  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(_ctx.$attrs.errors, function (errors) {
-    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_18, " * " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(errors), 1
-    /* TEXT */
-    );
-  }), 256
-  /* UNKEYED_FRAGMENT */
-  )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $data.form.password_confirmation && $data.form.password_confirmation != $data.form.password ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_19, " Confirmed password does not match ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p class=\"text-center text-gray-500 text-xs\">\n                        &copy;2020 Gau Corp. All rights reserved.\n                    </p> ")])])])])], 64
+  }, _hoisted_17), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <div v-if=\"Object.keys($attrs.errors).length\" class=\"text-red-500\" v-for=\"errors in $attrs.errors\">\n                            * {{ errors }}\n                        </div>\n                        <div v-if=\"form.password_confirmation && form.password_confirmation != form.password\" class=\"text-red-600\">\n                            Confirmed password does not match\n                        </div> ")]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p class=\"text-center text-gray-500 text-xs\">\n                        &copy;2020 Gau Corp. All rights reserved.\n                    </p> ")])])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
