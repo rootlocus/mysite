@@ -33,10 +33,10 @@ Route::prefix('playground')->name('playground.')->group(function () {
         Route::prefix('/cart')->name('cart.')->middleware('auth')->group(function () {
             Route::get('/', [App\Http\Controllers\Shop\CartController::class, 'index'])->name('index');
             Route::delete('/{cart}', [App\Http\Controllers\Shop\CartController::class, 'clearAll'])->name('clearAll');
-            Route::post('/{cart}', [App\Http\Controllers\Shop\CartController::class, 'checkout'])->name('checkout');
             Route::put('/{cart}/product', [App\Http\Controllers\Shop\CartController::class, 'update'])->name('update');
             Route::delete('/{cart}/product/{product}', [App\Http\Controllers\Shop\CartController::class, 'destroy'])->name('product.destroy');
         });
+        Route::post('/cart/{cart}', [App\Http\Controllers\Shop\CartController::class, 'checkout'])->middleware('verified')->name('checkout');
         /** Product */
         Route::prefix('/product')->name('product.')->middleware('auth')->group(function () {
             Route::get('/{product}', [App\Http\Controllers\Shop\ProductController::class, 'show'])->name('show');

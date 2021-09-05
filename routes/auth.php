@@ -12,22 +12,22 @@ use Illuminate\Support\Facades\Route;
 
 
 Route::prefix('/playground/shop')->name('shop.')->group(function () {
-        Route::middleware(['guest'])->group(function() {
-            Route::get('/login', [AuthenticatedSessionController::class, 'create'])
-                    ->name('login.create');
-            Route::post('/login', [AuthenticatedSessionController::class, 'store'])
-                    ->name('login.post');
-            Route::get('/register', [RegisteredUserController::class, 'create'])
-                    ->name('register.create');
-            Route::post('/register', [RegisteredUserController::class, 'store'])
-                    ->name('register.store');
-            Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
-                    ->name('password.request');
-        });
-        Route::middleware(['auth'])->group(function() {
-            Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
-                    ->name('logout');
-        });
+    Route::middleware(['guest'])->group(function() {
+        Route::get('/login', [AuthenticatedSessionController::class, 'create'])
+                ->name('login.create');
+        Route::post('/login', [AuthenticatedSessionController::class, 'store'])
+                ->name('login.post');
+        Route::get('/register', [RegisteredUserController::class, 'create'])
+                ->name('register.create');
+        Route::post('/register', [RegisteredUserController::class, 'store'])
+                ->name('register.store');
+        Route::get('/forgot-password', [PasswordResetLinkController::class, 'create'])
+                ->name('password.request');
+    });
+    Route::middleware(['auth'])->group(function() {
+        Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
+                ->name('logout');
+    });
 });
 
 Route::get('/dashboard', function () {
@@ -50,9 +50,9 @@ Route::get('/dashboard', function () {
 //                 ->middleware('auth')
 //                 ->name('verification.notice');
 
-// Route::get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
-//                 ->middleware(['auth', 'signed', 'throttle:6,1'])
-//                 ->name('verification.verify');
+Route::get('/verify-email/{id}/{hash}', [VerifyEmailController::class, '__invoke'])
+                ->middleware(['auth', 'signed', 'throttle:6,1'])
+                ->name('verification.verify');
 
 // Route::post('/email/verification-notification', [EmailVerificationNotificationController::class, 'store'])
 //                 ->middleware(['auth', 'throttle:6,1'])

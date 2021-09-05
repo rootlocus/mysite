@@ -3,18 +3,18 @@
 use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use Inertia\Inertia;
 
 //display a notice to the user that they should click the email verification link 
 Route::get('/email/verify', function () {
-    return view('auth.verify-email');
+    return Inertia::render('Playground/Shop/Auth/EmailVerified');
 })->middleware('auth')->name('verification.notice');
 
 //user clicks the email verification link that was emailed to them
 Route::get('/email/verify/{id}/{hash}', function (EmailVerificationRequest $request) {
     $request->fulfill();
 
-    return redirect('/home');
+    return redirect('/playground/shop/login');
 })->middleware(['auth', 'signed'])->name('verification.verify');
 
 // user may misplace or accidentally delete the email address verification email
@@ -22,7 +22,7 @@ Route::post('/email/verification-notification', function (Request $request) {
     $request->user()->sendEmailVerificationNotification();
 
     return back()->with('message', 'Verification link sent!');
-})->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+})->middleware(['auth', 'throttle:3,60'])->name('verification.send');
 
 // https://laravel.com/docs/8.x/verification
 // Route::get('/profile', function () {

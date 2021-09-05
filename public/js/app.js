@@ -19734,6 +19734,71 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue?vue&type=script&lang=js":
+/*!***********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue?vue&type=script&lang=js ***!
+  \***********************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _Components_Shop_Navbar__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @/Components/Shop/Navbar */ "./resources/js/Components/Shop/Navbar.vue");
+/* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
+
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  components: {
+    Navbar: _Components_Shop_Navbar__WEBPACK_IMPORTED_MODULE_0__.default,
+    Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_1__.Head
+  },
+  data: function data() {
+    return {
+      form: {
+        email: null
+      },
+      isLoading: false,
+      isSubmited: false
+    };
+  },
+  methods: {
+    resend: function resend() {
+      var _this = this;
+
+      this.isLoading = true;
+      this.$inertia.post(route('verification.send'), this.form, {
+        onSuccess: function onSuccess(page) {
+          _this.isSubmited = true;
+
+          _this.onSuccess('You logged in!');
+        },
+        onError: function onError(errors) {
+          _this.isSubmited = false;
+          _this.isLoading = false;
+
+          _this.onError(errors);
+        }
+      });
+    },
+    onError: function onError(data) {
+      for (var key in data) {
+        this.$toast.error(data[key], {
+          duration: false
+        });
+      }
+    },
+    onSuccess: function onSuccess(msg) {
+      this.$toast.success(msg, {
+        duration: 3000
+      });
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Playground/Shop/Auth/ForgotPassword.vue?vue&type=script&lang=js":
 /*!************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Playground/Shop/Auth/ForgotPassword.vue?vue&type=script&lang=js ***!
@@ -21603,6 +21668,137 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue?vue&type=template&id=6b2dd40b":
+/*!***************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue?vue&type=template&id=6b2dd40b ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = {
+  "class": "min-h-screen bg-white pt-12"
+};
+var _hoisted_2 = {
+  "class": "bg-gray-750 h-screen"
+};
+var _hoisted_3 = {
+  "class": "flex items-center justify-center pt-10"
+};
+var _hoisted_4 = {
+  "class": "w-full max-w-md"
+};
+var _hoisted_5 = {
+  "class": "bg-white shadow-lg rounded px-12 pt-6 pb-8 mb-4"
+};
+
+var _hoisted_6 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+  "class": "text-gray-800 text-2xl flex justify-center border-b-2 py-2 mb-4"
+}, "Email Verification", -1
+/* HOISTED */
+);
+
+var _hoisted_7 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
+  "class": "text-center"
+}, "Thanks for signing up!", -1
+/* HOISTED */
+);
+
+var _hoisted_8 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", null, " Before getting started, could you verify your email address by clicking on the link we just emailed to you? If you didn't receive the email, we will gladly send you another. ", -1
+/* HOISTED */
+);
+
+var _hoisted_9 = {
+  key: 0,
+  "class": "bg-gray-400 mt-2 p-2"
+};
+var _hoisted_10 = {
+  key: 1,
+  "class": "mb-4 mt-2"
+};
+
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+  "class": "block text-gray-700 text-sm font-normal mb-2",
+  "for": "username"
+}, " Email ", -1
+/* HOISTED */
+);
+
+var _hoisted_12 = ["disabled"];
+var _hoisted_13 = {
+  key: 0,
+  "class": "pl-2"
+};
+
+var _hoisted_14 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  "class": "animate-spin h-6 w-6",
+  fill: "none",
+  viewBox: "0 0 24 24",
+  stroke: "currentColor"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  "stroke-linecap": "round",
+  "stroke-linejoin": "round",
+  "stroke-width": "2",
+  d: "M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_15 = [_hoisted_14];
+
+var _hoisted_16 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", {
+  "class": "mx-auto"
+}, "Resend Verification Email", -1
+/* HOISTED */
+);
+
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
+
+  var _component_Navbar = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Navbar");
+
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
+    title: "Email Verified"
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Navbar, {
+    "class": ""
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_2, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" @csrf "), _hoisted_6, _hoisted_7, _hoisted_8, $data.isSubmited ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("p", _hoisted_9, " A new verification link has been sent to the email address you provided during registration. ")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.isSubmited ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "class": "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline",
+    name: "email",
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $data.form.email = $event;
+    }),
+    type: "email",
+    required: "",
+    autofocus: "",
+    placeholder: "Email",
+    onKeyup: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function () {
+      return $options.resend && $options.resend.apply($options, arguments);
+    }, ["enter"]))
+  }, null, 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), !$data.isSubmited ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("button", {
+    key: 2,
+    disabled: $data.isLoading || !$data.form.email,
+    onClick: _cache[2] || (_cache[2] = function () {
+      return $options.resend && $options.resend.apply($options, arguments);
+    }),
+    "class": "disabled:opacity-50 disabled:bg-blue-500 disabled:cursor-not-allowed w-full flex px-4 py-2 rounded text-white shadow-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700",
+    type: "submit"
+  }, [$data.isLoading ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_13, _hoisted_15)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), _hoisted_16], 8
+  /* PROPS */
+  , _hoisted_12)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])])])], 64
+  /* STABLE_FRAGMENT */
+  );
+}
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Playground/Shop/Auth/ForgotPassword.vue?vue&type=template&id=b0006132":
 /*!****************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Playground/Shop/Auth/ForgotPassword.vue?vue&type=template&id=b0006132 ***!
@@ -21781,24 +21977,30 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     type: "email",
     required: "",
     autofocus: "",
-    placeholder: "Email"
-  }, null, 512
-  /* NEED_PATCH */
+    placeholder: "Email",
+    onKeyup: _cache[1] || (_cache[1] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function () {
+      return $options.login && $options.login.apply($options, arguments);
+    }, ["enter"]))
+  }, null, 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.email]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "class": "shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 mb-3 leading-tight focus:outline-none focus:shadow-outline",
-    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
       return $data.form.password = $event;
     }),
     type: "password",
     placeholder: "Password",
     name: "password",
     required: "",
-    autocomplete: "current-password"
-  }, null, 512
-  /* NEED_PATCH */
+    autocomplete: "current-password",
+    onKeyup: _cache[3] || (_cache[3] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function () {
+      return $options.login && $options.login.apply($options, arguments);
+    }, ["enter"]))
+  }, null, 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.form.password]])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "px-4 py-2 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700",
-    onClick: _cache[2] || (_cache[2] = function () {
+    onClick: _cache[4] || (_cache[4] = function () {
       return $options.login && $options.login.apply($options, arguments);
     })
   }, " Sign In "), _hoisted_12]), _hoisted_13]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <p class=\"text-center text-gray-500 text-xs\">\n                        &copy;2020 Gau Corp. All rights reserved.\n                    </p> ")])])])])], 64
@@ -62429,6 +62631,32 @@ _Address_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue":
+/*!*******************************************************************!*\
+  !*** ./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue ***!
+  \*******************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _EmailVerified_vue_vue_type_template_id_6b2dd40b__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./EmailVerified.vue?vue&type=template&id=6b2dd40b */ "./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue?vue&type=template&id=6b2dd40b");
+/* harmony import */ var _EmailVerified_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./EmailVerified.vue?vue&type=script&lang=js */ "./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue?vue&type=script&lang=js");
+
+
+
+_EmailVerified_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _EmailVerified_vue_vue_type_template_id_6b2dd40b__WEBPACK_IMPORTED_MODULE_0__.render
+/* hot reload */
+if (false) {}
+
+_EmailVerified_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue"
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_EmailVerified_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Playground/Shop/Auth/ForgotPassword.vue":
 /*!********************************************************************!*\
   !*** ./resources/js/Pages/Playground/Shop/Auth/ForgotPassword.vue ***!
@@ -62885,6 +63113,22 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue?vue&type=script&lang=js":
+/*!*******************************************************************************************!*\
+  !*** ./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue?vue&type=script&lang=js ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EmailVerified_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EmailVerified_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./EmailVerified.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/Pages/Playground/Shop/Auth/ForgotPassword.vue?vue&type=script&lang=js":
 /*!********************************************************************************************!*\
   !*** ./resources/js/Pages/Playground/Shop/Auth/ForgotPassword.vue?vue&type=script&lang=js ***!
@@ -63217,6 +63461,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Address_vue_vue_type_template_id_afb9bed4__WEBPACK_IMPORTED_MODULE_0__.render)
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Address_vue_vue_type_template_id_afb9bed4__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Address.vue?vue&type=template&id=afb9bed4 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Playground/Shop/Address.vue?vue&type=template&id=afb9bed4");
+
+
+/***/ }),
+
+/***/ "./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue?vue&type=template&id=6b2dd40b":
+/*!*************************************************************************************************!*\
+  !*** ./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue?vue&type=template&id=6b2dd40b ***!
+  \*************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EmailVerified_vue_vue_type_template_id_6b2dd40b__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_EmailVerified_vue_vue_type_template_id_6b2dd40b__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./EmailVerified.vue?vue&type=template&id=6b2dd40b */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue?vue&type=template&id=6b2dd40b");
 
 
 /***/ }),
@@ -63735,6 +63995,8 @@ var map = {
 	"./Hello.vue": "./resources/js/Pages/Hello.vue",
 	"./Playground/Shop/Address": "./resources/js/Pages/Playground/Shop/Address.vue",
 	"./Playground/Shop/Address.vue": "./resources/js/Pages/Playground/Shop/Address.vue",
+	"./Playground/Shop/Auth/EmailVerified": "./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue",
+	"./Playground/Shop/Auth/EmailVerified.vue": "./resources/js/Pages/Playground/Shop/Auth/EmailVerified.vue",
 	"./Playground/Shop/Auth/ForgotPassword": "./resources/js/Pages/Playground/Shop/Auth/ForgotPassword.vue",
 	"./Playground/Shop/Auth/ForgotPassword.vue": "./resources/js/Pages/Playground/Shop/Auth/ForgotPassword.vue",
 	"./Playground/Shop/Auth/Login": "./resources/js/Pages/Playground/Shop/Auth/Login.vue",

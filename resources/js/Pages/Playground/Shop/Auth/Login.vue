@@ -27,6 +27,7 @@
                             required
                             autofocus
                             placeholder="Email"
+                            @keyup.enter="login"
                         />
                         </div>
                         <div class="mb-6">
@@ -44,6 +45,7 @@
                             name="password"
                             required
                             autocomplete="current-password"
+                            @keyup.enter="login"
                         />
                         </div>
                         <div class="flex items-center justify-between">
