@@ -15,7 +15,10 @@
                         <p>
                             Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.
                         </p>
-                        <div class="mb-4 mt-2">
+                        <p v-if="isSubmited" class="bg-gray-400 mt-2 p-2">
+                            A link to reset your password has been sent to your email.
+                        </p>
+                        <div v-if="!isSubmited" class="mb-4 mt-2">
                             <label
                                 class="block text-gray-700 text-sm font-normal mb-2"
                                 for="username"
@@ -32,12 +35,15 @@
                                 placeholder="Email"
                             />
                         </div>
-
-                        <button class="w-full px-4 py-2 rounded text-white inline-block shadow-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700" type="submit">Email Password Reset Link</button>
+                        <button :disabled="isLoading || !form.email" v-if="!isSubmited" @click="reset" class="disabled:opacity-50 disabled:bg-blue-500 disabled:cursor-not-allowed w-full flex px-4 py-2 rounded text-white shadow-lg bg-blue-500 hover:bg-blue-600 focus:bg-blue-700" type="submit">
+                            <div class="pl-2" v-if="isLoading">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="animate-spin h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                                </svg>
+                            </div>
+                            <span class="mx-auto">Email Password Reset Link</span>
+                        </button>
                     </form>
-                    <!-- <p class="text-center text-gray-500 text-xs">
-                        &copy;2020 Gau Corp. All rights reserved.
-                    </p> -->
                 </div>
             </div>
         </div>
@@ -56,8 +62,34 @@ export default {
         return {
             form: {
                 email: null,
-            }
+            },
+            isLoading: false,
+            isSubmited: false,
         }
+    },
+    methods: {
+        reset() {
+            this.isLoading = true;
+            this.$inertia.post(route('password.email'), this.form, {
+                onSuccess: page => { 
+                    this.isSubmited = true;
+                    this.onSuccess('You logged in!'); 
+                },
+                onError: errors => { 
+                    this.isSubmited = false;
+                    this.isLoading = false;
+                    this.onError(errors); 
+                },
+            });
+        },
+        onError(data) {
+            for (let key in data) {
+                this.$toast.error(data[key], {duration: false});
+            }
+        },
+        onSuccess(msg) {
+            this.$toast.success(msg, {duration: 3000});
+        },
     },
 }
 </script>
