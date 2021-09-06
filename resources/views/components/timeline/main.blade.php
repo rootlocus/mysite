@@ -11,7 +11,7 @@
             title='Supplycart Technologies'
             titleLink="https://www.supplycart.my/"
             year="2019 - 2021"
-            tools="Laravel, Vue.Js, Tailwind, InertiaJs, MySQL, Postgres, Linux, PhpUnit"
+            tools="Laravel, Vue.Js, Tailwind, InertiaJs, MySQL, Postgres, Linux, PhpUnit, JsonRPC"
             image="{{ local_images('supplycart_logo.png') }}"
         >
             <li>Developed and improved procurement processes.</li>
