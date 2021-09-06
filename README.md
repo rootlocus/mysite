@@ -1,8 +1,10 @@
 ## My Site
 
-My own site
+My own personal site where it's about me and any mini projects I produce.
 
-# Populate 
-PERSONAL_EMAIL=
-STEAM_API_KEY=
-STEAM_ID=
+# Technology used
+- Laravel
+- VueJs
+- InertiaJs
+- AlpineJs
+- Livewire
