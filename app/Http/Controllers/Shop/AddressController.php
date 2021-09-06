@@ -34,7 +34,35 @@ class AddressController extends Controller
 
         $address->save();
 
-        return redirect()->route('playground.shop.address.index');
+        return redirect()->route('playground.shop.profile.index');
+    }
+
+    public function update(Request $request, Address $address)
+    {
+        $address->update([
+            'name' => $request->name,
+            'contact_name' => $request->contact_name,
+            'contact_phone_no' => $request->contact_phone_no,
+            'address_line' => $request->address_line,
+            'postcode' => $request->postcode,
+            'state' => $request->state,
+            'country' => $request->country,
+        ]);
+
+        return redirect()->route('playground.shop.profile.index');
+    }
+
+    public function setDefault(Request $request, Address $address)
+    {
+        Address::query()->update([
+            'is_default' => false
+        ]);
+
+        $address->update([
+            'is_default' => $request->is_default
+        ]);
+
+        return redirect()->route('playground.shop.profile.index');
     }
 
 }
