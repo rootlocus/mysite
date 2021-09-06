@@ -2,7 +2,7 @@
     <div class="border-1 border-b-4 border-black mb-4">
         <h2 class="text-4xl title">Address Book</h2>
     </div>
-    <div v-for="address in addresses" :key="address.id">
+    <div v-for="(address, index) in addresses" :key="address.id">
         <div class="bg-gray-300 shadow-md mb-4 p-4 px-6 rounded">
             <div class="flex space-x-4">
                 <div class="mb-4 w-1/2">
@@ -20,7 +20,7 @@
                         required
                         autofocus
                         placeholder="Address Name"
-                        :disabled="!editToggle"
+                        :disabled="editToggle != index"
                     />
                 </div>
                 <div class="mb-4 w-1/2">
@@ -38,7 +38,7 @@
                         required
                         autofocus
                         placeholder="Contact Name"
-                        :disabled="!editToggle"
+                        :disabled="editToggle != index"
                     />
                 </div>
                 <div class="mb-4 w-1/2">
@@ -56,7 +56,7 @@
                         required
                         autofocus
                         placeholder="Contact No"
-                        :disabled="!editToggle"
+                        :disabled="editToggle != index"
                     />
                 </div>
             </div>
@@ -76,7 +76,7 @@
                         placeholder="Address Line"
                         cols="1" rows="4"
                         maxlength="150"
-                        :disabled="!editToggle"
+                        :disabled="editToggle != index"
                     />
                 </div>
                 <div class="mb-4">
@@ -94,7 +94,7 @@
                         required
                         autofocus
                         placeholder="Postcode"
-                        :disabled="!editToggle"
+                        :disabled="editToggle != index"
                     />
                 </div>
                 <div class="mb-4">
@@ -112,7 +112,7 @@
                         required
                         autofocus
                         placeholder="State"
-                        :disabled="!editToggle"
+                        :disabled="editToggle != index"
                     />
                 </div>
                 <div class="mb-4">
@@ -130,20 +130,20 @@
                         required
                         autofocus
                         placeholder="country"
-                        :disabled="!editToggle"
+                        :disabled="editToggle != index"
                     />
                 </div>
             </div>
             <div class="flex justify-between">
                 <div class="flex space-x-2">
-                    <button class="px-4 py-1 bg-gray-750 text-gray-300 hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed rounded" @click="editToggle = !editToggle">
+                    <button class="px-4 py-1 bg-gray-750 text-gray-300 hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed rounded" @click="toggleEdit(index)">
                         Edit
                     </button>
                     <button class="px-4 py-1  text-red-600 hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed rounded" @click="deleteAddress(address)">
                         Delete
                     </button>
                 </div>
-                <div v-if="editToggle">
+                <div v-if="editToggle == index">
                     <button @click="updateAddress(address)" class="px-4 py-1 bg-gray-750 text-gray-300 hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed rounded">
                         Update
                     </button>
@@ -151,7 +151,8 @@
             </div>
             <div>
                 <label class="inline-flex items-center my-2">
-                    <input type="checkbox" class="h-8 w-8 text-orange-600 rounded hover:bg-gray-300" v-model="address.is_default" @change="setDefault(address)"><span class="ml-2 text-gray-700">Default Address</span>
+                    <input type="checkbox" class="h-8 w-8 text-orange-600 rounded hover:bg-gray-300" v-model="address.is_default" @change="setDefault(address)">
+                    <span class="ml-2 text-gray-700">Default Address</span>
                 </label>
             </div>
         </div>
@@ -169,7 +170,7 @@ export default {
     },
     data() {
         return {
-            editToggle: false,
+            editToggle: -1,
             selectedAddress: null,
         }
     },
@@ -178,8 +179,8 @@ export default {
             this.$inertia.put(route('playground.shop.address.update', address.id), address, { 
                 replace: true,
                 onSuccess: page => { 
-                    this.onSuccess('Address updated');
-                    this.editToggle = !this.editToggle;
+                    this.onSuccess(address.name + ', is updated');
+                    this.editToggle = null;
                 },
                 onError: errors => { this.onError(errors);},
             });
@@ -188,8 +189,7 @@ export default {
             this.$inertia.put(route('playground.shop.address.setDefault', address.id), address, { 
                 replace: true,
                 onSuccess: page => { 
-                    this.onSuccess('Address has been set as default');
-                    this.editToggle = !this.editToggle;
+                    this.onSuccess(address.name + ', has been set as default');
                 },
                 onError: errors => { this.onError(errors);},
             });
@@ -202,6 +202,13 @@ export default {
         onSuccess(msg) {
             this.$toast.success(msg, {duration: 3000});
         },
+        toggleEdit (index) {
+            if (this.editToggle === index) {
+                this.editToggle = -1;
+            } else {
+                this.editToggle = index;
+            }
+        }
     },
 }
 </script>

@@ -9,13 +9,6 @@ use Inertia\Inertia;
 
 class AddressController extends Controller
 {
-    public function index(Request $request)
-    {
-        return Inertia::render('Playground/Shop/Address', [
-            'addresses' => Address::query()->get()
-        ]);
-    }
-
     public function store(Request $request)
     {
         //add validation

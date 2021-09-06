@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Shop;
 
 use App\Actions\Shop\UpdateCartQuantity;
 use App\Http\Controllers\Controller;
+use App\Models\Shop\Address;
 use App\Models\Shop\Cart;
 use App\Models\Shop\CartItem;
 use App\Models\Shop\Order;
@@ -17,8 +18,11 @@ class CartController extends Controller
 {
     public function index(Request $request)
     {
+        $address = Address::query()->where('is_default', true)->get();
+
         return Inertia::render('Playground/Shop/Cart', [
             'cart' => Cart::query()->with(['items.product'])->withCount(['items'])->first(),
+            'address' => $address->isNotEmpty() ? $address->first()->displayAddress() : 'No Address'
         ]);
     }
 

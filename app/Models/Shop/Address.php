@@ -41,4 +41,14 @@ class Address extends Model
     {
         return $this->belongsTo(User::class)->using(UserAddress::class);
     }
+
+    public function displayAddress()
+    {
+        $address[] = $this->name;
+        $address[] = $this->address_line;
+        $address[] = $this->postcode . ', ' . $this->state;
+        $address[] = $this->country;
+
+        return $address;
+    }
 }

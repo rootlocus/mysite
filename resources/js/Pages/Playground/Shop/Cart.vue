@@ -25,6 +25,14 @@
                 </div>
                 <div class="bg-gray-300 md:w-1/2 flex flex-col p-4 ">
                     <div class="border-1 border-b-4 border-black">
+                        <h2 class="text-xl md:text-4xl">Address</h2>
+                    </div>
+                    <div v-for="line in address">
+                        <p>
+                            {{ line }}
+                        </p>
+                    </div>
+                    <div class="border-1 border-b-4 border-black">
                         <h2 class="text-xl md:text-4xl">Order Summary</h2>
                     </div>
                     <div class="flex flex-col space-y-4 text-xs md:text-l xl:text-xl">
@@ -73,6 +81,10 @@ export default {
         cart: {
             type: Object,
             default: {}
+        },
+        address: {
+            type: Array,
+            default: []
         },
     },
     data() {

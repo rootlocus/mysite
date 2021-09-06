@@ -25,11 +25,13 @@ Route::prefix('playground')->name('playground.')->group(function () {
         Route::get('/', [App\Http\Controllers\Shop\ShopController::class, 'index'])->name('index');
         Route::get('/orders', [App\Http\Controllers\Shop\MyOrderController::class, 'index'])->middleware('auth')->name('orders.index');
         Route::get('/profile', [App\Http\Controllers\Shop\ProfileController::class, 'index'])->middleware('auth')->name('profile.index');
-        Route::get('/address', [App\Http\Controllers\Shop\AddressController::class, 'index'])->middleware('auth')->name('address.index');
-        Route::post('/address', [App\Http\Controllers\Shop\AddressController::class, 'store'])->middleware('auth')->name('address.store');
-        Route::put('/address/{address}', [App\Http\Controllers\Shop\AddressController::class, 'update'])->middleware('auth')->name('address.update');
-        Route::put('/address/{address}/default', [App\Http\Controllers\Shop\AddressController::class, 'setDefault'])->middleware('auth')->name('address.setDefault');
         Route::get('/logs', [App\Http\Controllers\Shop\ShopController::class, 'logs'])->name('logs');
+
+        Route::prefix('/address')->name('address.')->middleware('auth')->group(function () {
+            Route::post('/', [App\Http\Controllers\Shop\AddressController::class, 'store'])->name('store');
+            Route::put('/{address}', [App\Http\Controllers\Shop\AddressController::class, 'update'])->name('update');
+            Route::put('/{address}/default', [App\Http\Controllers\Shop\AddressController::class, 'setDefault'])->name('setDefault');
+        });
 
         /** Cart */
         Route::prefix('/cart')->name('cart.')->middleware('auth')->group(function () {
