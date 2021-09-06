@@ -11,7 +11,7 @@
         <x-playground.card
             style="bg-gray-750 md:w-1/2"
             title="E-Commerce"
-            image="placeholder.png"
+            image="ecommerce.png"
             link="/playground/shop"
             description="E-Commerce Example. Contains, login experience."
             logs="/playground/shop/logs"

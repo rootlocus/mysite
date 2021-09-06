@@ -25,6 +25,22 @@
                 </div>
                 <div class="bg-gray-300 md:w-1/2 flex flex-col p-4 ">
                     <div class="border-1 border-b-4 border-black">
+                        <h2 class="text-xl md:text-4xl">Assigned Address</h2>
+                    </div>
+                    <div v-if="Object.keys(addresses).length">
+                        <div v-for="address in addresses" :key="address.id">
+                            <label class="items-center">
+                                <input type="radio" class="form-radio" name="address" :value="address.id" v-model="cart.address_id" @change="updateAddress"><span class="pl-2 font-bold">{{address.name}}</span>
+                                <div v-for="line in address.full_address" class="flex flex-col">
+                                    <span class="ml-2">{{ line }}</span>
+                                </div>
+                            </label>
+                        </div>
+                    </div>
+                    <div v-else>
+                        No address created. Start creating <a class="text-blue-700 font-bold" href="/playground/shop/profile">here</a>
+                    </div>
+                    <div class="border-1 border-b-4 border-black mt-4">
                         <h2 class="text-xl md:text-4xl">Order Summary</h2>
                     </div>
                     <div class="flex flex-col space-y-4 text-xs md:text-l xl:text-xl">
@@ -74,13 +90,19 @@ export default {
             type: Object,
             default: {}
         },
+        addresses: {
+            type: Object,
+            default: {}
+        },
     },
     data() {
         return {
             currency: 'RM',
+            cartAddress: null
         }
     },
     mounted () {
+
     },
     methods: {
         addItem: debounce (function(item) {
@@ -118,6 +140,12 @@ export default {
                 onError: errors => { this.onError(errors);},
             });
         },
+        updateAddress() {
+            this.$inertia.put(route('playground.shop.cart.updateAddress', this.cart.id), { address_id: this.cart.address_id}, {
+                onSuccess: page => { this.onSuccess('Cart default address changed');},
+                onError: errors => { this.onError(errors);},
+            });
+        },
         checkout() {
             swal({
                 title: "Are you sure you want to checkout ?",
@@ -127,7 +155,10 @@ export default {
             })
             .then((isConfirm) => {
                 if (isConfirm) {
-                    this.$inertia.post(route('playground.shop.cart.checkout', this.cart.id));
+                    this.$inertia.post(route('playground.shop.cart.checkout', this.cart.id), null, {
+                        onSuccess: page => { this.onSuccess('Successfully checkout');},
+                        onError: errors => { this.onError(errors);},
+                    });
                 }
             });
         },

@@ -25,18 +25,28 @@ Route::prefix('playground')->name('playground.')->group(function () {
         Route::get('/', [App\Http\Controllers\Shop\ShopController::class, 'index'])->name('index');
         Route::get('/orders', [App\Http\Controllers\Shop\MyOrderController::class, 'index'])->middleware('auth')->name('orders.index');
         Route::get('/profile', [App\Http\Controllers\Shop\ProfileController::class, 'index'])->middleware('auth')->name('profile.index');
-        Route::get('/address', [App\Http\Controllers\Shop\AddressController::class, 'index'])->middleware('auth')->name('address.index');
-        Route::post('/address', [App\Http\Controllers\Shop\AddressController::class, 'store'])->middleware('auth')->name('address.store');
         Route::get('/logs', [App\Http\Controllers\Shop\ShopController::class, 'logs'])->name('logs');
 
-        /** Cart */
-        Route::prefix('/cart')->name('cart.')->middleware('auth')->group(function () {
-            Route::get('/', [App\Http\Controllers\Shop\CartController::class, 'index'])->name('index');
-            Route::delete('/{cart}', [App\Http\Controllers\Shop\CartController::class, 'clearAll'])->name('clearAll');
-            Route::put('/{cart}/product', [App\Http\Controllers\Shop\CartController::class, 'update'])->name('update');
-            Route::delete('/{cart}/product/{product}', [App\Http\Controllers\Shop\CartController::class, 'destroy'])->name('product.destroy');
+        Route::prefix('/address')->name('address.')->middleware('auth')->group(function () {
+            Route::post('/', [App\Http\Controllers\Shop\AddressController::class, 'store'])->name('store');
+            Route::put('/{address}', [App\Http\Controllers\Shop\AddressController::class, 'update'])->name('update');
+            Route::put('/{address}/default', [App\Http\Controllers\Shop\AddressController::class, 'setDefault'])->name('setDefault');
         });
-        Route::post('/cart/{cart}', [App\Http\Controllers\Shop\CartController::class, 'checkout'])->middleware('verified')->name('checkout');
+
+        /** Cart */
+        Route::prefix('/cart')->name('cart.')->group(function () {
+            Route::middleware('auth')->group(function() {
+                Route::get('/', [App\Http\Controllers\Shop\CartController::class, 'index'])->name('index');
+                Route::delete('/{cart}', [App\Http\Controllers\Shop\CartController::class, 'clearAll'])->name('clearAll');
+                Route::put('/{cart}/product', [App\Http\Controllers\Shop\CartController::class, 'update'])->name('update');
+                Route::delete('/{cart}/product/{product}', [App\Http\Controllers\Shop\CartController::class, 'destroy'])->name('product.destroy');
+                Route::put('/{cart}/update-address', [App\Http\Controllers\Shop\CartController::class, 'updateAddress'])->name('updateAddress');
+            });
+            Route::middleware('verified')->group(function() {
+                Route::post('/{cart}', [App\Http\Controllers\Shop\CartController::class, 'checkout'])->name('checkout');
+            });
+        });
+
         /** Product */
         Route::prefix('/product')->name('product.')->middleware('auth')->group(function () {
             Route::get('/{product}', [App\Http\Controllers\Shop\ProductController::class, 'show'])->name('show');
