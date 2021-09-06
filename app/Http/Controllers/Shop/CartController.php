@@ -18,11 +18,17 @@ class CartController extends Controller
 {
     public function index(Request $request)
     {
-        $address = Address::query()->where('is_default', true)->get();
+        // if cart no address
+        $cart = Cart::query()->first();
+        if ($cart->address_id === null) {
+            $cart->update([
+                'address_id' => Address::query()->where('is_default', true)->value('id')
+            ]);
+        }
 
         return Inertia::render('Playground/Shop/Cart', [
             'cart' => Cart::query()->with(['items.product'])->withCount(['items'])->first(),
-            'address' => $address->isNotEmpty() ? $address->first()->displayAddress() : 'No Address'
+            'addresses' => Address::query()->get(),
         ]);
     }
 
@@ -39,6 +45,15 @@ class CartController extends Controller
         UpdateCartQuantity::run($data);
         
         return redirect()->route('playground.shop.cart.index', data_get($request->product, 'id'));
+    }
+
+    public function updateAddress(Request $request, Cart $cart)
+    {
+        $cart->update([
+            'address_id' => $request->address_id
+        ]);
+
+        return redirect()->route('playground.shop.cart.index');
     }
 
     public function destroy(Request $request, Cart $cart, Product $product)
@@ -61,7 +76,8 @@ class CartController extends Controller
         try {
             $order = Order::create([
                 'cart_id' => $cart->id,
-                'user_id' => $cart->user_id
+                'user_id' => $cart->user_id,
+                'address_id' => $cart->address_id,
             ]);
     
             Status::create([

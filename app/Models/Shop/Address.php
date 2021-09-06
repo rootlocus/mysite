@@ -28,6 +28,10 @@ class Address extends Model
         'is_default',
     ];
 
+    protected $appends = [
+        'full_address'
+    ];
+
     protected $casts = ['is_default' => 'boolean'];
     
     protected static function booted()
@@ -44,11 +48,15 @@ class Address extends Model
 
     public function displayAddress()
     {
-        $address[] = $this->name;
         $address[] = $this->address_line;
         $address[] = $this->postcode . ', ' . $this->state;
         $address[] = $this->country;
 
         return $address;
+    }
+
+    public function getFullAddressAttribute()
+    {
+        return $this->displayAddress();
     }
 }
