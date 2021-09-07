@@ -19,6 +19,7 @@ Route::prefix('playground')->name('playground.')->group(function () {
     Route::get('/', App\Http\Livewire\Playground\Index::class);
     Route::get('/steam', [App\Http\Controllers\Steam\SteamController::class, 'index'])->name('steam.index');
     Route::get('/steam/logs', [App\Http\Controllers\Steam\SteamController::class, 'logs'])->name('steam.logs');
+    Route::get('/camera', [App\Http\Controllers\Camera\CameraController::class, 'index'])->name('camera.index');
 
     /** Shop */
     Route::prefix('shop')->name('shop.')->group(function () {

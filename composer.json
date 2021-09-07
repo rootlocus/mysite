@@ -14,6 +14,7 @@
         "laravel/tinker": "^2.5",
         "livewire/livewire": "^2.5",
         "lorisleiva/laravel-actions": "^2.1",
+        "symfony/process": "^5.3",
         "tightenco/ziggy": "^1.4"
     },
     "require-dev": {
