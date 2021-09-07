@@ -19482,7 +19482,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     add: function add() {
-      this.$inertia.post(route('playground.shop.address.index'), this.address, {
+      this.$inertia.post(route('playground.shop.address.store'), this.address, {
         replace: true
       });
       this.clear();

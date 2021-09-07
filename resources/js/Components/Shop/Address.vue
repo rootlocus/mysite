@@ -198,7 +198,7 @@ export default {
     },
     methods: {
         add() {
-            this.$inertia.post(route('playground.shop.address.index'), this.address, { replace: true });
+            this.$inertia.post(route('playground.shop.address.store'), this.address, { replace: true });
             this.clear();
             this.$toast.success('Address Added!', {duration: 3000});
         },
