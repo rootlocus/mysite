@@ -19482,19 +19482,37 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     add: function add() {
+      var _this = this;
+
       this.$inertia.post(route('playground.shop.address.store'), this.address, {
-        replace: true
-      });
-      this.clear();
-      this.$toast.success('Address Added!', {
-        duration: 3000
+        replace: true,
+        onSuccess: function onSuccess(page) {
+          _this.onSuccess('Address Added!');
+
+          _this.clear();
+        },
+        onError: function onError(errors) {
+          _this.onError(errors);
+        }
       });
     },
     clear: function clear() {
-      var _this = this;
+      var _this2 = this;
 
       Object.keys(this.address).forEach(function (key) {
-        return _this.address[key] = null;
+        return _this2.address[key] = null;
+      });
+    },
+    onError: function onError(data) {
+      for (var key in data) {
+        this.$toast.error(data[key], {
+          duration: false
+        });
+      }
+    },
+    onSuccess: function onSuccess(msg) {
+      this.$toast.success(msg, {
+        duration: 3000
       });
     }
   }

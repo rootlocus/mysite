@@ -198,12 +198,26 @@ export default {
     },
     methods: {
         add() {
-            this.$inertia.post(route('playground.shop.address.store'), this.address, { replace: true });
-            this.clear();
-            this.$toast.success('Address Added!', {duration: 3000});
+            this.$inertia.post(route('playground.shop.address.store'), this.address, { 
+                replace: true,
+                onSuccess: page => { 
+                    this.onSuccess('Address Added!');
+                    this.clear();
+                },
+                onError: errors => { this.onError(errors);},
+            });
+            
         },
         clear() {
             Object.keys(this.address).forEach(key => this.address[key]=null);
+        },
+        onError(data) {
+            for (let key in data) {
+                this.$toast.error(data[key], {duration: false});
+            }
+        },
+        onSuccess(msg) {
+            this.$toast.success(msg, {duration: 3000});
         },
     },
 
