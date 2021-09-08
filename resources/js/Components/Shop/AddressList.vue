@@ -185,6 +185,16 @@ export default {
                 onError: errors => { this.onError(errors);},
             });
         },
+        deleteAddress(address) {
+            this.$inertia.put(route('playground.shop.address.destroy', address.id), address, { 
+                replace: true,
+                onSuccess: page => { 
+                    this.onSuccess(address.name + ', is deleted');
+                    this.editToggle = null;
+                },
+                onError: errors => { this.onError(errors);},
+            });
+        },
         setDefault(address) {
             this.$inertia.put(route('playground.shop.address.setDefault', address.id), address, { 
                 replace: true,

@@ -13,7 +13,7 @@ class MyOrderController extends Controller
     {
         return Inertia::render('Playground/Shop/MyOrder', [
             'cart' => Cart::query()->select('id','user_id')->withCount(['items'])->first(),
-            'orders' => Order::query()->with(['items.product'])->withCount(['items'])->orderByDesc('id')->get(),
+            'orders' => Order::query()->with(['items.product', 'address'])->withCount(['items'])->orderByDesc('id')->get(),
         ]);
     }
 }

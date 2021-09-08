@@ -21706,19 +21706,37 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {},
   methods: {
     add: function add() {
-      this.$inertia.post(route('playground.shop.address.index'), this.address, {
-        replace: true
-      });
-      this.clear();
-      this.$toast.success('Address Added!', {
-        duration: 3000
+      var _this = this;
+
+      this.$inertia.post(route('playground.shop.address.store'), this.address, {
+        replace: true,
+        onSuccess: function onSuccess(page) {
+          _this.onSuccess('Address Added!');
+
+          _this.clear();
+        },
+        onError: function onError(errors) {
+          _this.onError(errors);
+        }
       });
     },
     clear: function clear() {
-      var _this = this;
+      var _this2 = this;
 
       Object.keys(this.address).forEach(function (key) {
-        return _this.address[key] = null;
+        return _this2.address[key] = null;
+      });
+    },
+    onError: function onError(data) {
+      for (var key in data) {
+        this.$toast.error(data[key], {
+          duration: false
+        });
+      }
+    },
+    onSuccess: function onSuccess(msg) {
+      this.$toast.success(msg, {
+        duration: 3000
       });
     }
   }
@@ -21767,16 +21785,31 @@ __webpack_require__.r(__webpack_exports__);
         }
       });
     },
-    setDefault: function setDefault(address) {
+    deleteAddress: function deleteAddress(address) {
       var _this2 = this;
+
+      this.$inertia.put(route('playground.shop.address.destroy', address.id), address, {
+        replace: true,
+        onSuccess: function onSuccess(page) {
+          _this2.onSuccess(address.name + ', is deleted');
+
+          _this2.editToggle = null;
+        },
+        onError: function onError(errors) {
+          _this2.onError(errors);
+        }
+      });
+    },
+    setDefault: function setDefault(address) {
+      var _this3 = this;
 
       this.$inertia.put(route('playground.shop.address.setDefault', address.id), address, {
         replace: true,
         onSuccess: function onSuccess(page) {
-          _this2.onSuccess(address.name + ', has been set as default');
+          _this3.onSuccess(address.name + ', has been set as default');
         },
         onError: function onError(errors) {
-          _this2.onError(errors);
+          _this3.onError(errors);
         }
       });
     },
@@ -23586,7 +23619,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , _hoisted_28), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
       "class": "px-4 py-1  text-red-600 hover:opacity-80 disabled:opacity-50 disabled:cursor-not-allowed rounded",
       onClick: function onClick($event) {
-        return _ctx.deleteAddress(address);
+        return $options.deleteAddress(address);
       }
     }, " Delete ", 8
     /* PROPS */
@@ -25319,16 +25352,16 @@ var _hoisted_9 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 /* HOISTED */
 );
 
-var _hoisted_10 = {
-  "class": "mb-4"
-};
+var _hoisted_10 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Placed at:", -1
+/* HOISTED */
+);
 
-var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Placed at:", -1
+var _hoisted_11 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("b", null, "Delivery Address:", -1
 /* HOISTED */
 );
 
 var _hoisted_12 = {
-  "class": "flex flex-row font-bold space-x-2 mb-2 text-xs md:text-m"
+  "class": "flex flex-row font-bold space-x-2 mb-2 text-xs md:text-m mt-4"
 };
 
 var _hoisted_13 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
@@ -25403,9 +25436,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.status_timestamp), 1
     /* TEXT */
-    )]), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_10, [_hoisted_11, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.order_placed_at), 1
+    )]), _hoisted_9]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", null, [_hoisted_10, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.order_placed_at), 1
     /* TEXT */
-    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, "Price(" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.currency) + ")", 1
+    )]), _hoisted_11, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)(item.address.full_address, function (line) {
+      return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(line), 1
+      /* TEXT */
+      );
+    }), 256
+    /* UNKEYED_FRAGMENT */
+    )), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_12, [_hoisted_13, _hoisted_14, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_15, "Price(" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.currency) + ")", 1
     /* TEXT */
     ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_16, "Total(" + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($data.currency) + ")", 1
     /* TEXT */

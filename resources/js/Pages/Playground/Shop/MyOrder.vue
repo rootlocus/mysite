@@ -19,8 +19,12 @@
                                 <span class="font-bold">Statement</span>
                             </div>
                         </div>
-                        <span class="mb-4"><b>Placed at:</b> {{ item.order_placed_at }}</span>
-                        <div class="flex flex-row font-bold space-x-2 mb-2 text-xs md:text-m">
+                        <span><b>Placed at:</b> {{ item.order_placed_at }}</span>
+                        <b>Delivery Address:</b>
+                        <span v-for="line in item.address.full_address">
+                            {{ line }}
+                        </span>
+                        <div class="flex flex-row font-bold space-x-2 mb-2 text-xs md:text-m mt-4">
                             <div class="w-6/12">Product Name</div>
                             <div class="w-2/12 text-center">Quantity</div>
                             <div class="w-2/12">Price({{currency}})</div>

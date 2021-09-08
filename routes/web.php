@@ -32,6 +32,7 @@ Route::prefix('playground')->name('playground.')->group(function () {
         Route::prefix('/address')->name('address.')->middleware('auth')->group(function () {
             Route::post('/', [App\Http\Controllers\Shop\AddressController::class, 'store'])->name('store');
             Route::put('/{address}', [App\Http\Controllers\Shop\AddressController::class, 'update'])->name('update');
+            Route::put('/{address}', [App\Http\Controllers\Shop\AddressController::class, 'destroy'])->name('destroy');
             Route::put('/{address}/default', [App\Http\Controllers\Shop\AddressController::class, 'setDefault'])->name('setDefault');
         });
 
