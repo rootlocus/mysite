@@ -68,6 +68,13 @@ class AddressController extends Controller
         return redirect()->route('playground.shop.profile.index');
     }
 
+    public function destroy(Request $request, Address $address)
+    {
+        $address->delete();
+        
+        return redirect()->route('playground.shop.profile.index');
+    }
+
     public function setDefault(Request $request, Address $address)
     {
         Address::query()->update([
