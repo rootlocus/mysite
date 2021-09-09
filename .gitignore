@@ -1,11 +1,11 @@
 /node_modules
 /public/hot
 # /public/storage
-package-lock.json
-public/css/app.css
-public/js/app.js
-public/mix-manifest.json
-resources/js/ziggy.js
+#package-lock.json
+#public/css/app.css
+#public/js/app.js
+#public/mix-manifest.json
+#resources/js/ziggy.js
 /storage/*.key
 /vendor
 .env
