@@ -18,10 +18,10 @@
         />
         <x-playground.card
             style="bg-gray-750 md:w-1/2"
-            title="TBA"
-            image="placeholder.png"
-            link="#"
-            description="TBA"
+            title="Teachable Machine"
+            image="teachable.png"
+            link="/playground/camera"
+            description="Use your camera to detect the different shapes !"
             logs="/"
         />
     </div>

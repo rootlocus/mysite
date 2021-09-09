@@ -1,6 +1,7 @@
 <div class="min-h-screen bg-gray-850 pt-20">
     <div class="md:m-40 m-20 md:mx-96 md:flex md:flex-col space-y-4 justify-center items-center text-white">
         <div class="title text-4xl text-center">Teachable Machine Image Model</div>
+        <div><a class="text-blue-700" href="https://teachablemachine.withgoogle.com/" target="_blank">https://teachablemachine.withgoogle.com/</a></div>
         <div class="flex space-x-2">
             @if(!$isLive)
             <button class="bg-gray-500 rounded p-1" type="button" onclick="init()" wire:click="onCamera">Start</button>
@@ -9,7 +10,7 @@
         <div id="special">
         </div>
         @if(!$isLive)
-            <div class="bg-black h-112 w-112 text-center pt-10">
+            <div class="bg-black md:h-112 md:w-112 text-center pt-10">
                 <span>Click Start To Load Camera</span>
             </div>
         @else
@@ -21,7 +22,32 @@
             <div id="label-container">
             </div>
         </div>
-
+        <div>
+            <p>
+                You may draw few shapes for the machine to identify. 
+                So far, I've only included 3 shapes and one special shape which is drawn by hand.
+                You may require to put the camera up to the white paper directly onto the image for it to detect properly.
+                Here are the sample shapes I'ved used.
+            </p>
+        </div>
+        <div class="flex space-x-4">
+            <div>
+                Circle
+                <img src="{{ local_images('circle.png') }}" class="max-h-20"/>
+            </div>
+            <div>
+                Triangle
+                <img src="{{ local_images('triangle.png') }}" class="max-h-20"/>
+            </div>
+            <div>
+                Square
+                <img src="{{ local_images('square.png') }}" class="max-h-20"/>
+            </div>
+            <div>
+                SPECIAL
+                <img src="{{ local_images('star.png') }}" class="max-h-20"/>
+            </div>
+        </div>
     </div>
 </div>
 <script type="text/javascript">
