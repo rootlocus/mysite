@@ -64,7 +64,11 @@
     async function init() {
         const modelURL = URL + "model.json";
         const metadataURL = URL + "metadata.json";
+        let isIos = false; 
 
+        if (window.navigator.userAgent.indexOf('iPhone') > -1 || window.navigator.userAgent.indexOf('iPad') > -1) {
+            isIos = true;
+        }
         // load the model and metadata
         // Refer to tmImage.loadFromFiles() in the API to support files from a file picker
         // or files from your local hard drive
@@ -73,14 +77,25 @@
         maxPredictions = model.getTotalClasses();
 
         // Convenience function to setup a webcam
-        const flip = true; // whether to flip the webcam
+        const flip = false; // whether to flip the webcam
         webcam = new tmImage.Webcam(400, 400, flip); // width, height, flip
-        await webcam.setup(); // request access to the webcam
+        await webcam.setup({ facingMode: "environment" }); // request access to the webcam
         await webcam.play();
         window.requestAnimationFrame(loop);
 
-        // append elements to the DOM
-        document.getElementById("webcam-container").appendChild(webcam.canvas);
+        if (isIos) {
+            document.getElementById('webcam-container').appendChild(webcam.webcam); // webcam object needs to be added in any case to make this work on iOS
+            // grab video-object in any way you want and set the attributes
+            const webCamVideo = document.getElementsByTagName('video')[0];
+            webCamVideo.setAttribute("playsinline", true); // written with "setAttribute" bc. iOS buggs otherwise
+            webCamVideo.muted = "true";
+            webCamVideo.style.width = width + 'px';
+            webCamVideo.style.height = height + 'px';
+        } else {
+            // append elements to the DOM
+            document.getElementById("webcam-container").appendChild(webcam.canvas);
+        }
+
         labelContainer = document.getElementById("label-container");
         for (let i = 0; i < maxPredictions; i++) { // and class labels
             labelContainer.appendChild(document.createElement("div"));
@@ -99,7 +114,11 @@
     // run the webcam image through the image model
     async function predict() {
         // predict can take in an image, video or canvas html element
-        const prediction = await model.predict(webcam.canvas);
+        if(isIos) {
+            const prediction = await model.predict(webcam.webcam);
+        } else {
+            const prediction = await model.predict(webcam.canvas);
+        }
 
         let maxVal = null;
         let maxClass = null;
