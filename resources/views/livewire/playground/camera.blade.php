@@ -1,10 +1,27 @@
 <div class="min-h-screen bg-gray-850 pt-20">
-    <div class="md:m-40 m-20 md:mx-96 md:flex md:flex-col space-y-12 justify-center items-center text-white">
-        <div>Teachable Machine Image Model</div>
-        <button type="button" onclick="init()">Start</button>
-        <button type="button" onclick="stopCamera()">Stop</button>
-        <div id="webcam-container"></div>
-        <div id="label-container"></div>
+    <div class="md:m-40 m-20 md:mx-96 md:flex md:flex-col space-y-4 justify-center items-center text-white">
+        <div class="title text-4xl text-center">Teachable Machine Image Model</div>
+        <div class="flex space-x-2">
+            @if(!$isLive)
+            <button class="bg-gray-500 rounded p-1" type="button" onclick="init()" wire:click="onCamera">Start</button>
+            @endif
+        </div>
+        <div id="special">
+        </div>
+        @if(!$isLive)
+            <div class="bg-black h-112 w-112 text-center pt-10">
+                <span>Click Start To Load Camera</span>
+            </div>
+        @else
+            <div id="webcam-container">
+            </div>
+        @endif
+        <div class="flex">
+            I detect something...
+            <div id="label-container">
+            </div>
+        </div>
+
     </div>
 </div>
 <script type="text/javascript">
@@ -12,9 +29,10 @@
     // https://github.com/googlecreativelab/teachablemachine-community/tree/master/libraries/image
 
     // the link to your model provided by Teachable Machine export panel
-    const URL = "https://teachablemachine.withgoogle.com/models/GZwdSDE72/";
+    const URL = "https://teachablemachine.withgoogle.com/models/7tLVDzKWx/";
 
     let model, webcam, labelContainer, maxPredictions;
+    let isSpecial = false;
 
     // Load the image model and setup the webcam
     async function init() {
@@ -30,7 +48,7 @@
 
         // Convenience function to setup a webcam
         const flip = true; // whether to flip the webcam
-        webcam = new tmImage.Webcam(200, 200, flip); // width, height, flip
+        webcam = new tmImage.Webcam(400, 400, flip); // width, height, flip
         await webcam.setup(); // request access to the webcam
         await webcam.play();
         window.requestAnimationFrame(loop);
@@ -73,5 +91,19 @@
             // labelContainer.childNodes[i].innerHTML = classPrediction;
         }
         labelContainer.innerHTML = maxClass;
+
+        if (labelContainer.innerHTML == 'Special' && isSpecial === false) {
+            document.getElementById("special").innerHTML = 'Get ready for a surprise !';
+            getRickRolled();
+            isSpecial = true;
+        }
+    }
+
+    function getRickRolled()
+    {
+        console.log("ENTER roll");
+        setTimeout(function() {
+            document.getElementById("special").innerHTML = '<iframe width="560" height="315" src="https://www.youtube.com/embed/dQw4w9WgXcQ?autoplay=1" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>';
+        }, 2000, this);
     }
 </script>
