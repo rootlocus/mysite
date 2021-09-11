@@ -21,7 +21,21 @@ class SteamWebService
 
     public function getOwnedGames()
     {
-        $url = $this->baseUrl . 'IPlayerService/GetOwnedGames/v00001/?&key=' . env('STEAM_API_KEY') . '&steamid=' . $this->steamId . '&format=json&include_appinfo=true&include_played_free_games=true';
+        $url = $this->baseUrl . 'IPlayerService/GetOwnedGames/v00001/?&key=' . env('STEAM_API_KEY') . '&steamid=' . $this->steamId . '&format=json&include_appinfo=true&include_played_free_games=true&include_appinfo=true';
+
+        return $url;
+    }
+
+    public function getRecentlyPlayedGames()
+    {
+        $url = $this->baseUrl . 'IPlayerService/GetRecentlyPlayedGames/v00001/?&key=' . env('STEAM_API_KEY') . '&steamid=' . $this->steamId . '&format=json';
+
+        return $url;
+    }
+
+    public function getNumberOfCurrentPlayers($appId)
+    {
+        $url = $this->baseUrl . 'ISteamUserStats/GetNumberOfCurrentPlayers/v1/?appid=' . $appId;
 
         return $url;
     }
