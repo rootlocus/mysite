@@ -15,7 +15,7 @@
     <title>Eric Heng</title>
     @routes
   </inertia-head>
-  <body class="">
+  <body class="bg-black">
     <x-nav/>
     <div>
       @inertia

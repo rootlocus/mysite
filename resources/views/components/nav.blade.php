@@ -3,5 +3,6 @@
         <a class="hover:opacity-80" href="/">home</a>
         <a class="hover:opacity-80" href="/about-me">about</a>
         <a class="hover:opacity-80" href="/playground">playground</a>
+        <a class="hover:opacity-80" href="/journal">journal</a>
     </div>
 </nav>

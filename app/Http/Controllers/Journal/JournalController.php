@@ -13,8 +13,17 @@ class JournalController extends Controller
 {
     public function index(Request $request)
     {
+        //policy to only allow me to post
         return Inertia::render('Journal/Index', [
-            'entries' => Entry::all(),
+            'entries' => Entry::query()
+                ->where(function($query) use($request) {
+                    $query->where('title', 'LIKE', '%'. $request->search .'%')
+                        ->orWhere('content', 'LIKE', '%'. $request->search .'%');
+                })
+                ->get(),
+            'filters' => [
+                'search' => $request->search ?? null,
+            ],
         ]);
     }
 
