@@ -88,11 +88,11 @@ export default {
     props: {
         cart: {
             type: Object,
-            default: {}
+            default: () => {}
         },
         addresses: {
             type: Object,
-            default: {}
+            default: () => {}
         },
     },
     data() {

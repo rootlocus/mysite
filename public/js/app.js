@@ -6916,6 +6916,158 @@ function posToDOMRect(view, from, to) {
 
 /***/ }),
 
+/***/ "./node_modules/@tiptap/extension-blockquote/dist/tiptap-extension-blockquote.esm.js":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@tiptap/extension-blockquote/dist/tiptap-extension-blockquote.esm.js ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "Blockquote": () => (/* binding */ Blockquote),
+/* harmony export */   "inputRegex": () => (/* binding */ inputRegex)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+/* harmony import */ var prosemirror_inputrules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prosemirror-inputrules */ "./node_modules/prosemirror-inputrules/dist/index.es.js");
+
+
+
+const inputRegex = /^\s*>\s$/gm;
+const Blockquote = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Node.create({
+    name: 'blockquote',
+    defaultOptions: {
+        HTMLAttributes: {},
+    },
+    content: 'block*',
+    group: 'block',
+    defining: true,
+    parseHTML() {
+        return [
+            { tag: 'blockquote' },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['blockquote', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes), 0];
+    },
+    addCommands() {
+        return {
+            setBlockquote: () => ({ commands }) => {
+                return commands.wrapIn('blockquote');
+            },
+            toggleBlockquote: () => ({ commands }) => {
+                return commands.toggleWrap('blockquote');
+            },
+            unsetBlockquote: () => ({ commands }) => {
+                return commands.lift('blockquote');
+            },
+        };
+    },
+    addKeyboardShortcuts() {
+        return {
+            'Mod-Shift-b': () => this.editor.commands.toggleBlockquote(),
+        };
+    },
+    addInputRules() {
+        return [
+            (0,prosemirror_inputrules__WEBPACK_IMPORTED_MODULE_1__.wrappingInputRule)(inputRegex, this.type),
+        ];
+    },
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Blockquote);
+
+//# sourceMappingURL=tiptap-extension-blockquote.esm.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/@tiptap/extension-bold/dist/tiptap-extension-bold.esm.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@tiptap/extension-bold/dist/tiptap-extension-bold.esm.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "Bold": () => (/* binding */ Bold),
+/* harmony export */   "starInputRegex": () => (/* binding */ starInputRegex),
+/* harmony export */   "starPasteRegex": () => (/* binding */ starPasteRegex),
+/* harmony export */   "underscoreInputRegex": () => (/* binding */ underscoreInputRegex),
+/* harmony export */   "underscorePasteRegex": () => (/* binding */ underscorePasteRegex)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+
+
+const starInputRegex = /(?:^|\s)((?:\*\*)((?:[^*]+))(?:\*\*))$/gm;
+const starPasteRegex = /(?:^|\s)((?:\*\*)((?:[^*]+))(?:\*\*))/gm;
+const underscoreInputRegex = /(?:^|\s)((?:__)((?:[^__]+))(?:__))$/gm;
+const underscorePasteRegex = /(?:^|\s)((?:__)((?:[^__]+))(?:__))/gm;
+const Bold = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Mark.create({
+    name: 'bold',
+    defaultOptions: {
+        HTMLAttributes: {},
+    },
+    parseHTML() {
+        return [
+            {
+                tag: 'strong',
+            },
+            {
+                tag: 'b',
+                getAttrs: node => node.style.fontWeight !== 'normal' && null,
+            },
+            {
+                style: 'font-weight',
+                getAttrs: value => /^(bold(er)?|[5-9]\d{2,})$/.test(value) && null,
+            },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['strong', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes), 0];
+    },
+    addCommands() {
+        return {
+            setBold: () => ({ commands }) => {
+                return commands.setMark('bold');
+            },
+            toggleBold: () => ({ commands }) => {
+                return commands.toggleMark('bold');
+            },
+            unsetBold: () => ({ commands }) => {
+                return commands.unsetMark('bold');
+            },
+        };
+    },
+    addKeyboardShortcuts() {
+        return {
+            'Mod-b': () => this.editor.commands.toggleBold(),
+        };
+    },
+    addInputRules() {
+        return [
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.markInputRule)(starInputRegex, this.type),
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.markInputRule)(underscoreInputRegex, this.type),
+        ];
+    },
+    addPasteRules() {
+        return [
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.markPasteRule)(starPasteRegex, this.type),
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.markPasteRule)(underscorePasteRegex, this.type),
+        ];
+    },
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Bold);
+
+//# sourceMappingURL=tiptap-extension-bold.esm.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/@tiptap/extension-bubble-menu/dist/tiptap-extension-bubble-menu.esm.js":
 /*!*********************************************************************************************!*\
   !*** ./node_modules/@tiptap/extension-bubble-menu/dist/tiptap-extension-bubble-menu.esm.js ***!
@@ -7097,6 +7249,247 @@ const BubbleMenu = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Extension.create({
 
 
 //# sourceMappingURL=tiptap-extension-bubble-menu.esm.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/@tiptap/extension-bullet-list/dist/tiptap-extension-bullet-list.esm.js":
+/*!*********************************************************************************************!*\
+  !*** ./node_modules/@tiptap/extension-bullet-list/dist/tiptap-extension-bullet-list.esm.js ***!
+  \*********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "BulletList": () => (/* binding */ BulletList),
+/* harmony export */   "inputRegex": () => (/* binding */ inputRegex)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+/* harmony import */ var prosemirror_inputrules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prosemirror-inputrules */ "./node_modules/prosemirror-inputrules/dist/index.es.js");
+
+
+
+const inputRegex = /^\s*([-+*])\s$/;
+const BulletList = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Node.create({
+    name: 'bulletList',
+    defaultOptions: {
+        HTMLAttributes: {},
+    },
+    group: 'block list',
+    content: 'listItem+',
+    parseHTML() {
+        return [
+            { tag: 'ul' },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['ul', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes), 0];
+    },
+    addCommands() {
+        return {
+            toggleBulletList: () => ({ commands }) => {
+                return commands.toggleList('bulletList', 'listItem');
+            },
+        };
+    },
+    addKeyboardShortcuts() {
+        return {
+            'Mod-Shift-8': () => this.editor.commands.toggleBulletList(),
+        };
+    },
+    addInputRules() {
+        return [
+            (0,prosemirror_inputrules__WEBPACK_IMPORTED_MODULE_1__.wrappingInputRule)(inputRegex, this.type),
+        ];
+    },
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BulletList);
+
+//# sourceMappingURL=tiptap-extension-bullet-list.esm.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/@tiptap/extension-code-block/dist/tiptap-extension-code-block.esm.js":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@tiptap/extension-code-block/dist/tiptap-extension-code-block.esm.js ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "CodeBlock": () => (/* binding */ CodeBlock),
+/* harmony export */   "backtickInputRegex": () => (/* binding */ backtickInputRegex),
+/* harmony export */   "default": () => (/* binding */ CodeBlock),
+/* harmony export */   "tildeInputRegex": () => (/* binding */ tildeInputRegex)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+/* harmony import */ var prosemirror_inputrules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prosemirror-inputrules */ "./node_modules/prosemirror-inputrules/dist/index.es.js");
+
+
+
+const backtickInputRegex = /^```(?<language>[a-z]*)? $/;
+const tildeInputRegex = /^~~~(?<language>[a-z]*)? $/;
+const CodeBlock = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Node.create({
+    name: 'codeBlock',
+    defaultOptions: {
+        languageClassPrefix: 'language-',
+        HTMLAttributes: {},
+    },
+    content: 'text*',
+    marks: '',
+    group: 'block',
+    code: true,
+    defining: true,
+    addAttributes() {
+        return {
+            language: {
+                default: null,
+                parseHTML: element => {
+                    var _a;
+                    const { languageClassPrefix } = this.options;
+                    const classNames = [...((_a = element.firstElementChild) === null || _a === void 0 ? void 0 : _a.classList) || []];
+                    const languages = classNames
+                        .filter(className => className.startsWith(languageClassPrefix))
+                        .map(className => className.replace(languageClassPrefix, ''));
+                    const language = languages[0];
+                    if (!language) {
+                        return null;
+                    }
+                    return language;
+                },
+                renderHTML: attributes => {
+                    if (!attributes.language) {
+                        return null;
+                    }
+                    return {
+                        class: this.options.languageClassPrefix + attributes.language,
+                    };
+                },
+            },
+        };
+    },
+    parseHTML() {
+        return [
+            {
+                tag: 'pre',
+                preserveWhitespace: 'full',
+            },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['pre', this.options.HTMLAttributes, ['code', HTMLAttributes, 0]];
+    },
+    addCommands() {
+        return {
+            setCodeBlock: attributes => ({ commands }) => {
+                return commands.setNode('codeBlock', attributes);
+            },
+            toggleCodeBlock: attributes => ({ commands }) => {
+                return commands.toggleNode('codeBlock', 'paragraph', attributes);
+            },
+        };
+    },
+    addKeyboardShortcuts() {
+        return {
+            'Mod-Alt-c': () => this.editor.commands.toggleCodeBlock(),
+            // remove code block when at start of document or code block is empty
+            Backspace: () => {
+                const { empty, $anchor } = this.editor.state.selection;
+                const isAtStart = $anchor.pos === 1;
+                if (!empty || $anchor.parent.type.name !== this.name) {
+                    return false;
+                }
+                if (isAtStart || !$anchor.parent.textContent.length) {
+                    return this.editor.commands.clearNodes();
+                }
+                return false;
+            },
+        };
+    },
+    addInputRules() {
+        return [
+            (0,prosemirror_inputrules__WEBPACK_IMPORTED_MODULE_1__.textblockTypeInputRule)(backtickInputRegex, this.type, ({ groups }) => groups),
+            (0,prosemirror_inputrules__WEBPACK_IMPORTED_MODULE_1__.textblockTypeInputRule)(tildeInputRegex, this.type, ({ groups }) => groups),
+        ];
+    },
+});
+
+
+//# sourceMappingURL=tiptap-extension-code-block.esm.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/@tiptap/extension-code/dist/tiptap-extension-code.esm.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@tiptap/extension-code/dist/tiptap-extension-code.esm.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Code": () => (/* binding */ Code),
+/* harmony export */   "default": () => (/* binding */ Code),
+/* harmony export */   "inputRegex": () => (/* binding */ inputRegex),
+/* harmony export */   "pasteRegex": () => (/* binding */ pasteRegex)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+
+
+const inputRegex = /(?:^|\s)((?:`)((?:[^`]+))(?:`))$/gm;
+const pasteRegex = /(?:^|\s)((?:`)((?:[^`]+))(?:`))/gm;
+const Code = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Mark.create({
+    name: 'code',
+    defaultOptions: {
+        HTMLAttributes: {},
+    },
+    excludes: '_',
+    parseHTML() {
+        return [
+            { tag: 'code' },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['code', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes), 0];
+    },
+    addCommands() {
+        return {
+            setCode: () => ({ commands }) => {
+                return commands.setMark('code');
+            },
+            toggleCode: () => ({ commands }) => {
+                return commands.toggleMark('code');
+            },
+            unsetCode: () => ({ commands }) => {
+                return commands.unsetMark('code');
+            },
+        };
+    },
+    addKeyboardShortcuts() {
+        return {
+            'Mod-e': () => this.editor.commands.toggleCode(),
+        };
+    },
+    addInputRules() {
+        return [
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.markInputRule)(inputRegex, this.type),
+        ];
+    },
+    addPasteRules() {
+        return [
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.markPasteRule)(pasteRegex, this.type),
+        ];
+    },
+});
+
+
+//# sourceMappingURL=tiptap-extension-code.esm.js.map
 
 
 /***/ }),
@@ -7441,6 +7834,64 @@ const Gapcursor = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Extension.create({
 
 /***/ }),
 
+/***/ "./node_modules/@tiptap/extension-hard-break/dist/tiptap-extension-hard-break.esm.js":
+/*!*******************************************************************************************!*\
+  !*** ./node_modules/@tiptap/extension-hard-break/dist/tiptap-extension-hard-break.esm.js ***!
+  \*******************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HardBreak": () => (/* binding */ HardBreak),
+/* harmony export */   "default": () => (/* binding */ HardBreak)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+
+
+const HardBreak = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Node.create({
+    name: 'hardBreak',
+    defaultOptions: {
+        HTMLAttributes: {},
+    },
+    inline: true,
+    group: 'inline',
+    selectable: false,
+    parseHTML() {
+        return [
+            { tag: 'br' },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['br', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes)];
+    },
+    renderText() {
+        return '\n';
+    },
+    addCommands() {
+        return {
+            setHardBreak: () => ({ commands }) => {
+                return commands.first([
+                    () => commands.exitCode(),
+                    () => commands.insertContent({ type: this.name }),
+                ]);
+            },
+        };
+    },
+    addKeyboardShortcuts() {
+        return {
+            'Mod-Enter': () => this.editor.commands.setHardBreak(),
+            'Shift-Enter': () => this.editor.commands.setHardBreak(),
+        };
+    },
+});
+
+
+//# sourceMappingURL=tiptap-extension-hard-break.esm.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/@tiptap/extension-heading/dist/tiptap-extension-heading.esm.js":
 /*!*************************************************************************************!*\
   !*** ./node_modules/@tiptap/extension-heading/dist/tiptap-extension-heading.esm.js ***!
@@ -7527,6 +7978,147 @@ const Heading = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Node.create({
 
 /***/ }),
 
+/***/ "./node_modules/@tiptap/extension-history/dist/tiptap-extension-history.esm.js":
+/*!*************************************************************************************!*\
+  !*** ./node_modules/@tiptap/extension-history/dist/tiptap-extension-history.esm.js ***!
+  \*************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "History": () => (/* binding */ History),
+/* harmony export */   "default": () => (/* binding */ History)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+/* harmony import */ var prosemirror_history__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prosemirror-history */ "./node_modules/prosemirror-history/dist/index.es.js");
+
+
+
+const History = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Extension.create({
+    name: 'history',
+    defaultOptions: {
+        depth: 100,
+        newGroupDelay: 500,
+    },
+    addCommands() {
+        return {
+            undo: () => ({ state, dispatch }) => {
+                return (0,prosemirror_history__WEBPACK_IMPORTED_MODULE_1__.undo)(state, dispatch);
+            },
+            redo: () => ({ state, dispatch }) => {
+                return (0,prosemirror_history__WEBPACK_IMPORTED_MODULE_1__.redo)(state, dispatch);
+            },
+        };
+    },
+    addProseMirrorPlugins() {
+        return [
+            (0,prosemirror_history__WEBPACK_IMPORTED_MODULE_1__.history)(this.options),
+        ];
+    },
+    addKeyboardShortcuts() {
+        return {
+            'Mod-z': () => this.editor.commands.undo(),
+            'Mod-y': () => this.editor.commands.redo(),
+            'Shift-Mod-z': () => this.editor.commands.redo(),
+            // Russian keyboard layouts
+            'Mod-я': () => this.editor.commands.undo(),
+            'Shift-Mod-я': () => this.editor.commands.redo(),
+        };
+    },
+});
+
+
+//# sourceMappingURL=tiptap-extension-history.esm.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/@tiptap/extension-horizontal-rule/dist/tiptap-extension-horizontal-rule.esm.js":
+/*!*****************************************************************************************************!*\
+  !*** ./node_modules/@tiptap/extension-horizontal-rule/dist/tiptap-extension-horizontal-rule.esm.js ***!
+  \*****************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HorizontalRule": () => (/* binding */ HorizontalRule),
+/* harmony export */   "default": () => (/* binding */ HorizontalRule)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+/* harmony import */ var prosemirror_state__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prosemirror-state */ "./node_modules/prosemirror-state/dist/index.es.js");
+
+
+
+const HorizontalRule = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Node.create({
+    name: 'horizontalRule',
+    defaultOptions: {
+        HTMLAttributes: {},
+    },
+    group: 'block',
+    parseHTML() {
+        return [
+            { tag: 'hr' },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['hr', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes)];
+    },
+    addCommands() {
+        return {
+            setHorizontalRule: () => ({ chain }) => {
+                return chain()
+                    // remove node before hr if it’s an empty text block
+                    .command(({ tr, dispatch }) => {
+                    const { selection } = tr;
+                    const { empty, $anchor } = selection;
+                    const isEmptyTextBlock = $anchor.parent.isTextblock
+                        && !$anchor.parent.type.spec.code
+                        && !$anchor.parent.textContent;
+                    if (!empty || !isEmptyTextBlock || !dispatch) {
+                        return true;
+                    }
+                    const posBefore = $anchor.before();
+                    tr.deleteRange(posBefore, posBefore + 1);
+                    return true;
+                })
+                    .insertContent({ type: this.name })
+                    // add node after hr if it’s the end of the document
+                    .command(({ tr, dispatch }) => {
+                    var _a;
+                    if (dispatch) {
+                        const { parent, pos } = tr.selection.$from;
+                        const posAfter = pos + 1;
+                        const nodeAfter = tr.doc.nodeAt(posAfter);
+                        if (!nodeAfter) {
+                            const node = (_a = parent.type.contentMatch.defaultType) === null || _a === void 0 ? void 0 : _a.create();
+                            if (node) {
+                                tr.insert(posAfter, node);
+                                tr.setSelection(prosemirror_state__WEBPACK_IMPORTED_MODULE_1__.TextSelection.create(tr.doc, posAfter));
+                            }
+                        }
+                        tr.scrollIntoView();
+                    }
+                    return true;
+                })
+                    .run();
+            },
+        };
+    },
+    addInputRules() {
+        return [
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.nodeInputRule)(/^(?:---|—-|___\s|\*\*\*\s)$/, this.type),
+        ];
+    },
+});
+
+
+//# sourceMappingURL=tiptap-extension-horizontal-rule.esm.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/@tiptap/extension-image/dist/tiptap-extension-image.esm.js":
 /*!*********************************************************************************!*\
   !*** ./node_modules/@tiptap/extension-image/dist/tiptap-extension-image.esm.js ***!
@@ -7607,6 +8199,214 @@ const Image = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Node.create({
 
 /***/ }),
 
+/***/ "./node_modules/@tiptap/extension-italic/dist/tiptap-extension-italic.esm.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@tiptap/extension-italic/dist/tiptap-extension-italic.esm.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "Italic": () => (/* binding */ Italic),
+/* harmony export */   "starInputRegex": () => (/* binding */ starInputRegex),
+/* harmony export */   "starPasteRegex": () => (/* binding */ starPasteRegex),
+/* harmony export */   "underscoreInputRegex": () => (/* binding */ underscoreInputRegex),
+/* harmony export */   "underscorePasteRegex": () => (/* binding */ underscorePasteRegex)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+
+
+const starInputRegex = /(?:^|\s)((?:\*)((?:[^*]+))(?:\*))$/gm;
+const starPasteRegex = /(?:^|\s)((?:\*)((?:[^*]+))(?:\*))/gm;
+const underscoreInputRegex = /(?:^|\s)((?:_)((?:[^_]+))(?:_))$/gm;
+const underscorePasteRegex = /(?:^|\s)((?:_)((?:[^_]+))(?:_))/gm;
+const Italic = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Mark.create({
+    name: 'italic',
+    defaultOptions: {
+        HTMLAttributes: {},
+    },
+    parseHTML() {
+        return [
+            {
+                tag: 'em',
+            },
+            {
+                tag: 'i',
+                getAttrs: node => node.style.fontStyle !== 'normal' && null,
+            },
+            {
+                style: 'font-style=italic',
+            },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['em', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes), 0];
+    },
+    addCommands() {
+        return {
+            setItalic: () => ({ commands }) => {
+                return commands.setMark('italic');
+            },
+            toggleItalic: () => ({ commands }) => {
+                return commands.toggleMark('italic');
+            },
+            unsetItalic: () => ({ commands }) => {
+                return commands.unsetMark('italic');
+            },
+        };
+    },
+    addKeyboardShortcuts() {
+        return {
+            'Mod-i': () => this.editor.commands.toggleItalic(),
+        };
+    },
+    addInputRules() {
+        return [
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.markInputRule)(starInputRegex, this.type),
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.markInputRule)(underscoreInputRegex, this.type),
+        ];
+    },
+    addPasteRules() {
+        return [
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.markPasteRule)(starPasteRegex, this.type),
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.markPasteRule)(underscorePasteRegex, this.type),
+        ];
+    },
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Italic);
+
+//# sourceMappingURL=tiptap-extension-italic.esm.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/@tiptap/extension-list-item/dist/tiptap-extension-list-item.esm.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@tiptap/extension-list-item/dist/tiptap-extension-list-item.esm.js ***!
+  \*****************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "ListItem": () => (/* binding */ ListItem)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+
+
+const ListItem = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Node.create({
+    name: 'listItem',
+    defaultOptions: {
+        HTMLAttributes: {},
+    },
+    content: 'paragraph block*',
+    defining: true,
+    parseHTML() {
+        return [
+            {
+                tag: 'li',
+            },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['li', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes), 0];
+    },
+    addKeyboardShortcuts() {
+        return {
+            Enter: () => this.editor.commands.splitListItem('listItem'),
+            Tab: () => this.editor.commands.sinkListItem('listItem'),
+            'Shift-Tab': () => this.editor.commands.liftListItem('listItem'),
+        };
+    },
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ListItem);
+
+//# sourceMappingURL=tiptap-extension-list-item.esm.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/@tiptap/extension-ordered-list/dist/tiptap-extension-ordered-list.esm.js":
+/*!***********************************************************************************************!*\
+  !*** ./node_modules/@tiptap/extension-ordered-list/dist/tiptap-extension-ordered-list.esm.js ***!
+  \***********************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "OrderedList": () => (/* binding */ OrderedList),
+/* harmony export */   "default": () => (/* binding */ OrderedList),
+/* harmony export */   "inputRegex": () => (/* binding */ inputRegex)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+/* harmony import */ var prosemirror_inputrules__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prosemirror-inputrules */ "./node_modules/prosemirror-inputrules/dist/index.es.js");
+
+
+
+const inputRegex = /^(\d+)\.\s$/;
+const OrderedList = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Node.create({
+    name: 'orderedList',
+    defaultOptions: {
+        HTMLAttributes: {},
+    },
+    group: 'block list',
+    content: 'listItem+',
+    addAttributes() {
+        return {
+            start: {
+                default: 1,
+                parseHTML: element => {
+                    return element.hasAttribute('start')
+                        ? parseInt(element.getAttribute('start') || '', 10)
+                        : 1;
+                },
+            },
+        };
+    },
+    parseHTML() {
+        return [
+            {
+                tag: 'ol',
+            },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        const { start, ...attributesWithoutStart } = HTMLAttributes;
+        return start === 1
+            ? ['ol', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.mergeAttributes)(this.options.HTMLAttributes, attributesWithoutStart), 0]
+            : ['ol', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes), 0];
+    },
+    addCommands() {
+        return {
+            toggleOrderedList: () => ({ commands }) => {
+                return commands.toggleList('orderedList', 'listItem');
+            },
+        };
+    },
+    addKeyboardShortcuts() {
+        return {
+            'Mod-Shift-7': () => this.editor.commands.toggleOrderedList(),
+        };
+    },
+    addInputRules() {
+        return [
+            (0,prosemirror_inputrules__WEBPACK_IMPORTED_MODULE_1__.wrappingInputRule)(inputRegex, this.type, match => ({ start: +match[1] }), (match, node) => node.childCount + node.attrs.start === +match[1]),
+        ];
+    },
+});
+
+
+//# sourceMappingURL=tiptap-extension-ordered-list.esm.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/@tiptap/extension-paragraph/dist/tiptap-extension-paragraph.esm.js":
 /*!*****************************************************************************************!*\
   !*** ./node_modules/@tiptap/extension-paragraph/dist/tiptap-extension-paragraph.esm.js ***!
@@ -7654,6 +8454,88 @@ const Paragraph = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Node.create({
 
 
 //# sourceMappingURL=tiptap-extension-paragraph.esm.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/@tiptap/extension-strike/dist/tiptap-extension-strike.esm.js":
+/*!***********************************************************************************!*\
+  !*** ./node_modules/@tiptap/extension-strike/dist/tiptap-extension-strike.esm.js ***!
+  \***********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__),
+/* harmony export */   "Strike": () => (/* binding */ Strike),
+/* harmony export */   "inputRegex": () => (/* binding */ inputRegex),
+/* harmony export */   "pasteRegex": () => (/* binding */ pasteRegex)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+
+
+const inputRegex = /(?:^|\s)((?:~~)((?:[^~]+))(?:~~))$/gm;
+const pasteRegex = /(?:^|\s)((?:~~)((?:[^~]+))(?:~~))/gm;
+const Strike = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Mark.create({
+    name: 'strike',
+    defaultOptions: {
+        HTMLAttributes: {},
+    },
+    parseHTML() {
+        return [
+            {
+                tag: 's',
+            },
+            {
+                tag: 'del',
+            },
+            {
+                tag: 'strike',
+            },
+            {
+                style: 'text-decoration',
+                consuming: false,
+                getAttrs: style => (style.includes('line-through') ? {} : false),
+            },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['s', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes), 0];
+    },
+    addCommands() {
+        return {
+            setStrike: () => ({ commands }) => {
+                return commands.setMark('strike');
+            },
+            toggleStrike: () => ({ commands }) => {
+                return commands.toggleMark('strike');
+            },
+            unsetStrike: () => ({ commands }) => {
+                return commands.unsetMark('strike');
+            },
+        };
+    },
+    addKeyboardShortcuts() {
+        return {
+            'Mod-Shift-x': () => this.editor.commands.toggleStrike(),
+        };
+    },
+    addInputRules() {
+        return [
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.markInputRule)(inputRegex, this.type),
+        ];
+    },
+    addPasteRules() {
+        return [
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.markPasteRule)(pasteRegex, this.type),
+        ];
+    },
+});
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Strike);
+
+//# sourceMappingURL=tiptap-extension-strike.esm.js.map
 
 
 /***/ }),
@@ -7801,6 +8683,125 @@ const Underline = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Mark.create({
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Underline);
 
 //# sourceMappingURL=tiptap-extension-underline.esm.js.map
+
+
+/***/ }),
+
+/***/ "./node_modules/@tiptap/starter-kit/dist/tiptap-starter-kit.esm.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@tiptap/starter-kit/dist/tiptap-starter-kit.esm.js ***!
+  \*************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* binding */ StarterKit)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+/* harmony import */ var _tiptap_extension_blockquote__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @tiptap/extension-blockquote */ "./node_modules/@tiptap/extension-blockquote/dist/tiptap-extension-blockquote.esm.js");
+/* harmony import */ var _tiptap_extension_bold__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @tiptap/extension-bold */ "./node_modules/@tiptap/extension-bold/dist/tiptap-extension-bold.esm.js");
+/* harmony import */ var _tiptap_extension_bullet_list__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @tiptap/extension-bullet-list */ "./node_modules/@tiptap/extension-bullet-list/dist/tiptap-extension-bullet-list.esm.js");
+/* harmony import */ var _tiptap_extension_code__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! @tiptap/extension-code */ "./node_modules/@tiptap/extension-code/dist/tiptap-extension-code.esm.js");
+/* harmony import */ var _tiptap_extension_code_block__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! @tiptap/extension-code-block */ "./node_modules/@tiptap/extension-code-block/dist/tiptap-extension-code-block.esm.js");
+/* harmony import */ var _tiptap_extension_document__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! @tiptap/extension-document */ "./node_modules/@tiptap/extension-document/dist/tiptap-extension-document.esm.js");
+/* harmony import */ var _tiptap_extension_dropcursor__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @tiptap/extension-dropcursor */ "./node_modules/@tiptap/extension-dropcursor/dist/tiptap-extension-dropcursor.esm.js");
+/* harmony import */ var _tiptap_extension_gapcursor__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @tiptap/extension-gapcursor */ "./node_modules/@tiptap/extension-gapcursor/dist/tiptap-extension-gapcursor.esm.js");
+/* harmony import */ var _tiptap_extension_hard_break__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @tiptap/extension-hard-break */ "./node_modules/@tiptap/extension-hard-break/dist/tiptap-extension-hard-break.esm.js");
+/* harmony import */ var _tiptap_extension_heading__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @tiptap/extension-heading */ "./node_modules/@tiptap/extension-heading/dist/tiptap-extension-heading.esm.js");
+/* harmony import */ var _tiptap_extension_history__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @tiptap/extension-history */ "./node_modules/@tiptap/extension-history/dist/tiptap-extension-history.esm.js");
+/* harmony import */ var _tiptap_extension_horizontal_rule__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @tiptap/extension-horizontal-rule */ "./node_modules/@tiptap/extension-horizontal-rule/dist/tiptap-extension-horizontal-rule.esm.js");
+/* harmony import */ var _tiptap_extension_italic__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @tiptap/extension-italic */ "./node_modules/@tiptap/extension-italic/dist/tiptap-extension-italic.esm.js");
+/* harmony import */ var _tiptap_extension_list_item__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @tiptap/extension-list-item */ "./node_modules/@tiptap/extension-list-item/dist/tiptap-extension-list-item.esm.js");
+/* harmony import */ var _tiptap_extension_ordered_list__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @tiptap/extension-ordered-list */ "./node_modules/@tiptap/extension-ordered-list/dist/tiptap-extension-ordered-list.esm.js");
+/* harmony import */ var _tiptap_extension_paragraph__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! @tiptap/extension-paragraph */ "./node_modules/@tiptap/extension-paragraph/dist/tiptap-extension-paragraph.esm.js");
+/* harmony import */ var _tiptap_extension_strike__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! @tiptap/extension-strike */ "./node_modules/@tiptap/extension-strike/dist/tiptap-extension-strike.esm.js");
+/* harmony import */ var _tiptap_extension_text__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! @tiptap/extension-text */ "./node_modules/@tiptap/extension-text/dist/tiptap-extension-text.esm.js");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+const StarterKit = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Extension.create({
+    name: 'starterKit',
+    addExtensions() {
+        var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k, _l, _m, _o, _p, _q, _r, _s, _t;
+        const extensions = [];
+        if (this.options.blockquote !== false) {
+            extensions.push(_tiptap_extension_blockquote__WEBPACK_IMPORTED_MODULE_1__.default.configure((_a = this.options) === null || _a === void 0 ? void 0 : _a.blockquote));
+        }
+        if (this.options.bold !== false) {
+            extensions.push(_tiptap_extension_bold__WEBPACK_IMPORTED_MODULE_2__.default.configure((_b = this.options) === null || _b === void 0 ? void 0 : _b.bold));
+        }
+        if (this.options.bulletList !== false) {
+            extensions.push(_tiptap_extension_bullet_list__WEBPACK_IMPORTED_MODULE_3__.default.configure((_c = this.options) === null || _c === void 0 ? void 0 : _c.bulletList));
+        }
+        if (this.options.code !== false) {
+            extensions.push(_tiptap_extension_code__WEBPACK_IMPORTED_MODULE_4__.default.configure((_d = this.options) === null || _d === void 0 ? void 0 : _d.code));
+        }
+        if (this.options.codeBlock !== false) {
+            extensions.push(_tiptap_extension_code_block__WEBPACK_IMPORTED_MODULE_5__.default.configure((_e = this.options) === null || _e === void 0 ? void 0 : _e.codeBlock));
+        }
+        if (this.options.document !== false) {
+            extensions.push(_tiptap_extension_document__WEBPACK_IMPORTED_MODULE_6__.default.configure((_f = this.options) === null || _f === void 0 ? void 0 : _f.document));
+        }
+        if (this.options.dropcursor !== false) {
+            extensions.push(_tiptap_extension_dropcursor__WEBPACK_IMPORTED_MODULE_7__.default.configure((_g = this.options) === null || _g === void 0 ? void 0 : _g.dropcursor));
+        }
+        if (this.options.gapcursor !== false) {
+            extensions.push(_tiptap_extension_gapcursor__WEBPACK_IMPORTED_MODULE_8__.default.configure((_h = this.options) === null || _h === void 0 ? void 0 : _h.gapcursor));
+        }
+        if (this.options.hardBreak !== false) {
+            extensions.push(_tiptap_extension_hard_break__WEBPACK_IMPORTED_MODULE_9__.default.configure((_j = this.options) === null || _j === void 0 ? void 0 : _j.hardBreak));
+        }
+        if (this.options.heading !== false) {
+            extensions.push(_tiptap_extension_heading__WEBPACK_IMPORTED_MODULE_10__.default.configure((_k = this.options) === null || _k === void 0 ? void 0 : _k.heading));
+        }
+        if (this.options.history !== false) {
+            extensions.push(_tiptap_extension_history__WEBPACK_IMPORTED_MODULE_11__.default.configure((_l = this.options) === null || _l === void 0 ? void 0 : _l.history));
+        }
+        if (this.options.horizontalRule !== false) {
+            extensions.push(_tiptap_extension_horizontal_rule__WEBPACK_IMPORTED_MODULE_12__.default.configure((_m = this.options) === null || _m === void 0 ? void 0 : _m.horizontalRule));
+        }
+        if (this.options.italic !== false) {
+            extensions.push(_tiptap_extension_italic__WEBPACK_IMPORTED_MODULE_13__.default.configure((_o = this.options) === null || _o === void 0 ? void 0 : _o.italic));
+        }
+        if (this.options.listItem !== false) {
+            extensions.push(_tiptap_extension_list_item__WEBPACK_IMPORTED_MODULE_14__.default.configure((_p = this.options) === null || _p === void 0 ? void 0 : _p.listItem));
+        }
+        if (this.options.orderedList !== false) {
+            extensions.push(_tiptap_extension_ordered_list__WEBPACK_IMPORTED_MODULE_15__.default.configure((_q = this.options) === null || _q === void 0 ? void 0 : _q.orderedList));
+        }
+        if (this.options.paragraph !== false) {
+            extensions.push(_tiptap_extension_paragraph__WEBPACK_IMPORTED_MODULE_16__.default.configure((_r = this.options) === null || _r === void 0 ? void 0 : _r.paragraph));
+        }
+        if (this.options.strike !== false) {
+            extensions.push(_tiptap_extension_strike__WEBPACK_IMPORTED_MODULE_17__.default.configure((_s = this.options) === null || _s === void 0 ? void 0 : _s.strike));
+        }
+        if (this.options.text !== false) {
+            extensions.push(_tiptap_extension_text__WEBPACK_IMPORTED_MODULE_18__.default.configure((_t = this.options) === null || _t === void 0 ? void 0 : _t.text));
+        }
+        return extensions;
+    },
+});
+
+
+//# sourceMappingURL=tiptap-starter-kit.esm.js.map
 
 
 /***/ }),
@@ -27399,6 +28400,46 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/DropdownSelect.vue?vue&type=script&lang=js":
+/*!********************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/DropdownSelect.vue?vue&type=script&lang=js ***!
+  \********************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
+  props: {
+    label: {
+      type: String,
+      "default": ''
+    },
+    items: {
+      type: Array,
+      "default": function _default() {
+        return [];
+      }
+    },
+    selected: {
+      type: String || Number,
+      "default": null
+    }
+  },
+  data: function data() {
+    return {};
+  },
+  methods: {
+    select: function select(value) {
+      this.$emit('select', value);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Shop/Address.vue?vue&type=script&lang=js":
 /*!******************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/Shop/Address.vue?vue&type=script&lang=js ***!
@@ -27432,7 +28473,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     addresses: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     }
   },
   computed: {
@@ -27508,7 +28549,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     addresses: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     }
   },
   data: function data() {
@@ -27622,7 +28663,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     filters: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     }
   },
   methods: {
@@ -27659,7 +28700,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     cart: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     }
   },
   methods: {
@@ -27689,7 +28730,7 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     data: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     }
   },
   mounted: function mounted() {
@@ -27791,6 +28832,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tiptap_extension_underline__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! @tiptap/extension-underline */ "./node_modules/@tiptap/extension-underline/dist/tiptap-extension-underline.esm.js");
 /* harmony import */ var _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! @tiptap/extension-image */ "./node_modules/@tiptap/extension-image/dist/tiptap-extension-image.esm.js");
 /* harmony import */ var _tiptap_extension_dropcursor__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! @tiptap/extension-dropcursor */ "./node_modules/@tiptap/extension-dropcursor/dist/tiptap-extension-dropcursor.esm.js");
+/* harmony import */ var _tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! @tiptap/starter-kit */ "./node_modules/@tiptap/starter-kit/dist/tiptap-starter-kit.esm.js");
+/* harmony import */ var _tiptap_extension_text_style__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! @tiptap/extension-text-style */ "./node_modules/@tiptap/extension-text-style/dist/tiptap-extension-text-style.esm.js");
+
+
 
 
 
@@ -27832,9 +28877,9 @@ __webpack_require__.r(__webpack_exports__);
 
     this.editor = new _tiptap_vue_3__WEBPACK_IMPORTED_MODULE_0__.Editor({
       content: this.modelValue,
-      extensions: [_tiptap_extension_document__WEBPACK_IMPORTED_MODULE_1__.default, _tiptap_extension_paragraph__WEBPACK_IMPORTED_MODULE_2__.default, _tiptap_extension_text__WEBPACK_IMPORTED_MODULE_3__.default, _tiptap_extension_color__WEBPACK_IMPORTED_MODULE_4__.Color, _tiptap_extension_gapcursor__WEBPACK_IMPORTED_MODULE_5__.default, _tiptap_extension_underline__WEBPACK_IMPORTED_MODULE_7__.default, _tiptap_extension_heading__WEBPACK_IMPORTED_MODULE_6__.default.configure({
+      extensions: [_tiptap_extension_document__WEBPACK_IMPORTED_MODULE_1__.default, _tiptap_extension_paragraph__WEBPACK_IMPORTED_MODULE_2__.default, _tiptap_extension_text__WEBPACK_IMPORTED_MODULE_3__.default, _tiptap_extension_color__WEBPACK_IMPORTED_MODULE_4__.Color, _tiptap_extension_gapcursor__WEBPACK_IMPORTED_MODULE_5__.default, _tiptap_extension_underline__WEBPACK_IMPORTED_MODULE_7__.default, _tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_10__.default, _tiptap_extension_heading__WEBPACK_IMPORTED_MODULE_6__.default.configure({
         levels: [1, 2, 3, 4, 5, 6]
-      }), _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_8__.default, _tiptap_extension_dropcursor__WEBPACK_IMPORTED_MODULE_9__.default],
+      }), _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_8__.default, _tiptap_extension_dropcursor__WEBPACK_IMPORTED_MODULE_9__.default, _tiptap_extension_text_style__WEBPACK_IMPORTED_MODULE_11__.default],
       onUpdate: function onUpdate() {
         _this.$emit("update:modelValue", _this.editor.getHTML());
       }
@@ -27886,17 +28931,71 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @inertiajs/inertia-vue3 */ "./node_modules/@inertiajs/inertia-vue3/dist/index.js");
 /* harmony import */ var _Components_TipTap__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @/Components/TipTap */ "./resources/js/Components/TipTap.vue");
+/* harmony import */ var _Components_DropdownSelect__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @/Components/DropdownSelect */ "./resources/js/Components/DropdownSelect.vue");
+
 
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Head,
-    TipTap: _Components_TipTap__WEBPACK_IMPORTED_MODULE_1__.default
+    TipTap: _Components_TipTap__WEBPACK_IMPORTED_MODULE_1__.default,
+    DropdownSelect: _Components_DropdownSelect__WEBPACK_IMPORTED_MODULE_2__.default
+  },
+  props: {
+    categories: {
+      type: Object,
+      "default": function _default() {}
+    }
   },
   data: function data() {
     return {
-      content: null
+      content: null,
+      // categories: [
+      //     {id: 1, value: 'Personal'},
+      //     {id: 2, value: 'Laravel'},
+      //     {id: 3, value: 'Games'},
+      //     {id: 4, value: 'Movies'},
+      //     {id: 5, value: 'Books'},
+      //     {id: 6, value: 'Anime'},
+      // ],
+      journal: {
+        title: null,
+        content: null,
+        category: null
+      }
     };
+  },
+  methods: {
+    select: function select(category) {
+      this.journal.category = category;
+    },
+    updateContent: function updateContent(content) {
+      this.journal.content = content;
+    },
+    submitEntry: function submitEntry() {
+      var _this = this;
+
+      this.$inertia.post(route('journal.store'), this.journal, {
+        onSuccess: function onSuccess(page) {
+          _this.onSuccess('Entry added');
+        },
+        onError: function onError(errors) {
+          _this.onError(errors);
+        }
+      });
+    },
+    onError: function onError(data) {
+      for (var key in data) {
+        this.$toast.error(data[key], {
+          duration: false
+        });
+      }
+    },
+    onSuccess: function onSuccess(msg) {
+      this.$toast.success(msg, {
+        duration: 3000
+      });
+    }
   }
 });
 
@@ -27918,6 +29017,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   components: {
     Head: _inertiajs_inertia_vue3__WEBPACK_IMPORTED_MODULE_0__.Head
+  },
+  props: {
+    entries: {
+      type: Object,
+      "default": function _default() {}
+    }
   },
   data: function data() {
     return {
@@ -28212,11 +29317,11 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     cart: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     },
     addresses: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     }
   },
   data: function data() {
@@ -28385,19 +29490,19 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     products: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     },
     categories: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     },
     filters: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     },
     cart: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     }
   },
   data: function data() {
@@ -28496,11 +29601,11 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     cart: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     },
     orders: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     }
   },
   data: function data() {
@@ -28552,11 +29657,11 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     cart: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     },
     addresses: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     }
   },
   computed: {
@@ -28613,15 +29718,15 @@ __webpack_require__.r(__webpack_exports__);
   props: {
     product: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     },
     cart: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     },
     cartItem: {
       type: Object,
-      "default": {}
+      "default": function _default() {}
     }
   },
   data: function data() {
@@ -28855,6 +29960,58 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/DropdownSelect.vue?vue&type=template&id=16ec30f8":
+/*!************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/DropdownSelect.vue?vue&type=template&id=16ec30f8 ***!
+  \************************************************************************************************************************************************************************************************************************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* binding */ render)
+/* harmony export */ });
+/* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
+
+var _hoisted_1 = ["for"];
+
+var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("option", {
+  disabled: "",
+  value: ""
+}, "Please Select", -1
+/* HOISTED */
+);
+
+var _hoisted_3 = ["value"];
+function render(_ctx, _cache, $props, $setup, $data, $options) {
+  return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("label", {
+    "for": $props.label,
+    "class": "pr-2"
+  }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)($props.label) + ":", 9
+  /* TEXT, PROPS */
+  , _hoisted_1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $props.selected = $event;
+    }),
+    onChange: _cache[1] || (_cache[1] = function ($event) {
+      return $options.select($props.selected);
+    })
+  }, [_hoisted_2, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.items, function (item) {
+    return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("option", {
+      key: item.id,
+      value: item.id
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(item.value), 9
+    /* TEXT, PROPS */
+    , _hoisted_3);
+  }), 128
+  /* KEYED_FRAGMENT */
+  ))], 544
+  /* HYDRATE_EVENTS, NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $props.selected]])]);
+}
 
 /***/ }),
 
@@ -30415,34 +31572,45 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_3 = {
   "class": "w-1/2 my-5 p-1 rounded bg-white"
 };
-
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
-  type: "text",
-  name: "min",
-  placeholder: "Enter your title",
-  "class": "border border-gray-400 p-2 m-1 mb-4 w-full"
-}, null, -1
-/* HOISTED */
-);
-
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-  "class": "p-2 mt-2 bg-gray-750 text-white rounded"
-}, "Submit", -1
-/* HOISTED */
-);
-
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
+
+  var _component_DropdownSelect = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("DropdownSelect");
 
   var _component_TipTap = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("TipTap");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
     title: "Create Entry"
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [_hoisted_4, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TipTap, {
-    modelValue: $data.content
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+    "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
+      return $data.journal.title = $event;
+    }),
+    type: "text",
+    name: "min",
+    placeholder: "Enter your title",
+    "class": "border border-gray-400 p-2 m-1 mb-4 w-full"
+  }, null, 512
+  /* NEED_PATCH */
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.journal.title]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DropdownSelect, {
+    label: "Categories",
+    items: $props.categories.data,
+    selected: $data.journal.category,
+    onSelect: $options.select
   }, null, 8
   /* PROPS */
-  , ["modelValue"]), _hoisted_5])])], 64
+  , ["items", "selected", "onSelect"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TipTap, {
+    modelValue: $data.journal.content,
+    "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
+      return $data.journal.content = $event;
+    })
+  }, null, 8
+  /* PROPS */
+  , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "p-2 mt-2 bg-gray-750 text-white rounded",
+    onClick: _cache[2] || (_cache[2] = function () {
+      return $options.submitEntry && $options.submitEntry.apply($options, arguments);
+    })
+  }, "Submit")])])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -30468,35 +31636,32 @@ var _hoisted_1 = {
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createStaticVNode)("<div class=\"w-full text-center\"><h1 class=\"text-white title text-8xl\">Journal</h1><div class=\"flex flex-col justify-center items-center mx-136\"><span class=\"text-white hidden\">found 200 search results</span><input type=\"text\" name=\"min\" placeholder=\"Search\" class=\"border border-gray-400 rounded-xl p-2 m-2 w-full\"></div></div>", 1);
 
-var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", {
+var _hoisted_3 = {
   "class": "title font-bold text-3xl"
-}, "No, motherfucker", -1
-/* HOISTED */
-);
-
-var _hoisted_4 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", {
+};
+var _hoisted_4 = {
   "class": "content font-medium"
-}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "20 Jan 2021"), /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)(" | By Eric Heng")], -1
-/* HOISTED */
-);
-
-var _hoisted_5 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "mt-2"
-}, "Look, just because I don't be givin' no man a foot massage don't make it right for Marsellus to throw Antwone into a glass motherfuckin' house, fuckin' up the way the nigger talks. Motherfucker do that shit to me, he better paralyze my ass, 'cause I'll kill the motherfucker, know what I'm sayin'? You think water moves fast? You should see ice. It moves like it has a mind. Like it knows it killed the world once and got a taste for murder. After the avalanche, it took us a week to climb out. Now, I don't know exactly when we turned on each other, but I know that seven of us survived the slide... and only five made it out. Now we took an oath, that I'm breaking now. We said we'd say it was the snow that killed the other two, but it wasn't. Nature is lethal but it doesn't hold a candle to man. Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. But I can't give you this case, it don't belong to me. Besides, I've already been through too much shit this morning over this case to hand it over to your dumb ass. Now that we know who you are, I know who I am. I'm not a mistake! It all makes sense! In a comic, you know how you can tell who the arch-villain's going to be? He's the exact opposite of the hero. And most times they're friends, like you and me! I should've known way back when... You know why, David? Because of the kids. They called me Mr Glass. ", -1
-/* HOISTED */
-);
-
-var _hoisted_6 = [_hoisted_3, _hoisted_4, _hoisted_5];
+};
+var _hoisted_5 = ["innerHTML"];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
     title: "Journal"
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.x, function (y) {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.entries, function (entry) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": "bg-white my-5 p-4 px-8 mx-60 rounded",
-      key: y
-    }, _hoisted_6);
+      "class": "bg-white my-5 p-4 px-8 mx-60 rounded w-1/2",
+      key: entry
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_3, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(entry.title), 1
+    /* TEXT */
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(entry.created_at), 1
+    /* TEXT */
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+      "class": "mt-2",
+      innerHTML: entry.content
+    }, null, 8
+    /* PROPS */
+    , _hoisted_5)]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])], 64
@@ -32231,7 +33396,19 @@ var Ziggy = {
       "uri": "livewire\/preview-file\/{filename}",
       "methods": ["GET", "HEAD"]
     },
+    "journal.index": {
+      "uri": "journal",
+      "methods": ["GET", "HEAD"]
+    },
+    "journal.create": {
+      "uri": "journal\/create",
+      "methods": ["GET", "HEAD"]
+    },
     "playground.": {
+      "uri": "playground",
+      "methods": ["GET", "HEAD"]
+    },
+    "playground.camera.index": {
       "uri": "playground\/camera",
       "methods": ["GET", "HEAD"]
     },
@@ -47176,7 +48353,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "/* Basic editor styles */\n/* remove outline */\n.ProseMirror:focus {\n  outline: none;\n}\n\n/* set */\n.ProseMirror {\n  min-height: 30em;\n  max-height: 30em;\n  border-width: 2px;\n  --tw-border-opacity: 1;\n  border-color: rgba(0, 0, 0, var(--tw-border-opacity));\n}\n.ProseMirror > * + * {\n  margin-top: 0.75em;\n}\n.ProseMirror ul,\n.ProseMirror ol {\n  padding: 0 1rem;\n}\n.ProseMirror p {\n  font-size: 25px;\n}\n.ProseMirror h1 {\n  font-size: 45px;\n  font-weight: 700;\n  line-height: 1.1;\n}\n.ProseMirror h2 {\n  font-size: 40px;\n  font-weight: 700;\n  line-height: 1.1;\n}\n.ProseMirror h3 {\n  font-size: 35px;\n  font-weight: 700;\n  line-height: 1.1;\n}\n.ProseMirror h4 {\n  font-size: 30px;\n  font-weight: 700;\n  line-height: 1.1;\n}\n.ProseMirror h5 {\n  font-size: 25px;\n  font-weight: 700;\n  line-height: 1.1;\n}\n.ProseMirror h6 {\n  font-size: 20px;\n  line-height: 1.1;\n  font-weight: 700;\n}\n.ProseMirror code {\n  background-color: rgba(97, 97, 97, 0.1);\n  color: #616161;\n}\n.ProseMirror pre {\n  background: #424242;\n  color: #fff;\n  font-family: \"Courier New\", Courier, monospace;\n  padding: 0.75rem 1rem;\n  border-radius: 0.5rem;\n}\n.ProseMirror pre code {\n  color: inherit;\n  padding: 0;\n  background: none;\n  font-size: 0.8rem;\n}\n.ProseMirror img {\n  max-width: 100%;\n  height: auto;\n}\n.ProseMirror img.ProseMirror-selectednode {\n  outline: 3px solid #68CEF8;\n}\n.ProseMirror blockquote {\n  padding-left: 1rem;\n  border-left: 2px solid rgba(13, 13, 13, 0.1);\n}\n.ProseMirror hr {\n  border: none;\n  border-top: 2px solid rgba(13, 13, 13, 0.1);\n  margin: 2rem 0;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "/* Basic editor styles */\n/* remove outline */\n.ProseMirror:focus {\n  outline: none;\n}\n\n/* set */\n.ProseMirror {\n  min-height: 30em;\n  border-width: 2px;\n  --tw-border-opacity: 1;\n  border-color: rgba(0, 0, 0, var(--tw-border-opacity));\n}\n.ProseMirror > * + * {\n  margin-top: 0.75em;\n}\n.ProseMirror ul,\n.ProseMirror ol {\n  padding: 0 1rem;\n}\n.ProseMirror p {\n  font-size: 25px;\n}\n.ProseMirror h1 {\n  font-size: 45px;\n  font-weight: 700;\n  line-height: 1.1;\n}\n.ProseMirror h2 {\n  font-size: 40px;\n  font-weight: 700;\n  line-height: 1.1;\n}\n.ProseMirror h3 {\n  font-size: 35px;\n  font-weight: 700;\n  line-height: 1.1;\n}\n.ProseMirror h4 {\n  font-size: 30px;\n  font-weight: 700;\n  line-height: 1.1;\n}\n.ProseMirror h5 {\n  font-size: 25px;\n  font-weight: 700;\n  line-height: 1.1;\n}\n.ProseMirror h6 {\n  font-size: 20px;\n  line-height: 1.1;\n  font-weight: 700;\n}\n.ProseMirror code {\n  background-color: rgba(97, 97, 97, 0.1);\n  color: #616161;\n}\n.ProseMirror pre {\n  background: #424242;\n  color: #fff;\n  font-family: \"Courier New\", Courier, monospace;\n  padding: 0.75rem 1rem;\n  border-radius: 0.5rem;\n}\n.ProseMirror pre code {\n  color: inherit;\n  padding: 0;\n  background: none;\n  font-size: 0.8rem;\n}\n.ProseMirror img {\n  max-width: 100%;\n  height: auto;\n}\n.ProseMirror img.ProseMirror-selectednode {\n  outline: 3px solid #68CEF8;\n}\n.ProseMirror blockquote {\n  padding-left: 1rem;\n  border-left: 2px solid rgba(13, 13, 13, 0.1);\n}\n.ProseMirror hr {\n  border: none;\n  border-top: 2px solid rgba(13, 13, 13, 0.1);\n  margin: 2rem 0;\n}\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -71198,6 +72375,486 @@ function drawGapCursor(state) {
 
 /***/ }),
 
+/***/ "./node_modules/prosemirror-history/dist/index.es.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/prosemirror-history/dist/index.es.js ***!
+  \***********************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "HistoryState": () => (/* binding */ HistoryState),
+/* harmony export */   "closeHistory": () => (/* binding */ closeHistory),
+/* harmony export */   "history": () => (/* binding */ history),
+/* harmony export */   "redo": () => (/* binding */ redo),
+/* harmony export */   "redoDepth": () => (/* binding */ redoDepth),
+/* harmony export */   "undo": () => (/* binding */ undo),
+/* harmony export */   "undoDepth": () => (/* binding */ undoDepth)
+/* harmony export */ });
+/* harmony import */ var rope_sequence__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! rope-sequence */ "./node_modules/rope-sequence/dist/index.es.js");
+/* harmony import */ var prosemirror_transform__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prosemirror-transform */ "./node_modules/prosemirror-transform/dist/index.es.js");
+/* harmony import */ var prosemirror_state__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! prosemirror-state */ "./node_modules/prosemirror-state/dist/index.es.js");
+
+
+
+
+// ProseMirror's history isn't simply a way to roll back to a previous
+// state, because ProseMirror supports applying changes without adding
+// them to the history (for example during collaboration).
+//
+// To this end, each 'Branch' (one for the undo history and one for
+// the redo history) keeps an array of 'Items', which can optionally
+// hold a step (an actual undoable change), and always hold a position
+// map (which is needed to move changes below them to apply to the
+// current document).
+//
+// An item that has both a step and a selection bookmark is the start
+// of an 'event' — a group of changes that will be undone or redone at
+// once. (It stores only the bookmark, since that way we don't have to
+// provide a document until the selection is actually applied, which
+// is useful when compressing.)
+
+// Used to schedule history compression
+var max_empty_items = 500;
+
+var Branch = function Branch(items, eventCount) {
+  this.items = items;
+  this.eventCount = eventCount;
+};
+
+// : (EditorState, bool) → ?{transform: Transform, selection: ?SelectionBookmark, remaining: Branch}
+// Pop the latest event off the branch's history and apply it
+// to a document transform.
+Branch.prototype.popEvent = function popEvent (state, preserveItems) {
+    var this$1 = this;
+
+  if (this.eventCount == 0) { return null }
+
+  var end = this.items.length;
+  for (;; end--) {
+    var next = this.items.get(end - 1);
+    if (next.selection) { --end; break }
+  }
+
+  var remap, mapFrom;
+  if (preserveItems) {
+    remap = this.remapping(end, this.items.length);
+    mapFrom = remap.maps.length;
+  }
+  var transform = state.tr;
+  var selection, remaining;
+  var addAfter = [], addBefore = [];
+
+  this.items.forEach(function (item, i) {
+    if (!item.step) {
+      if (!remap) {
+        remap = this$1.remapping(end, i + 1);
+        mapFrom = remap.maps.length;
+      }
+      mapFrom--;
+      addBefore.push(item);
+      return
+    }
+
+    if (remap) {
+      addBefore.push(new Item(item.map));
+      var step = item.step.map(remap.slice(mapFrom)), map;
+
+      if (step && transform.maybeStep(step).doc) {
+        map = transform.mapping.maps[transform.mapping.maps.length - 1];
+        addAfter.push(new Item(map, null, null, addAfter.length + addBefore.length));
+      }
+      mapFrom--;
+      if (map) { remap.appendMap(map, mapFrom); }
+    } else {
+      transform.maybeStep(item.step);
+    }
+
+    if (item.selection) {
+      selection = remap ? item.selection.map(remap.slice(mapFrom)) : item.selection;
+      remaining = new Branch(this$1.items.slice(0, end).append(addBefore.reverse().concat(addAfter)), this$1.eventCount - 1);
+      return false
+    }
+  }, this.items.length, 0);
+
+  return {remaining: remaining, transform: transform, selection: selection}
+};
+
+// : (Transform, ?SelectionBookmark, Object) → Branch
+// Create a new branch with the given transform added.
+Branch.prototype.addTransform = function addTransform (transform, selection, histOptions, preserveItems) {
+  var newItems = [], eventCount = this.eventCount;
+  var oldItems = this.items, lastItem = !preserveItems && oldItems.length ? oldItems.get(oldItems.length - 1) : null;
+
+  for (var i = 0; i < transform.steps.length; i++) {
+    var step = transform.steps[i].invert(transform.docs[i]);
+    var item = new Item(transform.mapping.maps[i], step, selection), merged = (void 0);
+    if (merged = lastItem && lastItem.merge(item)) {
+      item = merged;
+      if (i) { newItems.pop(); }
+      else { oldItems = oldItems.slice(0, oldItems.length - 1); }
+    }
+    newItems.push(item);
+    if (selection) {
+      eventCount++;
+      selection = null;
+    }
+    if (!preserveItems) { lastItem = item; }
+  }
+  var overflow = eventCount - histOptions.depth;
+  if (overflow > DEPTH_OVERFLOW) {
+    oldItems = cutOffEvents(oldItems, overflow);
+    eventCount -= overflow;
+  }
+  return new Branch(oldItems.append(newItems), eventCount)
+};
+
+Branch.prototype.remapping = function remapping (from, to) {
+  var maps = new prosemirror_transform__WEBPACK_IMPORTED_MODULE_1__.Mapping;
+  this.items.forEach(function (item, i) {
+    var mirrorPos = item.mirrorOffset != null && i - item.mirrorOffset >= from
+        ? maps.maps.length - item.mirrorOffset : null;
+    maps.appendMap(item.map, mirrorPos);
+  }, from, to);
+  return maps
+};
+
+Branch.prototype.addMaps = function addMaps (array) {
+  if (this.eventCount == 0) { return this }
+  return new Branch(this.items.append(array.map(function (map) { return new Item(map); })), this.eventCount)
+};
+
+// : (Transform, number)
+// When the collab module receives remote changes, the history has
+// to know about those, so that it can adjust the steps that were
+// rebased on top of the remote changes, and include the position
+// maps for the remote changes in its array of items.
+Branch.prototype.rebased = function rebased (rebasedTransform, rebasedCount) {
+  if (!this.eventCount) { return this }
+
+  var rebasedItems = [], start = Math.max(0, this.items.length - rebasedCount);
+
+  var mapping = rebasedTransform.mapping;
+  var newUntil = rebasedTransform.steps.length;
+  var eventCount = this.eventCount;
+  this.items.forEach(function (item) { if (item.selection) { eventCount--; } }, start);
+
+  var iRebased = rebasedCount;
+  this.items.forEach(function (item) {
+    var pos = mapping.getMirror(--iRebased);
+    if (pos == null) { return }
+    newUntil = Math.min(newUntil, pos);
+    var map = mapping.maps[pos];
+    if (item.step) {
+      var step = rebasedTransform.steps[pos].invert(rebasedTransform.docs[pos]);
+      var selection = item.selection && item.selection.map(mapping.slice(iRebased + 1, pos));
+      if (selection) { eventCount++; }
+      rebasedItems.push(new Item(map, step, selection));
+    } else {
+      rebasedItems.push(new Item(map));
+    }
+  }, start);
+
+  var newMaps = [];
+  for (var i = rebasedCount; i < newUntil; i++)
+    { newMaps.push(new Item(mapping.maps[i])); }
+  var items = this.items.slice(0, start).append(newMaps).append(rebasedItems);
+  var branch = new Branch(items, eventCount);
+
+  if (branch.emptyItemCount() > max_empty_items)
+    { branch = branch.compress(this.items.length - rebasedItems.length); }
+  return branch
+};
+
+Branch.prototype.emptyItemCount = function emptyItemCount () {
+  var count = 0;
+  this.items.forEach(function (item) { if (!item.step) { count++; } });
+  return count
+};
+
+// Compressing a branch means rewriting it to push the air (map-only
+// items) out. During collaboration, these naturally accumulate
+// because each remote change adds one. The `upto` argument is used
+// to ensure that only the items below a given level are compressed,
+// because `rebased` relies on a clean, untouched set of items in
+// order to associate old items with rebased steps.
+Branch.prototype.compress = function compress (upto) {
+    if ( upto === void 0 ) upto = this.items.length;
+
+  var remap = this.remapping(0, upto), mapFrom = remap.maps.length;
+  var items = [], events = 0;
+  this.items.forEach(function (item, i) {
+    if (i >= upto) {
+      items.push(item);
+      if (item.selection) { events++; }
+    } else if (item.step) {
+      var step = item.step.map(remap.slice(mapFrom)), map = step && step.getMap();
+      mapFrom--;
+      if (map) { remap.appendMap(map, mapFrom); }
+      if (step) {
+        var selection = item.selection && item.selection.map(remap.slice(mapFrom));
+        if (selection) { events++; }
+        var newItem = new Item(map.invert(), step, selection), merged, last = items.length - 1;
+        if (merged = items.length && items[last].merge(newItem))
+          { items[last] = merged; }
+        else
+          { items.push(newItem); }
+      }
+    } else if (item.map) {
+      mapFrom--;
+    }
+  }, this.items.length, 0);
+  return new Branch(rope_sequence__WEBPACK_IMPORTED_MODULE_0__.default.from(items.reverse()), events)
+};
+
+Branch.empty = new Branch(rope_sequence__WEBPACK_IMPORTED_MODULE_0__.default.empty, 0);
+
+function cutOffEvents(items, n) {
+  var cutPoint;
+  items.forEach(function (item, i) {
+    if (item.selection && (n-- == 0)) {
+      cutPoint = i;
+      return false
+    }
+  });
+  return items.slice(cutPoint)
+}
+
+var Item = function Item(map, step, selection, mirrorOffset) {
+  // The (forward) step map for this item.
+  this.map = map;
+  // The inverted step
+  this.step = step;
+  // If this is non-null, this item is the start of a group, and
+  // this selection is the starting selection for the group (the one
+  // that was active before the first step was applied)
+  this.selection = selection;
+  // If this item is the inverse of a previous mapping on the stack,
+  // this points at the inverse's offset
+  this.mirrorOffset = mirrorOffset;
+};
+
+Item.prototype.merge = function merge (other) {
+  if (this.step && other.step && !other.selection) {
+    var step = other.step.merge(this.step);
+    if (step) { return new Item(step.getMap().invert(), step, this.selection) }
+  }
+};
+
+// The value of the state field that tracks undo/redo history for that
+// state. Will be stored in the plugin state when the history plugin
+// is active.
+var HistoryState = function HistoryState(done, undone, prevRanges, prevTime) {
+  this.done = done;
+  this.undone = undone;
+  this.prevRanges = prevRanges;
+  this.prevTime = prevTime;
+};
+
+var DEPTH_OVERFLOW = 20;
+
+// : (HistoryState, EditorState, Transaction, Object)
+// Record a transformation in undo history.
+function applyTransaction(history, state, tr, options) {
+  var historyTr = tr.getMeta(historyKey), rebased;
+  if (historyTr) { return historyTr.historyState }
+
+  if (tr.getMeta(closeHistoryKey)) { history = new HistoryState(history.done, history.undone, null, 0); }
+
+  var appended = tr.getMeta("appendedTransaction");
+
+  if (tr.steps.length == 0) {
+    return history
+  } else if (appended && appended.getMeta(historyKey)) {
+    if (appended.getMeta(historyKey).redo)
+      { return new HistoryState(history.done.addTransform(tr, null, options, mustPreserveItems(state)),
+                              history.undone, rangesFor(tr.mapping.maps[tr.steps.length - 1]), history.prevTime) }
+    else
+      { return new HistoryState(history.done, history.undone.addTransform(tr, null, options, mustPreserveItems(state)),
+                              null, history.prevTime) }
+  } else if (tr.getMeta("addToHistory") !== false && !(appended && appended.getMeta("addToHistory") === false)) {
+    // Group transforms that occur in quick succession into one event.
+    var newGroup = history.prevTime == 0 || !appended && (history.prevTime < (tr.time || 0) - options.newGroupDelay ||
+                                                          !isAdjacentTo(tr, history.prevRanges));
+    var prevRanges = appended ? mapRanges(history.prevRanges, tr.mapping) : rangesFor(tr.mapping.maps[tr.steps.length - 1]);
+    return new HistoryState(history.done.addTransform(tr, newGroup ? state.selection.getBookmark() : null,
+                                                      options, mustPreserveItems(state)),
+                            Branch.empty, prevRanges, tr.time)
+  } else if (rebased = tr.getMeta("rebased")) {
+    // Used by the collab module to tell the history that some of its
+    // content has been rebased.
+    return new HistoryState(history.done.rebased(tr, rebased),
+                            history.undone.rebased(tr, rebased),
+                            mapRanges(history.prevRanges, tr.mapping), history.prevTime)
+  } else {
+    return new HistoryState(history.done.addMaps(tr.mapping.maps),
+                            history.undone.addMaps(tr.mapping.maps),
+                            mapRanges(history.prevRanges, tr.mapping), history.prevTime)
+  }
+}
+
+function isAdjacentTo(transform, prevRanges) {
+  if (!prevRanges) { return false }
+  if (!transform.docChanged) { return true }
+  var adjacent = false;
+  transform.mapping.maps[0].forEach(function (start, end) {
+    for (var i = 0; i < prevRanges.length; i += 2)
+      { if (start <= prevRanges[i + 1] && end >= prevRanges[i])
+        { adjacent = true; } }
+  });
+  return adjacent
+}
+
+function rangesFor(map) {
+  var result = [];
+  map.forEach(function (_from, _to, from, to) { return result.push(from, to); });
+  return result
+}
+
+function mapRanges(ranges, mapping) {
+  if (!ranges) { return null }
+  var result = [];
+  for (var i = 0; i < ranges.length; i += 2) {
+    var from = mapping.map(ranges[i], 1), to = mapping.map(ranges[i + 1], -1);
+    if (from <= to) { result.push(from, to); }
+  }
+  return result
+}
+
+// : (HistoryState, EditorState, (tr: Transaction), bool)
+// Apply the latest event from one branch to the document and shift the event
+// onto the other branch.
+function histTransaction(history, state, dispatch, redo) {
+  var preserveItems = mustPreserveItems(state), histOptions = historyKey.get(state).spec.config;
+  var pop = (redo ? history.undone : history.done).popEvent(state, preserveItems);
+  if (!pop) { return }
+
+  var selection = pop.selection.resolve(pop.transform.doc);
+  var added = (redo ? history.done : history.undone).addTransform(pop.transform, state.selection.getBookmark(),
+                                                                  histOptions, preserveItems);
+
+  var newHist = new HistoryState(redo ? added : pop.remaining, redo ? pop.remaining : added, null, 0);
+  dispatch(pop.transform.setSelection(selection).setMeta(historyKey, {redo: redo, historyState: newHist}).scrollIntoView());
+}
+
+var cachedPreserveItems = false, cachedPreserveItemsPlugins = null;
+// Check whether any plugin in the given state has a
+// `historyPreserveItems` property in its spec, in which case we must
+// preserve steps exactly as they came in, so that they can be
+// rebased.
+function mustPreserveItems(state) {
+  var plugins = state.plugins;
+  if (cachedPreserveItemsPlugins != plugins) {
+    cachedPreserveItems = false;
+    cachedPreserveItemsPlugins = plugins;
+    for (var i = 0; i < plugins.length; i++) { if (plugins[i].spec.historyPreserveItems) {
+      cachedPreserveItems = true;
+      break
+    } }
+  }
+  return cachedPreserveItems
+}
+
+// :: (Transaction) → Transaction
+// Set a flag on the given transaction that will prevent further steps
+// from being appended to an existing history event (so that they
+// require a separate undo command to undo).
+function closeHistory(tr) {
+  return tr.setMeta(closeHistoryKey, true)
+}
+
+var historyKey = new prosemirror_state__WEBPACK_IMPORTED_MODULE_2__.PluginKey("history");
+var closeHistoryKey = new prosemirror_state__WEBPACK_IMPORTED_MODULE_2__.PluginKey("closeHistory");
+
+// :: (?Object) → Plugin
+// Returns a plugin that enables the undo history for an editor. The
+// plugin will track undo and redo stacks, which can be used with the
+// [`undo`](#history.undo) and [`redo`](#history.redo) commands.
+//
+// You can set an `"addToHistory"` [metadata
+// property](#state.Transaction.setMeta) of `false` on a transaction
+// to prevent it from being rolled back by undo.
+//
+//   config::-
+//   Supports the following configuration options:
+//
+//     depth:: ?number
+//     The amount of history events that are collected before the
+//     oldest events are discarded. Defaults to 100.
+//
+//     newGroupDelay:: ?number
+//     The delay between changes after which a new group should be
+//     started. Defaults to 500 (milliseconds). Note that when changes
+//     aren't adjacent, a new group is always started.
+function history(config) {
+  config = {depth: config && config.depth || 100,
+            newGroupDelay: config && config.newGroupDelay || 500};
+  return new prosemirror_state__WEBPACK_IMPORTED_MODULE_2__.Plugin({
+    key: historyKey,
+
+    state: {
+      init: function init() {
+        return new HistoryState(Branch.empty, Branch.empty, null, 0)
+      },
+      apply: function apply(tr, hist, state) {
+        return applyTransaction(hist, state, tr, config)
+      }
+    },
+
+    config: config,
+
+    props: {
+      handleDOMEvents: {
+        beforeinput: function beforeinput(view, e) {
+          var handled = e.inputType == "historyUndo" ? undo(view.state, view.dispatch) :
+              e.inputType == "historyRedo" ? redo(view.state, view.dispatch) : false;
+          if (handled) { e.preventDefault(); }
+          return handled
+        }
+      }
+    }
+  })
+}
+
+// :: (EditorState, ?(tr: Transaction)) → bool
+// A command function that undoes the last change, if any.
+function undo(state, dispatch) {
+  var hist = historyKey.getState(state);
+  if (!hist || hist.done.eventCount == 0) { return false }
+  if (dispatch) { histTransaction(hist, state, dispatch, false); }
+  return true
+}
+
+// :: (EditorState, ?(tr: Transaction)) → bool
+// A command function that redoes the last undone change, if any.
+function redo(state, dispatch) {
+  var hist = historyKey.getState(state);
+  if (!hist || hist.undone.eventCount == 0) { return false }
+  if (dispatch) { histTransaction(hist, state, dispatch, true); }
+  return true
+}
+
+// :: (EditorState) → number
+// The amount of undoable events available in a given state.
+function undoDepth(state) {
+  var hist = historyKey.getState(state);
+  return hist ? hist.done.eventCount : 0
+}
+
+// :: (EditorState) → number
+// The amount of redoable events available in a given editor state.
+function redoDepth(state) {
+  var hist = historyKey.getState(state);
+  return hist ? hist.undone.eventCount : 0
+}
+
+
+//# sourceMappingURL=index.es.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/prosemirror-inputrules/dist/index.es.js":
 /*!**************************************************************!*\
   !*** ./node_modules/prosemirror-inputrules/dist/index.es.js ***!
@@ -84513,6 +86170,230 @@ module.exports = {
 
 /***/ }),
 
+/***/ "./node_modules/rope-sequence/dist/index.es.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/rope-sequence/dist/index.es.js ***!
+  \*****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+var GOOD_LEAF_SIZE = 200;
+
+// :: class<T> A rope sequence is a persistent sequence data structure
+// that supports appending, prepending, and slicing without doing a
+// full copy. It is represented as a mostly-balanced tree.
+var RopeSequence = function RopeSequence () {};
+
+RopeSequence.prototype.append = function append (other) {
+  if (!other.length) { return this }
+  other = RopeSequence.from(other);
+
+  return (!this.length && other) ||
+    (other.length < GOOD_LEAF_SIZE && this.leafAppend(other)) ||
+    (this.length < GOOD_LEAF_SIZE && other.leafPrepend(this)) ||
+    this.appendInner(other)
+};
+
+// :: (union<[T], RopeSequence<T>>) → RopeSequence<T>
+// Prepend an array or other rope to this one, returning a new rope.
+RopeSequence.prototype.prepend = function prepend (other) {
+  if (!other.length) { return this }
+  return RopeSequence.from(other).append(this)
+};
+
+RopeSequence.prototype.appendInner = function appendInner (other) {
+  return new Append(this, other)
+};
+
+// :: (?number, ?number) → RopeSequence<T>
+// Create a rope repesenting a sub-sequence of this rope.
+RopeSequence.prototype.slice = function slice (from, to) {
+    if ( from === void 0 ) from = 0;
+    if ( to === void 0 ) to = this.length;
+
+  if (from >= to) { return RopeSequence.empty }
+  return this.sliceInner(Math.max(0, from), Math.min(this.length, to))
+};
+
+// :: (number) → T
+// Retrieve the element at the given position from this rope.
+RopeSequence.prototype.get = function get (i) {
+  if (i < 0 || i >= this.length) { return undefined }
+  return this.getInner(i)
+};
+
+// :: ((element: T, index: number) → ?bool, ?number, ?number)
+// Call the given function for each element between the given
+// indices. This tends to be more efficient than looping over the
+// indices and calling `get`, because it doesn't have to descend the
+// tree for every element.
+RopeSequence.prototype.forEach = function forEach (f, from, to) {
+    if ( from === void 0 ) from = 0;
+    if ( to === void 0 ) to = this.length;
+
+  if (from <= to)
+    { this.forEachInner(f, from, to, 0); }
+  else
+    { this.forEachInvertedInner(f, from, to, 0); }
+};
+
+// :: ((element: T, index: number) → U, ?number, ?number) → [U]
+// Map the given functions over the elements of the rope, producing
+// a flat array.
+RopeSequence.prototype.map = function map (f, from, to) {
+    if ( from === void 0 ) from = 0;
+    if ( to === void 0 ) to = this.length;
+
+  var result = [];
+  this.forEach(function (elt, i) { return result.push(f(elt, i)); }, from, to);
+  return result
+};
+
+// :: (?union<[T], RopeSequence<T>>) → RopeSequence<T>
+// Create a rope representing the given array, or return the rope
+// itself if a rope was given.
+RopeSequence.from = function from (values) {
+  if (values instanceof RopeSequence) { return values }
+  return values && values.length ? new Leaf(values) : RopeSequence.empty
+};
+
+var Leaf = /*@__PURE__*/(function (RopeSequence) {
+  function Leaf(values) {
+    RopeSequence.call(this);
+    this.values = values;
+  }
+
+  if ( RopeSequence ) Leaf.__proto__ = RopeSequence;
+  Leaf.prototype = Object.create( RopeSequence && RopeSequence.prototype );
+  Leaf.prototype.constructor = Leaf;
+
+  var prototypeAccessors = { length: { configurable: true },depth: { configurable: true } };
+
+  Leaf.prototype.flatten = function flatten () {
+    return this.values
+  };
+
+  Leaf.prototype.sliceInner = function sliceInner (from, to) {
+    if (from == 0 && to == this.length) { return this }
+    return new Leaf(this.values.slice(from, to))
+  };
+
+  Leaf.prototype.getInner = function getInner (i) {
+    return this.values[i]
+  };
+
+  Leaf.prototype.forEachInner = function forEachInner (f, from, to, start) {
+    for (var i = from; i < to; i++)
+      { if (f(this.values[i], start + i) === false) { return false } }
+  };
+
+  Leaf.prototype.forEachInvertedInner = function forEachInvertedInner (f, from, to, start) {
+    for (var i = from - 1; i >= to; i--)
+      { if (f(this.values[i], start + i) === false) { return false } }
+  };
+
+  Leaf.prototype.leafAppend = function leafAppend (other) {
+    if (this.length + other.length <= GOOD_LEAF_SIZE)
+      { return new Leaf(this.values.concat(other.flatten())) }
+  };
+
+  Leaf.prototype.leafPrepend = function leafPrepend (other) {
+    if (this.length + other.length <= GOOD_LEAF_SIZE)
+      { return new Leaf(other.flatten().concat(this.values)) }
+  };
+
+  prototypeAccessors.length.get = function () { return this.values.length };
+
+  prototypeAccessors.depth.get = function () { return 0 };
+
+  Object.defineProperties( Leaf.prototype, prototypeAccessors );
+
+  return Leaf;
+}(RopeSequence));
+
+// :: RopeSequence
+// The empty rope sequence.
+RopeSequence.empty = new Leaf([]);
+
+var Append = /*@__PURE__*/(function (RopeSequence) {
+  function Append(left, right) {
+    RopeSequence.call(this);
+    this.left = left;
+    this.right = right;
+    this.length = left.length + right.length;
+    this.depth = Math.max(left.depth, right.depth) + 1;
+  }
+
+  if ( RopeSequence ) Append.__proto__ = RopeSequence;
+  Append.prototype = Object.create( RopeSequence && RopeSequence.prototype );
+  Append.prototype.constructor = Append;
+
+  Append.prototype.flatten = function flatten () {
+    return this.left.flatten().concat(this.right.flatten())
+  };
+
+  Append.prototype.getInner = function getInner (i) {
+    return i < this.left.length ? this.left.get(i) : this.right.get(i - this.left.length)
+  };
+
+  Append.prototype.forEachInner = function forEachInner (f, from, to, start) {
+    var leftLen = this.left.length;
+    if (from < leftLen &&
+        this.left.forEachInner(f, from, Math.min(to, leftLen), start) === false)
+      { return false }
+    if (to > leftLen &&
+        this.right.forEachInner(f, Math.max(from - leftLen, 0), Math.min(this.length, to) - leftLen, start + leftLen) === false)
+      { return false }
+  };
+
+  Append.prototype.forEachInvertedInner = function forEachInvertedInner (f, from, to, start) {
+    var leftLen = this.left.length;
+    if (from > leftLen &&
+        this.right.forEachInvertedInner(f, from - leftLen, Math.max(to, leftLen) - leftLen, start + leftLen) === false)
+      { return false }
+    if (to < leftLen &&
+        this.left.forEachInvertedInner(f, Math.min(from, leftLen), to, start) === false)
+      { return false }
+  };
+
+  Append.prototype.sliceInner = function sliceInner (from, to) {
+    if (from == 0 && to == this.length) { return this }
+    var leftLen = this.left.length;
+    if (to <= leftLen) { return this.left.slice(from, to) }
+    if (from >= leftLen) { return this.right.slice(from - leftLen, to - leftLen) }
+    return this.left.slice(from, leftLen).append(this.right.slice(0, to - leftLen))
+  };
+
+  Append.prototype.leafAppend = function leafAppend (other) {
+    var inner = this.right.leafAppend(other);
+    if (inner) { return new Append(this.left, inner) }
+  };
+
+  Append.prototype.leafPrepend = function leafPrepend (other) {
+    var inner = this.left.leafPrepend(other);
+    if (inner) { return new Append(inner, this.right) }
+  };
+
+  Append.prototype.appendInner = function appendInner (other) {
+    if (this.left.depth >= Math.max(this.right.depth, other.depth) + 1)
+      { return new Append(this.left, new Append(this.right, other)) }
+    return new Append(this, other)
+  };
+
+  return Append;
+}(RopeSequence));
+
+var ropeSequence = RopeSequence;
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ropeSequence);
+
+
+/***/ }),
+
 /***/ "./node_modules/side-channel/index.js":
 /*!********************************************!*\
   !*** ./node_modules/side-channel/index.js ***!
@@ -87682,6 +89563,32 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/Components/DropdownSelect.vue":
+/*!****************************************************!*\
+  !*** ./resources/js/Components/DropdownSelect.vue ***!
+  \****************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _DropdownSelect_vue_vue_type_template_id_16ec30f8__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./DropdownSelect.vue?vue&type=template&id=16ec30f8 */ "./resources/js/Components/DropdownSelect.vue?vue&type=template&id=16ec30f8");
+/* harmony import */ var _DropdownSelect_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./DropdownSelect.vue?vue&type=script&lang=js */ "./resources/js/Components/DropdownSelect.vue?vue&type=script&lang=js");
+
+
+
+_DropdownSelect_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.render = _DropdownSelect_vue_vue_type_template_id_16ec30f8__WEBPACK_IMPORTED_MODULE_0__.render
+/* hot reload */
+if (false) {}
+
+_DropdownSelect_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = "resources/js/Components/DropdownSelect.vue"
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_DropdownSelect_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default);
+
+/***/ }),
+
 /***/ "./resources/js/Components/Shop/Address.vue":
 /*!**************************************************!*\
   !*** ./resources/js/Components/Shop/Address.vue ***!
@@ -88335,6 +90242,22 @@ _Test_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_1__.default.__file = 
 
 /***/ }),
 
+/***/ "./resources/js/Components/DropdownSelect.vue?vue&type=script&lang=js":
+/*!****************************************************************************!*\
+  !*** ./resources/js/Components/DropdownSelect.vue?vue&type=script&lang=js ***!
+  \****************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_DropdownSelect_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__.default)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_DropdownSelect_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./DropdownSelect.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/DropdownSelect.vue?vue&type=script&lang=js");
+ 
+
+/***/ }),
+
 /***/ "./resources/js/Components/Shop/Address.vue?vue&type=script&lang=js":
 /*!**************************************************************************!*\
   !*** ./resources/js/Components/Shop/Address.vue?vue&type=script&lang=js ***!
@@ -88732,6 +90655,22 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ });
 /* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_Test_vue_vue_type_script_lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./Test.vue?vue&type=script&lang=js */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Pages/Playground/Test.vue?vue&type=script&lang=js");
  
+
+/***/ }),
+
+/***/ "./resources/js/Components/DropdownSelect.vue?vue&type=template&id=16ec30f8":
+/*!**********************************************************************************!*\
+  !*** ./resources/js/Components/DropdownSelect.vue?vue&type=template&id=16ec30f8 ***!
+  \**********************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "render": () => (/* reexport safe */ _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_DropdownSelect_vue_vue_type_template_id_16ec30f8__WEBPACK_IMPORTED_MODULE_0__.render)
+/* harmony export */ });
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_clonedRuleSet_5_use_0_node_modules_vue_loader_dist_templateLoader_js_ruleSet_1_rules_2_node_modules_vue_loader_dist_index_js_ruleSet_0_use_0_DropdownSelect_vue_vue_type_template_id_16ec30f8__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!../../../node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!../../../node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./DropdownSelect.vue?vue&type=template&id=16ec30f8 */ "./node_modules/babel-loader/lib/index.js??clonedRuleSet-5.use[0]!./node_modules/vue-loader/dist/templateLoader.js??ruleSet[1].rules[2]!./node_modules/vue-loader/dist/index.js??ruleSet[0].use[0]!./resources/js/Components/DropdownSelect.vue?vue&type=template&id=16ec30f8");
+
 
 /***/ }),
 

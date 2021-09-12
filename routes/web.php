@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', App\Http\Livewire\Home\Index::class);
 Route::get('/about-me', App\Http\Livewire\AboutMe\Index::class);
 Route::get('/journal', [App\Http\Controllers\Journal\JournalController::class, 'index'])->name('journal.index');
+Route::post('/journal', [App\Http\Controllers\Journal\JournalController::class, 'store'])->name('journal.store');
 Route::get('/journal/create', [App\Http\Controllers\Journal\JournalController::class, 'create'])->name('journal.create');
 
 Route::prefix('playground')->name('playground.')->group(function () {

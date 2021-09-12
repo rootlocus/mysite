@@ -68,11 +68,11 @@ export default {
     props: {
         cart: {
             type: Object,
-            default: {}
+            default: () => {}
         },
         orders: {
             type: Object,
-            default: {}
+            default: () => {}
         },
     },
     data() {

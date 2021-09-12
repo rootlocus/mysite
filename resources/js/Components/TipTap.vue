@@ -277,7 +277,8 @@
 /* set */
 .ProseMirror {
   min-height: 30em;
-  max-height: 30em;
+  // max-height: 30em;
+  // overflow-y: auto;
   border-width: 2px;
   --tw-border-opacity: 1;
   border-color: rgba(0, 0, 0, var(--tw-border-opacity));
@@ -381,6 +382,8 @@ import Heading from "@tiptap/extension-heading";
 import Underline from "@tiptap/extension-underline";
 import Image from "@tiptap/extension-image";
 import Dropcursor from "@tiptap/extension-dropcursor";
+import StarterKit from '@tiptap/starter-kit';
+import TextStyle from '@tiptap/extension-text-style';
 
 export default {
   components: {
@@ -422,11 +425,13 @@ export default {
         Color,
         Gapcursor,
         Underline,
+        StarterKit,
         Heading.configure({
           levels: [1, 2, 3, 4, 5, 6],
         }),
         Image,
         Dropcursor,
+        TextStyle,
       ],
       onUpdate: () => {
         this.$emit("update:modelValue", this.editor.getHTML());

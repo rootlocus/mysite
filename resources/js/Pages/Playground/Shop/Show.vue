@@ -41,15 +41,15 @@ export default {
     props: {
         product: {
             type: Object,
-            default: {}
+            default: () => {}
         },
         cart: {
             type: Object,
-            default: {}
+            default: () => {}
         },
         cartItem: {
             type: Object,
-            default: {}
+            default: () => {}
         }
     },
     data() {

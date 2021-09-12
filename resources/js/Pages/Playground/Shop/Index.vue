@@ -62,19 +62,19 @@ export default {
     props: {
         products: {
             type: Object,
-            default: {}
+            default: () => {}
         },
         categories: {
             type: Object,
-            default: {}
+            default: () => {}
         },
         filters: {
             type: Object,
-            default: {}
+            default: () => {}
         },
         cart: {
             type: Object,
-            default: {}
+            default: () => {}
         },
     },
     data() {

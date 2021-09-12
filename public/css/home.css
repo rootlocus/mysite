@@ -1,5 +1,6 @@
 html {
     scroll-snap-type: y proximity;
+    overflow-x: hidden;
     scroll-behavior: smooth;
 }
 

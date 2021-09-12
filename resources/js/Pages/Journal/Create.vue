@@ -5,27 +5,70 @@
             <h1 class="text-white title text-8xl">Journal</h1>
             <h3 class="text-white">Add Entry</h3>
         </div>
-
         <div class="w-1/2 my-5 p-1 rounded bg-white">
-            <input type="text" name="min" placeholder="Enter your title" class="border border-gray-400 p-2 m-1 mb-4 w-full">
-            <TipTap :modelValue="content"/>
-            <button class="p-2 mt-2 bg-gray-750 text-white rounded">Submit</button>
+            <input v-model="journal.title" type="text" name="min" placeholder="Enter your title" class="border border-gray-400 p-2 m-1 mb-4 w-full">
+            <DropdownSelect label='Categories' :items="categories.data" :selected="journal.category" @select="select"/>
+            <TipTap :modelValue="journal.content" @update:model-value="journal.content = $event"/>
+            <button class="p-2 mt-2 bg-gray-750 text-white rounded" @click="submitEntry">Submit</button>
         </div>
     </div>
 </template>
 <script>
 import { Head } from '@inertiajs/inertia-vue3';
 import TipTap from '@/Components/TipTap';
+import DropdownSelect from '@/Components/DropdownSelect';
 
 export default {
     components: {
         Head,
         TipTap,
+        DropdownSelect,
+    },
+    props: {
+        categories: {
+            type: Object,
+            default: () => {}
+        },
     },
     data() {
         return {
-            content: null
+            content: null,
+            // categories: [
+            //     {id: 1, value: 'Personal'},
+            //     {id: 2, value: 'Laravel'},
+            //     {id: 3, value: 'Games'},
+            //     {id: 4, value: 'Movies'},
+            //     {id: 5, value: 'Books'},
+            //     {id: 6, value: 'Anime'},
+            // ],
+            journal: {
+                title: null,
+                content: null,
+                category: null,
+            }
         }
+    },
+    methods: {
+        select(category) {
+            this.journal.category = category;
+        },
+        updateContent(content) {
+            this.journal.content = content;
+        },
+        submitEntry() {
+            this.$inertia.post(route('journal.store'), this.journal, {
+                onSuccess: page => { this.onSuccess('Entry added');},
+                onError: errors => { this.onError(errors);},
+            });
+        },
+        onError(data) {
+            for (let key in data) {
+                this.$toast.error(data[key], {duration: false});
+            }
+        },
+        onSuccess(msg) {
+            this.$toast.success(msg, {duration: 3000});
+        },
     },
 }
 </script>

@@ -165,7 +165,7 @@ export default {
     props: {
         addresses: {
             type: Object,
-            default: {},
+            default: () => {}
         },
     },
     data() {
