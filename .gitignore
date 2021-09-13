@@ -1,7 +1,7 @@
 /node_modules
 /public/hot
 # /public/storage
-#package-lock.json
+package-lock.json
 #public/css/app.css
 #public/js/app.js
 #public/mix-manifest.json
