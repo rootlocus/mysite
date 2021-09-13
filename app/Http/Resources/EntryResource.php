@@ -2,6 +2,7 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Resources\Json\JsonResource;
 
 class EntryResource extends JsonResource
@@ -16,7 +17,10 @@ class EntryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'value' => $this->name,
+            'title' => $this->title,
+            'entry_categories_id' => $this->entry_categories_id,
+            'content' => $this->content,
+            'created_at' => Carbon::parse($this->created_at)->format('d M Y'),
         ];
     }
 }

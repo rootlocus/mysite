@@ -29,18 +29,19 @@ export default {
             type: Object,
             default: () => {}
         },
+        title: {
+            type: String,
+            default: ''
+        }
+    },
+    mounted () {
+        if (this.title) {
+            this.journal.title = this.title;
+        }
     },
     data() {
         return {
             content: null,
-            // categories: [
-            //     {id: 1, value: 'Personal'},
-            //     {id: 2, value: 'Laravel'},
-            //     {id: 3, value: 'Games'},
-            //     {id: 4, value: 'Movies'},
-            //     {id: 5, value: 'Books'},
-            //     {id: 6, value: 'Anime'},
-            // ],
             journal: {
                 title: null,
                 content: null,

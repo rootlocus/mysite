@@ -11,6 +11,7 @@ class EntryCategory extends Model
     use HasFactory, SoftDeletes;
 
     protected $table = 'entry_categories';
+    
     protected $fillable = [
         'name',
     ];
