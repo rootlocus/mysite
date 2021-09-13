@@ -18,6 +18,6 @@ class Entry extends Model
 
     public function category()
     {
-        return $this->belongsTo(EntryCategory::class);
+        return $this->belongsTo(EntryCategory::class, 'entry_categories_id');
     }
 }

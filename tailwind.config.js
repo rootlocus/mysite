@@ -13,8 +13,13 @@ module.exports = {
       colors: {
         gray: {
           750: '#2d3748',
-          850: '#1a202c'
+          850: '#1a202c',
+          860: '#1f2937'
         },
+        green: {
+          550: '#66FF66',
+          560: '#90db60',
+        }
       },
       spacing: {
         112: '28rem',
@@ -23,6 +28,9 @@ module.exports = {
         136: '34rem',
       },
     },
+    fontFamily: {
+      'computer': ['Courier New']
+    }
   },
   variants: {
     extend: {

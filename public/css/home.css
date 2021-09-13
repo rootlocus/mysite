@@ -17,6 +17,9 @@ p, .content, ul>li {
     font-family: 'Ubuntu', sans-serif;
 }
 
+.computer {
+    font-family: 'Courier New', Courier, monospace;
+}
 /* #content-desktop {
 } */
 #content-mobile {display: none;}

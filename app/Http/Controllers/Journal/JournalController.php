@@ -14,15 +14,25 @@ class JournalController extends Controller
 {
     public function index(Request $request)
     {
+        $user = $request->user();
         $entries = Entry::query()
+                ->with(['category'])
                 ->where(function($query) use($request) {
                     $query->where('title', 'LIKE', '%'. $request->search .'%')
                         ->orWhere('content', 'LIKE', '%'. $request->search .'%');
                 })
+                ->when($user && $user->email !== 'erickokkuan@gmail.com', function($query) {
+                    $query->whereRelation('category', 'name', '!=', 'Personal');
+                })
+                ->when(!$user, function($query) {
+                    $query->whereRelation('category', 'name', '!=', 'Personal');
+                })
+                ->orderByDesc('created_at')
                 ->get();
-        //policy to only allow me to post
+
         return Inertia::render('Journal/Index', [
             'entries' => EntryResource::collection($entries),
+            'categories' => EntryCategory::all(),
             'filters' => [
                 'search' => $request->search ?? null,
             ],
@@ -41,6 +51,7 @@ class JournalController extends Controller
 
     public function store(Request $request, Entry $entry)
     {
+        abort_if(!$request->user || $request->user->email !== 'erickokkuan@gmail.com', 403, 'Only owner can submit an entry');
         //todo validation
         $entry->title = $request->title;
         $entry->entry_categories_id = $request->category;

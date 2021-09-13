@@ -1,6 +1,6 @@
 <template>
   <div v-if="editor">
-    <div class="flex md:flex-row md:space-x-2 flex-col">
+    <div class="flex flex-col md:flex-row md:space-x-2">
       <input
         type="color"
         @input="editor.chain().focus().setColor($event.target.value).run()"

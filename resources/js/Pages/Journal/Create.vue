@@ -9,7 +9,10 @@
             <input v-model="journal.title" type="text" name="min" placeholder="Enter your title" class="border border-gray-400 p-2 m-1 mb-4 w-full">
             <DropdownSelect label='Categories' :items="categories.data" :selected="journal.category" @select="select"/>
             <TipTap :modelValue="journal.content" @update:model-value="journal.content = $event"/>
-            <button class="p-2 mt-2 bg-gray-750 text-white rounded" @click="submitEntry">Submit</button>
+            <div class="flex items-center space-x-4">
+                <button :disabled="!isOwner" class="p-2 mt-2 bg-gray-750 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed" @click="submitEntry">Submit</button>
+                <div v-if="!isOwner">Only owner can submit an entry</div>
+            </div>
         </div>
     </div>
 </template>
@@ -32,6 +35,11 @@ export default {
         title: {
             type: String,
             default: ''
+        }
+    },
+    computed: {
+        isOwner() {
+            return !!this.$page.props.auth.user && this.$page.props.auth.user.email === 'erickokkuan@gmail.com'; 
         }
     },
     mounted () {

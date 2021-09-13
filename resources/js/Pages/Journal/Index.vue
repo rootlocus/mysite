@@ -2,7 +2,7 @@
     <Head title="Journal"/>
     <div class="flex flex-col justify-top items-center pt-20">
         <div class="w-full text-center mb-4">
-            <h1 class="text-white title text-8xl">Journal</h1>
+            <h1 class="text-white title text-8xl computer">Journal</h1>
             <div class="flex flex-col justify-center items-center">
                 <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 w-full justify-center items-center">
                     <input v-model="filters.search" @keyup="applyFilter" @keydown.enter="entries.data.length == 0 ? createDraft() : null" type="text" name="min" 
@@ -14,24 +14,30 @@
                 <span class="text-white" v-if="entries.data.length == 0">Hit "Enter" to create new entry</span>
             </div>
         </div>
-        <div class="bg-white rounded p-4 mb-4 mx-4 w-11/12 md:w-1/2" v-for="entry in entries.data" :key="entry">
+        <div class="border-2 border-gray-300 text-green-560 rounded p-4 mb-4 mx-4 w-11/12 md:w-1/2" v-for="entry in entries.data" :key="entry">
             <h2 class="title font-bold text-3xl">{{ entry.title }}</h2>
-            <h3 class="content font-medium"><i>{{ entry.created_at }}</i></h3>
-            <div class="mt-2 text-xs" v-html="entry.content"></div>
+            <h3 class="content font-medium">{{ entry.category.name }}</h3>
+            <div class="mt-2 text-xm mb-2" v-html="entry.content"></div>
+            <h3 class="content font-medium text-right"><i>Logged {{ entry.created_at }}</i></h3>
         </div>
     </div>
 </template>
 
-<style  module>
+<style module>
     pre {
         padding: 10px;
         margin-top: 20px !important;
         margin-bottom: 20px !important;
         --tw-bg-opacity: 1;
-        background-color: rgba(209, 213, 219, var(--tw-bg-opacity));
+        background-color: rgba(31,41,55, var(--tw-bg-opacity));
         overflow-x: auto;
         overflow-y: auto;
     }
+    code {
+         font-family: 'Courier New', Courier, monospace !important;
+         color:rgb(177, 246, 255);
+    }
+
 </style>
 
 
@@ -45,6 +51,10 @@ export default {
     },
     props: {
         entries: {
+            type: Object,
+            default: () => {}
+        },
+        categories: {
             type: Object,
             default: () => {}
         },

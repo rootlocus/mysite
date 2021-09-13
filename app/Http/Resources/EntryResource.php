@@ -15,12 +15,12 @@ class EntryResource extends JsonResource
      */
     public function toArray($request)
     {
-        return [
+        return array_merge(parent::toArray($request), [
             'id' => $this->id,
             'title' => $this->title,
             'entry_categories_id' => $this->entry_categories_id,
             'content' => $this->content,
             'created_at' => Carbon::parse($this->created_at)->format('d M Y'),
-        ];
+        ]);
     }
 }

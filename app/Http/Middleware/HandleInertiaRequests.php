@@ -40,7 +40,10 @@ class HandleInertiaRequests extends Middleware
             'auth.user' => fn () => $request->user()
                 ? $request->user()->only('id', 'name', 'email')
                 : null,
-            //
+            'can' => [
+                'manageJournal' => $request->user() ? $request->user()->email === 'erickokkuan@gmail.com' : false
+            ]
+            
         ]);
     }
 

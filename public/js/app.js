@@ -28951,6 +28951,11 @@ __webpack_require__.r(__webpack_exports__);
       "default": ''
     }
   },
+  computed: {
+    isOwner: function isOwner() {
+      return !!this.$page.props.auth.user && this.$page.props.auth.user.email === 'erickokkuan@gmail.com';
+    }
+  },
   mounted: function mounted() {
     if (this.title) {
       this.journal.title = this.title;
@@ -29024,6 +29029,10 @@ __webpack_require__.r(__webpack_exports__);
   },
   props: {
     entries: {
+      type: Object,
+      "default": function _default() {}
+    },
+    categories: {
       type: Object,
       "default": function _default() {}
     },
@@ -31108,7 +31117,7 @@ var _hoisted_1 = {
   key: 0
 };
 var _hoisted_2 = {
-  "class": "flex md:flex-row md:space-x-2 flex-col"
+  "class": "flex flex-col md:flex-row md:space-x-2"
 };
 var _hoisted_3 = ["value"];
 
@@ -31596,6 +31605,13 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 var _hoisted_3 = {
   "class": "w-1/2 my-5 p-1 rounded bg-white"
 };
+var _hoisted_4 = {
+  "class": "flex items-center space-x-4"
+};
+var _hoisted_5 = ["disabled"];
+var _hoisted_6 = {
+  key: 0
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
@@ -31629,12 +31645,15 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, null, 8
   /* PROPS */
-  , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    "class": "p-2 mt-2 bg-gray-750 text-white rounded",
+  , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    disabled: !$options.isOwner,
+    "class": "p-2 mt-2 bg-gray-750 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.submitEntry && $options.submitEntry.apply($options, arguments);
     })
-  }, "Submit")])])], 64
+  }, "Submit", 8
+  /* PROPS */
+  , _hoisted_5), !$options.isOwner ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, "Only owner can submit an entry")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -31662,7 +31681,7 @@ var _hoisted_2 = {
 };
 
 var _hoisted_3 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-white title text-8xl"
+  "class": "text-white title text-8xl computer"
 }, "Journal", -1
 /* HOISTED */
 );
@@ -31688,6 +31707,9 @@ var _hoisted_9 = {
   "class": "content font-medium"
 };
 var _hoisted_10 = ["innerHTML"];
+var _hoisted_11 = {
+  "class": "content font-medium text-right"
+};
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Head = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("Head");
 
@@ -31718,18 +31740,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT */
   )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), $props.entries.data.length == 0 ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("span", _hoisted_7, "Hit \"Enter\" to create new entry")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])]), ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($props.entries.data, function (entry) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
-      "class": "bg-white rounded p-4 mb-4 mx-4 w-11/12 md:w-1/2",
+      "class": "border-2 border-gray-300 text-green-560 rounded p-4 mb-4 mx-4 w-11/12 md:w-1/2",
       key: entry
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_8, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(entry.title), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(entry.created_at), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_9, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(entry.category.name), 1
     /* TEXT */
-    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
-      "class": "mt-2 text-xs",
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+      "class": "mt-2 text-xm mb-2",
       innerHTML: entry.content
     }, null, 8
     /* PROPS */
-    , _hoisted_10)]);
+    , _hoisted_10), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "Logged " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(entry.created_at), 1
+    /* TEXT */
+    )])]);
   }), 128
   /* KEYED_FRAGMENT */
   ))])], 64
@@ -48469,7 +48493,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\npre {\n        padding: 10px;\n        margin-top: 20px !important;\n        margin-bottom: 20px !important;\n        --tw-bg-opacity: 1;\n        background-color: rgba(209, 213, 219, var(--tw-bg-opacity));\n        overflow-x: auto;\n        overflow-y: auto;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\npre {\n        padding: 10px;\n        margin-top: 20px !important;\n        margin-bottom: 20px !important;\n        --tw-bg-opacity: 1;\n        background-color: rgba(31,41,55, var(--tw-bg-opacity));\n        overflow-x: auto;\n        overflow-y: auto;\n}\ncode {\n         font-family: 'Courier New', Courier, monospace !important;\n         color:rgb(177, 246, 255);\n}\n\n", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
