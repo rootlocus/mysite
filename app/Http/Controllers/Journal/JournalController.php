@@ -22,7 +22,7 @@ class JournalController extends Controller
                     $query->where('title', 'LIKE', '%'. $request->search .'%')
                         ->orWhere('content', 'LIKE', '%'. $request->search .'%');
                 })
-                ->when($user && $user->email !== 'erickokkuan@gmail.com', function($query) {
+                ->when($user && $user->email !== config('mail.personal.email'), function($query) {
                     $query->whereRelation('category', 'name', '!=', 'Personal');
                 })
                 ->when(!$user, function($query) {
@@ -50,7 +50,7 @@ class JournalController extends Controller
 
     public function store(Request $request, Entry $entry)
     {
-        abort_if(!$request->user() || $request->user()->email !== 'erickokkuan@gmail.com', 403, 'Only owner can submit an entry');
+        abort_if(!$request->user() || $request->user()->email !== config('mail.personal.email'), 403, 'Only owner can submit an entry');
         //todo validation
         $entry->title = $request->title;
         $entry->entry_categories_id = $request->category;
@@ -62,6 +62,8 @@ class JournalController extends Controller
 
     public function edit(Request $request, Entry $entry)
     {
+        abort_if(!$request->user() || $request->user()->email !== config('mail.personal.email'), 403, 'Only owner can edit an entry');
+
         return Inertia::render('Journal/Edit', [
             'entry' => $entry->load('category'),
             'categories' => EntryCategoryResource::collection(EntryCategory::all()),
@@ -73,7 +75,7 @@ class JournalController extends Controller
 
     public function update(Request $request, Entry $entry)
     {
-        // abort_if(!$request->user() || $request->user()->email !== 'erickokkuan@gmail.com', 403, 'Only owner can update an entry');
+        abort_if(!$request->user() || $request->user()->email !== config('mail.personal.email'), 403, 'Only owner can update an entry');
         //todo validation
         $entry->update([
            'title' => $request->title,
@@ -86,6 +88,8 @@ class JournalController extends Controller
 
     public function destroy(Request $request, Entry $entry)
     {
+        abort_if(!$request->user() || $request->user()->email !== config('mail.personal.email'), 403, 'Only owner can delete an entry');
+
         $entry->delete();
 
         return redirect()->route('journal.index')->with('success', 'Entry deleted!');
