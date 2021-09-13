@@ -295,37 +295,37 @@
   }
 
   p {
-    font-size: 25px;
+    font-size: 14px;
   }
 
   h1 {
-    font-size: 45px;
-    font-weight: 700;
-    line-height: 1.1;
-  }
-  h2 {
-    font-size: 40px;
-    font-weight: 700;
-    line-height: 1.1;
-  }
-  h3 {
     font-size: 35px;
     font-weight: 700;
     line-height: 1.1;
   }
-  h4 {
+  h2 {
     font-size: 30px;
     font-weight: 700;
     line-height: 1.1;
   }
-  h5 {
+  h3 {
     font-size: 25px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  h4 {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 1.1;
+  }
+  h5 {
+    font-size: 15px;
     font-weight: 700;
     line-height: 1.1;
   }
 
   h6 {
-    font-size: 20px;
+    font-size: 10px;
     line-height: 1.1;
     font-weight: 700;
   }

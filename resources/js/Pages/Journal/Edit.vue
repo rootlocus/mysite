@@ -6,11 +6,11 @@
             <h3 class="text-white">Add Entry</h3>
         </div>
         <div class="w-1/2 my-5 p-1 rounded bg-white">
-            <input v-model="journal.title" type="text" name="min" placeholder="Enter your title" class="border border-gray-400 p-2 m-1 mb-4 w-full">
-            <DropdownSelect label='Categories' :items="categories.data" :selected="journal.category" @select="select"/>
-            <TipTap :modelValue="journal.content" @update:model-value="journal.content = $event"/>
+            <input v-model="entry.title" type="text" name="min" placeholder="Enter your title" class="border border-gray-400 p-2 m-1 mb-4 w-full">
+            <DropdownSelect label='Categories' :items="categories.data" :selected="entry.category" @select="select"/>
+            <TipTap :modelValue="entry.content" @update:model-value="entry.content = $event"/>
             <div class="flex items-center space-x-4">
-                <button :disabled="!isOwner" class="p-2 mt-2 bg-gray-750 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed" @click="submitEntry">Submit</button>
+                <button :disabled="!isOwner" class="p-2 mt-2 bg-gray-750 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed" @click="updateEntry">Update</button>
                 <div v-if="!isOwner">Only owner can submit an entry</div>
             </div>
         </div>
@@ -28,14 +28,18 @@ export default {
         DropdownSelect,
     },
     props: {
+        entry: {
+            type: Object,
+            default: () => {}
+        },
         categories: {
             type: Object,
             default: () => {}
         },
-        title: {
-            type: String,
-            default: ''
-        }
+        filters: {
+            type: Object,
+            default: () => {}
+        },
     },
     computed: {
         isOwner() {
@@ -43,30 +47,30 @@ export default {
         }
     },
     mounted () {
-        if (this.title) {
-            this.journal.title = this.title;
-        }
+        this.selectedCategory = this.entry.entry_categories_id;
     },
     data() {
         return {
             content: null,
-            journal: {
-                title: null,
-                content: null,
-                category: null,
-            }
+            selectedCategory: null,
         }
     },
     methods: {
         select(category) {
-            this.journal.category = category;
+            console.log(category.id);
+            this.selectedCategory = category.id;
         },
         updateContent(content) {
-            this.journal.content = content;
+            this.entry.content = content;
         },
-        submitEntry() {
-            this.$inertia.post(route('journal.store'), this.journal, {
-                onSuccess: page => { this.onSuccess('Entry added');},
+        updateEntry() {
+            let params = {
+                content: this.entry.content,
+                title: this.entry.title,
+                category_id: this.selectedCategory,
+            };
+            this.$inertia.put(route('journal.update', this.entry.id), params, {
+                onSuccess: page => { this.onSuccess('Entry updated');},
                 onError: errors => { this.onError(errors);},
             });
         },

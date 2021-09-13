@@ -1,7 +1,7 @@
 <template>
     <div>
         <label :for="label" class="pr-2">{{ label }}:</label>
-        <select v-model="selected" @change="select(selected)">
+        <select v-model="selected.id" @change="select(selected)">
             <option disabled value="">Please Select</option>
             <option v-for="item in items" :key="item.id" :value="item.id">{{ item.value }}</option>
         </select>
@@ -25,7 +25,11 @@ export default {
     },
     data() {
         return {
+            chosen: null
         }
+    },
+    mounted () {
+        this.chosen = this.selected.id;
     },
     methods: {
         select(value) {

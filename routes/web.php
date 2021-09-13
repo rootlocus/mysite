@@ -17,6 +17,9 @@ Route::get('/about-me', App\Http\Livewire\AboutMe\Index::class);
 Route::get('/journal', [App\Http\Controllers\Journal\JournalController::class, 'index'])->name('journal.index');
 Route::post('/journal', [App\Http\Controllers\Journal\JournalController::class, 'store'])->name('journal.store');
 Route::get('/journal/create', [App\Http\Controllers\Journal\JournalController::class, 'create'])->name('journal.create');
+Route::delete('/journal/{entry}', [App\Http\Controllers\Journal\JournalController::class, 'destroy'])->name('journal.destroy');
+Route::get('/journal/{entry}', [App\Http\Controllers\Journal\JournalController::class, 'edit'])->name('journal.edit');
+Route::put('/journal/{entry}', [App\Http\Controllers\Journal\JournalController::class, 'update'])->name('journal.update');
 
 Route::prefix('playground')->name('playground.')->group(function () {
     Route::get('/', App\Http\Livewire\Playground\Index::class);

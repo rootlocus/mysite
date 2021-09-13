@@ -2,7 +2,7 @@
     <Head title="Journal"/>
     <div class="flex flex-col justify-top items-center pt-20">
         <div class="w-full text-center mb-4">
-            <h1 class="text-white title text-8xl computer">Journal</h1>
+            <h1 class="text-green-550 title text-8xl computer">Journal</h1>
             <div class="flex flex-col justify-center items-center">
                 <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 w-full justify-center items-center">
                     <input v-model="filters.search" @keyup="applyFilter" @keydown.enter="entries.data.length == 0 ? createDraft() : null" type="text" name="min" 
@@ -19,6 +19,9 @@
             <h3 class="content font-medium">{{ entry.category.name }}</h3>
             <div class="mt-2 text-xm mb-2" v-html="entry.content"></div>
             <h3 class="content font-medium text-right"><i>Logged {{ entry.created_at }}</i></h3>
+            <div v-if="isOwner" class="flex justify-end space-x-2">
+                <a @click="edit(entry)" class="cursor-pointer">Edit</a><a @click="deleteEntry(entry)" class="cursor-pointer">Delete</a>
+            </div>
         </div>
     </div>
 </template>
@@ -63,6 +66,11 @@ export default {
             default: () => {}
         },
     },
+    computed: {
+        isOwner() {
+            return !!this.$page.props.auth.user && this.$page.props.auth.user.email === 'erickokkuan@gmail.com'; 
+        }
+    },
     data() {
         return {
         }
@@ -75,6 +83,24 @@ export default {
             this.$inertia.get(route('journal.create'), {title: this.filters.search }, {
                 onError: errors => { this.onError(errors);},
             });
+        },
+        edit(entry) {
+            console.log('ENTER');
+            this.$inertia.get(route('journal.edit', entry.id));
+        },
+        deleteEntry(entry) {
+            this.$inertia.delete(route('journal.destroy', entry.id), null, {
+                onSuccess: page => { this.onSuccess('Entry is deleted !');},
+                onError: errors => { this.onError(errors);},
+            });
+        },
+        onError(data) {
+            for (let key in data) {
+                this.$toast.error(data[key], {duration: false});
+            }
+        },
+        onSuccess(msg) {
+            this.$toast.success(msg, {duration: 3000});
         },
     },
 }
