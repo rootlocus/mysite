@@ -43,6 +43,8 @@ export default {
         }
     },
     mounted () {
+        this.journal.category = 1;
+
         if (this.title) {
             this.journal.title = this.title;
         }
@@ -59,6 +61,7 @@ export default {
     },
     methods: {
         select(category) {
+            console.log(category);
             this.journal.category = category;
         },
         updateContent(content) {
