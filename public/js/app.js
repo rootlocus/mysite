@@ -30158,7 +30158,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* TEXT, PROPS */
   , _hoisted_1), (0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("select", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
-      return $props.selected.id = $event;
+      return $props.selected = $event;
     }),
     onChange: _cache[1] || (_cache[1] = function ($event) {
       return $options.select($props.selected);
@@ -30174,7 +30174,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* KEYED_FRAGMENT */
   ))], 544
   /* HYDRATE_EVENTS, NEED_PATCH */
-  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $props.selected.id]])]);
+  ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelSelect, $props.selected]])]);
 }
 
 /***/ }),
@@ -31734,6 +31734,7 @@ var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementV
 );
 
 var _hoisted_3 = {
+  key: 0,
   "class": "w-1/2 my-5 p-1 rounded bg-white"
 };
 var _hoisted_4 = {
@@ -31752,7 +31753,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_Head, {
     title: "Create Entry"
-  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
+  }), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_1, [_hoisted_2, $data.journal ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_3, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.withDirectives)((0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("input", {
     "onUpdate:modelValue": _cache[0] || (_cache[0] = function ($event) {
       return $data.journal.title = $event;
     }),
@@ -31765,11 +31766,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $data.journal.title]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DropdownSelect, {
     label: "Categories",
     items: $props.categories.data,
-    selected: $data.journal.category,
+    selected: 1,
     onSelect: $options.select
   }, null, 8
   /* PROPS */
-  , ["items", "selected", "onSelect"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TipTap, {
+  , ["items", "onSelect"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TipTap, {
     modelValue: $data.journal.content,
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return $data.journal.content = $event;
@@ -31784,7 +31785,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     })
   }, "Submit", 8
   /* PROPS */
-  , _hoisted_5), !$options.isOwner ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, "Only owner can submit an entry")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])])], 64
+  , _hoisted_5), !$options.isOwner ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_6, "Only owner can submit an entry")) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])])) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 64
   /* STABLE_FRAGMENT */
   );
 }
@@ -31850,7 +31851,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   ), [[vue__WEBPACK_IMPORTED_MODULE_0__.vModelText, $props.entry.title]]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_DropdownSelect, {
     label: "Categories",
     items: $props.categories.data,
-    selected: $props.entry.category,
+    selected: $props.entry.category.id,
     onSelect: $options.select
   }, null, 8
   /* PROPS */

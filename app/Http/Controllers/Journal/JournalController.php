@@ -15,6 +15,7 @@ class JournalController extends Controller
     public function index(Request $request)
     {
         $user = $request->user();
+
         $entries = Entry::query()
                 ->with(['category'])
                 ->where(function($query) use($request) {

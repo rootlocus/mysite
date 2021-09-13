@@ -5,9 +5,9 @@
             <h1 class="text-green-550 title text-8xl computer">Journal</h1>
             <h3 class="text-white">Add Entry</h3>
         </div>
-        <div class="w-1/2 my-5 p-1 rounded bg-white">
+        <div class="w-1/2 my-5 p-1 rounded bg-white" v-if="journal">
             <input v-model="journal.title" type="text" name="min" placeholder="Enter your title" class="border border-gray-400 p-2 m-1 mb-4 w-full">
-            <DropdownSelect label='Categories' :items="categories.data" :selected="journal.category" @select="select"/>
+            <DropdownSelect label='Categories' :items="categories.data" :selected="1" @select="select"/>
             <TipTap :modelValue="journal.content" @update:model-value="journal.content = $event"/>
             <div class="flex items-center space-x-4">
                 <button :disabled="!isOwner" class="p-2 mt-2 bg-gray-750 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed" @click="submitEntry">Submit</button>

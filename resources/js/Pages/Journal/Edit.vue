@@ -7,7 +7,7 @@
         </div>
         <div class="w-1/2 my-5 p-1 rounded bg-white">
             <input v-model="entry.title" type="text" name="min" placeholder="Enter your title" class="border border-gray-400 p-2 m-1 mb-4 w-full">
-            <DropdownSelect label='Categories' :items="categories.data" :selected="entry.category" @select="select"/>
+            <DropdownSelect label='Categories' :items="categories.data" :selected="entry.category.id" @select="select"/>
             <TipTap :modelValue="entry.content" @update:model-value="entry.content = $event"/>
             <div class="flex items-center space-x-4">
                 <button :disabled="!isOwner" class="p-2 mt-2 bg-gray-750 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed" @click="updateEntry">Update</button>
