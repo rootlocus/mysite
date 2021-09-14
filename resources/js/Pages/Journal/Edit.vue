@@ -57,8 +57,7 @@ export default {
     },
     methods: {
         select(category) {
-            console.log(category.id);
-            this.selectedCategory = category.id;
+            this.selectedCategory = category;
         },
         updateContent(content) {
             this.entry.content = content;

@@ -29298,8 +29298,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     select: function select(category) {
-      console.log(category.id);
-      this.selectedCategory = category.id;
+      this.selectedCategory = category;
     },
     updateContent: function updateContent(content) {
       this.entry.content = content;
