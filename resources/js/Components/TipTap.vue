@@ -268,109 +268,6 @@
   </div>
 </template>
 
-<style lang="scss">
-/* Basic editor styles */
-/* remove outline */
-.ProseMirror:focus {
-  outline: none;
-}
-/* set */
-.ProseMirror {
-  min-height: 30em;
-  // max-height: 30em;
-  // overflow-y: auto;
-  border-width: 2px;
-  --tw-border-opacity: 1;
-  border-color: rgba(0, 0, 0, var(--tw-border-opacity));
-}
-
-.ProseMirror {
-  > * + * {
-    margin-top: 0.75em;
-  }
-
-  ul,
-  ol {
-    padding: 0 1rem;
-  }
-
-  p {
-    font-size: 14px;
-  }
-
-  h1 {
-    font-size: 35px;
-    font-weight: 700;
-    line-height: 1.1;
-  }
-  h2 {
-    font-size: 30px;
-    font-weight: 700;
-    line-height: 1.1;
-  }
-  h3 {
-    font-size: 25px;
-    font-weight: 700;
-    line-height: 1.1;
-  }
-  h4 {
-    font-size: 20px;
-    font-weight: 700;
-    line-height: 1.1;
-  }
-  h5 {
-    font-size: 15px;
-    font-weight: 700;
-    line-height: 1.1;
-  }
-
-  h6 {
-    font-size: 10px;
-    line-height: 1.1;
-    font-weight: 700;
-  }
-
-  code {
-    background-color: rgba(#616161, 0.1);
-    color: #616161;
-  }
-
-  pre {
-    background: #424242;
-    color: #fff;
-    font-family: "Courier New", Courier, monospace;
-    padding: 0.75rem 1rem;
-    border-radius: 0.5rem;
-
-    code {
-      color: inherit;
-      padding: 0;
-      background: none;
-      font-size: 0.8rem;
-    }
-  }
-
-  img {
-    max-width: 100%;
-    height: auto;
-
-    &.ProseMirror-selectednode {
-      outline: 3px solid #68CEF8;
-    }
-  }
-
-  blockquote {
-    padding-left: 1rem;
-    border-left: 2px solid rgba(#0d0d0d, 0.1);
-  }
-
-  hr {
-    border: none;
-    border-top: 2px solid rgba(#0d0d0d, 0.1);
-    margin: 2rem 0;
-  }
-}
-</style>
 <script>
 import { Editor, EditorContent } from "@tiptap/vue-3";
 import Document from "@tiptap/extension-document";
@@ -384,6 +281,9 @@ import Image from "@tiptap/extension-image";
 import Dropcursor from "@tiptap/extension-dropcursor";
 import StarterKit from '@tiptap/starter-kit';
 import TextStyle from '@tiptap/extension-text-style';
+import ListItem from '@tiptap/extension-list-item';
+import BulletList from '@tiptap/extension-bullet-list';
+import OrderedList from '@tiptap/extension-ordered-list';
 
 export default {
   components: {
@@ -432,6 +332,9 @@ export default {
         Image,
         Dropcursor,
         TextStyle,
+        BulletList,
+        OrderedList,
+        ListItem,
       ],
       onUpdate: () => {
         this.$emit("update:modelValue", this.editor.getHTML());

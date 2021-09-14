@@ -14,15 +14,7 @@
                 <span class="text-white" v-if="entries.data.length == 0">Hit "Enter" to create new entry</span>
             </div>
         </div>
-        <div class="border-2 border-gray-300 text-green-560 rounded p-4 mb-4 mx-4 w-11/12 md:w-1/2" v-for="entry in entries.data" :key="entry">
-            <h2 class="title font-bold text-3xl">{{ entry.title }}</h2>
-            <h3 class="content font-medium">{{ entry.category.name }}</h3>
-            <div class="mt-2 text-xm mb-2" v-html="entry.content"></div>
-            <h3 class="content font-medium text-right"><i>Logged {{ entry.created_at }}</i></h3>
-            <div v-if="isOwner" class="flex justify-end space-x-2">
-                <a @click="edit(entry)" class="cursor-pointer">Edit</a><a @click="deleteEntry(entry)" class="cursor-pointer">Delete</a>
-            </div>
-        </div>
+        <EntryList :entries="entries"/>
     </div>
 </template>
 
@@ -35,12 +27,37 @@
         background-color: rgba(31,41,55, var(--tw-bg-opacity));
         overflow-x: auto;
         overflow-y: auto;
+
     }
-    code {
+    pre > code {
          font-family: 'Courier New', Courier, monospace !important;
          color:rgb(177, 246, 255);
     }
 
+    p > code {
+      background-color: darkslategray;
+      color: orange;
+      padding:4px;
+    }
+    
+    ul > li {
+        padding: 0px;
+        margin: 0 1rem;
+        color:#90db60;
+        list-style-type: disc;
+    }
+
+    ol > li {
+        padding: 0px;
+        margin: 0 1rem;
+        color:#90db60;
+        list-style-type: decimal;
+    }
+
+    p {
+      line-height: 1.1;
+      margin-top: 0.75em !important;
+    }
 </style>
 
 
@@ -48,11 +65,13 @@
 import { Head } from '@inertiajs/inertia-vue3';
 import { debounce } from 'lodash';
 import JournalTitle from "@/Components/Journal/Title";
+import EntryList from "@/Components/Journal/EntryList";
 
 export default {
     components: {
         Head,
         JournalTitle,
+        EntryList,
     },
     props: {
         entries: {
@@ -72,9 +91,6 @@ export default {
         isOwner() {
             return !!this.$page.props.auth.user && this.$page.props.auth.user.email === 'erickokkuan@gmail.com'; 
         },
-        isLogin() {
-            return !!this.$page.props.auth.user;
-        }
     },
     data() {
         return {
@@ -86,16 +102,6 @@ export default {
         }, 300),
         createDraft() {
             this.$inertia.get(route('journal.create'), {title: this.filters.search }, {
-                onError: errors => { this.onError(errors);},
-            });
-        },
-        edit(entry) {
-            console.log('ENTER');
-            this.$inertia.get(route('journal.edit', entry.id));
-        },
-        deleteEntry(entry) {
-            this.$inertia.delete(route('journal.destroy', entry.id), null, {
-                onSuccess: page => { this.onSuccess('Entry is deleted !');},
                 onError: errors => { this.onError(errors);},
             });
         },

@@ -17,6 +17,7 @@ const webpack = require('webpack');
 mix.js('resources/js/app.js', 'public/js')
     .vue()
     .webpackConfig(require('./webpack.config.js'))
+    .sass('resources/css/tiptap.scss', 'public/css')
     .postCss('resources/css/app.css', 'public/css', [
         require('postcss-import'),
         require('tailwindcss'),

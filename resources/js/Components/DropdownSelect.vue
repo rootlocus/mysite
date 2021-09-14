@@ -1,7 +1,7 @@
 <template>
     <div>
         <label :for="label" class="pr-2">{{ label }}:</label>
-        <select v-model="selected" @change="select(selected)">
+        <select v-model="selected" @change="select(selected)" class="bg-black">
             <option disabled value="">Please Select</option>
             <option v-for="item in items" :key="item.id" :value="item.id">{{ item.value }}</option>
         </select>
