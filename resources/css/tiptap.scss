@@ -13,6 +13,7 @@
     // border-color: rgba(0, 0, 0, var(--tw-border-opacity));
     border-color: #90db60;
     color:#90db60;
+    padding: 10px;
   }
   
   .ProseMirror {
@@ -36,6 +37,11 @@
       }
     }
   
+    a {
+        text-decoration: underline;
+        color: blue;
+    }
+
     p {
       font-size: 14px;
     }
@@ -79,7 +85,7 @@
     code {
       background-color: darkslategray;
       color: orange;
-      padding:4px;
+      padding:0px;
     }
   
     pre {

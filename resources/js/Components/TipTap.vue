@@ -263,6 +263,9 @@
           />
         </svg>
       </button>
+    <button @click="setLink" :class="{ 'is-active': editor.isActive('link') }" class="text-white">
+      link
+    </button>
     </div>
     <editor-content :editor="editor" class="p-2" />
   </div>
@@ -284,6 +287,7 @@ import TextStyle from '@tiptap/extension-text-style';
 import ListItem from '@tiptap/extension-list-item';
 import BulletList from '@tiptap/extension-bullet-list';
 import OrderedList from '@tiptap/extension-ordered-list';
+import Link from '@tiptap/extension-link';
 
 export default {
   components: {
@@ -335,6 +339,7 @@ export default {
         BulletList,
         OrderedList,
         ListItem,
+        Link,
       ],
       onUpdate: () => {
         this.$emit("update:modelValue", this.editor.getHTML());
@@ -353,6 +358,17 @@ export default {
       if (url) {
         this.editor.chain().focus().setImage({ src: url }).run();
       }
+    },
+
+    setLink() {
+      const url = window.prompt('URL')
+
+      this.editor
+        .chain()
+        .focus()
+        .extendMarkRange('link')
+        .setLink({ href: url })
+        .run()
     },
   },
 };

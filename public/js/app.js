@@ -8283,6 +8283,136 @@ const Italic = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Mark.create({
 
 /***/ }),
 
+/***/ "./node_modules/@tiptap/extension-link/dist/tiptap-extension-link.esm.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@tiptap/extension-link/dist/tiptap-extension-link.esm.js ***!
+  \*******************************************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "Link": () => (/* binding */ Link),
+/* harmony export */   "default": () => (/* binding */ Link),
+/* harmony export */   "pasteRegex": () => (/* binding */ pasteRegex),
+/* harmony export */   "pasteRegexExact": () => (/* binding */ pasteRegexExact)
+/* harmony export */ });
+/* harmony import */ var _tiptap_core__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @tiptap/core */ "./node_modules/@tiptap/core/dist/tiptap-core.esm.js");
+/* harmony import */ var prosemirror_state__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prosemirror-state */ "./node_modules/prosemirror-state/dist/index.es.js");
+
+
+
+/**
+ * A regex that matches any string that contains a link
+ */
+const pasteRegex = /https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{2,}\b(?:[-a-zA-Z0-9@:%._+~#=?!&/]*)(?:[-a-zA-Z0-9@:%._+~#=?!&/]*)/gi;
+/**
+ * A regex that matches an url
+ */
+const pasteRegexExact = /^https?:\/\/(?:www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z]{2,}\b(?:[-a-zA-Z0-9@:%._+~#=?!&/]*)(?:[-a-zA-Z0-9@:%._+~#=?!&/]*)$/gi;
+const Link = _tiptap_core__WEBPACK_IMPORTED_MODULE_0__.Mark.create({
+    name: 'link',
+    priority: 1000,
+    inclusive: false,
+    defaultOptions: {
+        openOnClick: true,
+        linkOnPaste: true,
+        HTMLAttributes: {
+            target: '_blank',
+            rel: 'noopener noreferrer nofollow',
+        },
+    },
+    addAttributes() {
+        return {
+            href: {
+                default: null,
+            },
+            target: {
+                default: this.options.HTMLAttributes.target,
+            },
+        };
+    },
+    parseHTML() {
+        return [
+            { tag: 'a[href]' },
+        ];
+    },
+    renderHTML({ HTMLAttributes }) {
+        return ['a', (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.mergeAttributes)(this.options.HTMLAttributes, HTMLAttributes), 0];
+    },
+    addCommands() {
+        return {
+            setLink: attributes => ({ commands }) => {
+                return commands.setMark('link', attributes);
+            },
+            toggleLink: attributes => ({ commands }) => {
+                return commands.toggleMark('link', attributes, { extendEmptyMarkRange: true });
+            },
+            unsetLink: () => ({ commands }) => {
+                return commands.unsetMark('link', { extendEmptyMarkRange: true });
+            },
+        };
+    },
+    addPasteRules() {
+        return [
+            (0,_tiptap_core__WEBPACK_IMPORTED_MODULE_0__.markPasteRule)(pasteRegex, this.type, match => ({ href: match[0] })),
+        ];
+    },
+    addProseMirrorPlugins() {
+        const plugins = [];
+        if (this.options.openOnClick) {
+            plugins.push(new prosemirror_state__WEBPACK_IMPORTED_MODULE_1__.Plugin({
+                key: new prosemirror_state__WEBPACK_IMPORTED_MODULE_1__.PluginKey('handleClickLink'),
+                props: {
+                    handleClick: (view, pos, event) => {
+                        var _a;
+                        const attrs = this.editor.getAttributes('link');
+                        const link = (_a = event.target) === null || _a === void 0 ? void 0 : _a.closest('a');
+                        if (link && attrs.href) {
+                            window.open(attrs.href, attrs.target);
+                            return true;
+                        }
+                        return false;
+                    },
+                },
+            }));
+        }
+        if (this.options.linkOnPaste) {
+            plugins.push(new prosemirror_state__WEBPACK_IMPORTED_MODULE_1__.Plugin({
+                key: new prosemirror_state__WEBPACK_IMPORTED_MODULE_1__.PluginKey('handlePasteLink'),
+                props: {
+                    handlePaste: (view, event, slice) => {
+                        const { state } = view;
+                        const { selection } = state;
+                        const { empty } = selection;
+                        if (empty) {
+                            return false;
+                        }
+                        let textContent = '';
+                        slice.content.forEach(node => {
+                            textContent += node.textContent;
+                        });
+                        if (!textContent || !textContent.match(pasteRegexExact)) {
+                            return false;
+                        }
+                        this.editor.commands.setMark(this.type, {
+                            href: textContent,
+                        });
+                        return true;
+                    },
+                },
+            }));
+        }
+        return plugins;
+    },
+});
+
+
+//# sourceMappingURL=tiptap-extension-link.esm.js.map
+
+
+/***/ }),
+
 /***/ "./node_modules/@tiptap/extension-list-item/dist/tiptap-extension-list-item.esm.js":
 /*!*****************************************************************************************!*\
   !*** ./node_modules/@tiptap/extension-list-item/dist/tiptap-extension-list-item.esm.js ***!
@@ -28922,6 +29052,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _tiptap_extension_list_item__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! @tiptap/extension-list-item */ "./node_modules/@tiptap/extension-list-item/dist/tiptap-extension-list-item.esm.js");
 /* harmony import */ var _tiptap_extension_bullet_list__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! @tiptap/extension-bullet-list */ "./node_modules/@tiptap/extension-bullet-list/dist/tiptap-extension-bullet-list.esm.js");
 /* harmony import */ var _tiptap_extension_ordered_list__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! @tiptap/extension-ordered-list */ "./node_modules/@tiptap/extension-ordered-list/dist/tiptap-extension-ordered-list.esm.js");
+/* harmony import */ var _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! @tiptap/extension-link */ "./node_modules/@tiptap/extension-link/dist/tiptap-extension-link.esm.js");
+
 
 
 
@@ -28970,7 +29102,7 @@ __webpack_require__.r(__webpack_exports__);
       content: this.modelValue,
       extensions: [_tiptap_extension_document__WEBPACK_IMPORTED_MODULE_1__.default, _tiptap_extension_paragraph__WEBPACK_IMPORTED_MODULE_2__.default, _tiptap_extension_text__WEBPACK_IMPORTED_MODULE_3__.default, _tiptap_extension_color__WEBPACK_IMPORTED_MODULE_4__.Color, _tiptap_extension_gapcursor__WEBPACK_IMPORTED_MODULE_5__.default, _tiptap_extension_underline__WEBPACK_IMPORTED_MODULE_7__.default, _tiptap_starter_kit__WEBPACK_IMPORTED_MODULE_10__.default, _tiptap_extension_heading__WEBPACK_IMPORTED_MODULE_6__.default.configure({
         levels: [1, 2, 3, 4, 5, 6]
-      }), _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_8__.default, _tiptap_extension_dropcursor__WEBPACK_IMPORTED_MODULE_9__.default, _tiptap_extension_text_style__WEBPACK_IMPORTED_MODULE_11__.default, _tiptap_extension_bullet_list__WEBPACK_IMPORTED_MODULE_13__.default, _tiptap_extension_ordered_list__WEBPACK_IMPORTED_MODULE_14__.default, _tiptap_extension_list_item__WEBPACK_IMPORTED_MODULE_12__.default],
+      }), _tiptap_extension_image__WEBPACK_IMPORTED_MODULE_8__.default, _tiptap_extension_dropcursor__WEBPACK_IMPORTED_MODULE_9__.default, _tiptap_extension_text_style__WEBPACK_IMPORTED_MODULE_11__.default, _tiptap_extension_bullet_list__WEBPACK_IMPORTED_MODULE_13__.default, _tiptap_extension_ordered_list__WEBPACK_IMPORTED_MODULE_14__.default, _tiptap_extension_list_item__WEBPACK_IMPORTED_MODULE_12__.default, _tiptap_extension_link__WEBPACK_IMPORTED_MODULE_15__.default],
       onUpdate: function onUpdate() {
         _this.$emit("update:modelValue", _this.editor.getHTML());
       }
@@ -28988,6 +29120,12 @@ __webpack_require__.r(__webpack_exports__);
           src: url
         }).run();
       }
+    },
+    setLink: function setLink() {
+      var url = window.prompt('URL');
+      this.editor.chain().focus().extendMarkRange('link').setLink({
+        href: url
+      }).run();
     }
   }
 });
@@ -31898,7 +32036,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     onClick: _cache[18] || (_cache[18] = function ($event) {
       return $data.editor.chain().focus().redo().run();
     })
-  }, _hoisted_39)]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_editor_content, {
+  }, _hoisted_39), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    onClick: _cache[19] || (_cache[19] = function () {
+      return $options.setLink && $options.setLink.apply($options, arguments);
+    }),
+    "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
+      'is-active': $data.editor.isActive('link')
+    }, "text-white"])
+  }, " link ", 2
+  /* CLASS */
+  )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_editor_content, {
     editor: $data.editor,
     "class": "p-2"
   }, null, 8
@@ -32024,7 +32171,7 @@ var _hoisted_1 = {
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
   "class": "text-green-550"
-}, "Add new Entry", -1
+}, "Edit Entry", -1
 /* HOISTED */
 );
 
@@ -48899,7 +49046,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\npre {\n        padding: 10px;\n        margin-top: 20px !important;\n        margin-bottom: 20px !important;\n        --tw-bg-opacity: 1;\n        background-color: rgba(31,41,55, var(--tw-bg-opacity));\n        overflow-x: auto;\n        overflow-y: auto;\n}\npre > code {\n         font-family: 'Courier New', Courier, monospace !important;\n         color:rgb(177, 246, 255);\n}\np > code {\n      background-color: darkslategray;\n      color: orange;\n      padding:4px;\n}\nul > li {\n        padding: 0px;\n        margin: 0 1rem;\n        color:#90db60;\n        list-style-type: disc;\n}\nol > li {\n        padding: 0px;\n        margin: 0 1rem;\n        color:#90db60;\n        list-style-type: decimal;\n}\np {\n      line-height: 1.1;\n      margin-top: 0.75em !important;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\npre {\n        padding: 10px;\n        margin-top: 20px !important;\n        margin-bottom: 20px !important;\n        --tw-bg-opacity: 1;\n        background-color: rgba(31,41,55, var(--tw-bg-opacity));\n        overflow-x: auto;\n        overflow-y: auto;\n}\npre > code {\n         font-family: 'Courier New', Courier, monospace !important;\n         color:rgb(177, 246, 255);\n}\np > code {\n      background-color: darkslategray;\n      color: orange;\n      padding:4px;\n}\nul > li {\n        padding: 0px;\n        margin: 0 1rem;\n        color:#90db60;\n        list-style-type: disc;\n}\nol > li {\n        padding: 0px;\n        margin: 0 1rem;\n        color:#90db60;\n        list-style-type: decimal;\n}\np {\n      line-height: 1.1;\n      margin-top: 0.75em !important;\n}\np > a {\n        text-decoration: underline;\n        color: blue;\n}\n", ""]);
 // Exports
 ___CSS_LOADER_EXPORT___.locals = {};
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);

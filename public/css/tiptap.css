@@ -11,6 +11,7 @@
   --tw-border-opacity: 1;
   border-color: #90db60;
   color: #90db60;
+  padding: 10px;
 }
 
 .ProseMirror > * + * {
@@ -25,6 +26,10 @@
   padding: 0px;
   margin: 0 1rem;
   list-style-type: decimal;
+}
+.ProseMirror a {
+  text-decoration: underline;
+  color: blue;
 }
 .ProseMirror p {
   font-size: 14px;
@@ -62,7 +67,7 @@
 .ProseMirror code {
   background-color: darkslategray;
   color: orange;
-  padding: 4px;
+  padding: 0px;
 }
 .ProseMirror pre {
   padding: 10px;

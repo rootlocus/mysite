@@ -58,6 +58,11 @@
       line-height: 1.1;
       margin-top: 0.75em !important;
     }
+
+    p > a {
+        text-decoration: underline;
+        color: blue;
+    }
 </style>
 
 
