@@ -32023,13 +32023,13 @@ var _hoisted_1 = {
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("p", {
-  "class": "text-white"
+  "class": "text-green-550"
 }, "Add new Entry", -1
 /* HOISTED */
 );
 
 var _hoisted_3 = {
-  "class": "w-1/2 my-5 p-1 rounded bg-white"
+  "class": "w-1/2 my-5 p-1 rounded bg-black border border-green-550"
 };
 var _hoisted_4 = {
   "class": "flex items-center space-x-4"
@@ -32063,7 +32063,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     label: "Categories",
     items: $props.categories.data,
     selected: $props.entry.category.id,
-    onSelect: $options.select
+    onSelect: $options.select,
+    "class": "text-green-550"
   }, null, 8
   /* PROPS */
   , ["items", "selected", "onSelect"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_TipTap, {
@@ -32075,7 +32076,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* PROPS */
   , ["modelValue"]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     disabled: !$options.isOwner,
-    "class": "p-2 mt-2 bg-gray-750 text-white rounded disabled:opacity-50 disabled:cursor-not-allowed",
+    "class": "p-2 mt-2 border border-gray-750 text-green-550 rounded disabled:opacity-50 disabled:cursor-not-allowed",
     onClick: _cache[2] || (_cache[2] = function () {
       return $options.updateEntry && $options.updateEntry.apply($options, arguments);
     })
