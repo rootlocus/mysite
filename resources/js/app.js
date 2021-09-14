@@ -5,7 +5,7 @@ import { InertiaProgress } from '@inertiajs/progress'
 import route from 'ziggy';
 import { Ziggy } from './ziggy';
 import Toaster from "@meforma/vue-toaster";
-import { Inertia } from '@inertiajs/inertia'
+import { Inertia } from '@inertiajs/inertia';
 
 InertiaProgress.init({
     // The delay after which the progress bar will

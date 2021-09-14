@@ -6,9 +6,8 @@
             <a class="hover:opacity-80" href="/journal">journal</a>
             <a class="hover:opacity-80" href="/playground">playground</a>
         </div>
-        <div class="text-gray-400 text-xl content font-semibold filter drop-shadow-md py-4 mr-4">
+        {{-- <div class="text-gray-400 text-xl content font-semibold filter drop-shadow-md py-4 mr-4">
             <a class="hover:opacity-80" href="/playground/shop/login">login</a>
-        </div>
-
+        </div> --}}
     </div>
 </nav>

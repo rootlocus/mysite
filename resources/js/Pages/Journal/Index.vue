@@ -1,8 +1,8 @@
 <template>
     <Head title="Journal"/>
     <div class="flex flex-col justify-top items-center pt-20">
-        <div class="w-full text-center mb-4">
-            <h1 class="text-green-550 title text-8xl computer">Journal</h1>
+        <div class="w-full mb-4">
+            <JournalTitle />
             <div class="flex flex-col justify-center items-center">
                 <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 w-full justify-center items-center">
                     <input v-model="filters.search" @keyup="applyFilter" @keydown.enter="entries.data.length == 0 ? createDraft() : null" type="text" name="min" 
@@ -47,10 +47,12 @@
 <script>
 import { Head } from '@inertiajs/inertia-vue3';
 import { debounce } from 'lodash';
+import JournalTitle from "@/Components/Journal/Title";
 
 export default {
     components: {
         Head,
+        JournalTitle,
     },
     props: {
         entries: {
@@ -69,6 +71,9 @@ export default {
     computed: {
         isOwner() {
             return !!this.$page.props.auth.user && this.$page.props.auth.user.email === 'erickokkuan@gmail.com'; 
+        },
+        isLogin() {
+            return !!this.$page.props.auth.user;
         }
     },
     data() {
