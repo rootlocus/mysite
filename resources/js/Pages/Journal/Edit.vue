@@ -3,29 +3,19 @@
     <div class="min-h-screen w-screen bg-black flex flex-col justify-top items-center pt-20">
         <JournalTitle />
         <p class="text-green-550">Edit Entry</p>
-        <div class="w-1/2 my-5 p-1 rounded bg-black border border-green-550">
-            <input v-model="entry.title" type="text" name="min" placeholder="Enter your title" class="border border-gray-400 p-2 m-1 mb-4 w-full">
-            <DropdownSelect label='Categories' :items="categories.data" :selected="entry.category.id" @select="select" class="text-green-550"/>
-            <TipTap :modelValue="entry.content" @update:model-value="entry.content = $event"/>
-            <div class="flex items-center space-x-4">
-                <button :disabled="!isOwner" class="p-2 mt-2 border border-gray-750 text-green-550 rounded disabled:opacity-50 disabled:cursor-not-allowed" @click="updateEntry">Update</button>
-                <div v-if="!isOwner">Only owner can submit an entry</div>
-            </div>
-        </div>
+        <EntryForm v-if="entry" :entry="entry" :categories="categories.data" :action="'update'"/>
     </div>
 </template>
 <script>
 import { Head } from '@inertiajs/inertia-vue3';
-import TipTap from '@/Components/TipTap';
-import DropdownSelect from '@/Components/DropdownSelect';
 import JournalTitle from "@/Components/Journal/Title";
+import EntryForm from "@/Components/Journal/EntryForm";
 
 export default {
     components: {
         Head,
-        TipTap,
-        DropdownSelect,
         JournalTitle,
+        EntryForm,
     },
     props: {
         entry: {
@@ -41,46 +31,12 @@ export default {
             default: () => {}
         },
     },
-    computed: {
-        isOwner() {
-            return !!this.$page.props.auth.user && this.$page.props.auth.user.email === 'erickokkuan@gmail.com'; 
-        }
-    },
-    mounted () {
-        this.selectedCategory = this.entry.entry_categories_id;
-    },
     data() {
         return {
             content: null,
-            selectedCategory: null,
         }
     },
     methods: {
-        select(category) {
-            this.selectedCategory = category;
-        },
-        updateContent(content) {
-            this.entry.content = content;
-        },
-        updateEntry() {
-            let params = {
-                content: this.entry.content,
-                title: this.entry.title,
-                category_id: this.selectedCategory,
-            };
-            this.$inertia.put(route('journal.update', this.entry.id), params, {
-                onSuccess: page => { this.onSuccess('Entry updated');},
-                onError: errors => { this.onError(errors);},
-            });
-        },
-        onError(data) {
-            for (let key in data) {
-                this.$toast.error(data[key], {duration: false});
-            }
-        },
-        onSuccess(msg) {
-            this.$toast.success(msg, {duration: 3000});
-        },
     },
 }
 </script>

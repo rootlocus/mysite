@@ -53,7 +53,7 @@ class JournalController extends Controller
         abort_if(!$request->user() || $request->user()->email !== config('mail.personal.email'), 403, 'Only owner can submit an entry');
         //todo validation
         $entry->title = $request->title;
-        $entry->entry_categories_id = $request->category;
+        $entry->entry_categories_id = data_get($request->category, 'id');
         $entry->content = $request->content;
         $entry->save();
 
