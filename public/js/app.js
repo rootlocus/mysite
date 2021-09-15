@@ -28682,6 +28682,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! sweetalert */ "./node_modules/sweetalert/dist/sweetalert.min.js");
+/* harmony import */ var sweetalert__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(sweetalert__WEBPACK_IMPORTED_MODULE_0__);
+
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   props: {
     entries: {
@@ -28701,12 +28704,21 @@ __webpack_require__.r(__webpack_exports__);
     deleteEntry: function deleteEntry(entry) {
       var _this = this;
 
-      this.$inertia["delete"](route('journal.destroy', entry.id), null, {
-        onSuccess: function onSuccess(page) {
-          _this.onSuccess('Entry is deleted !');
-        },
-        onError: function onError(errors) {
-          _this.onError(errors);
+      sweetalert__WEBPACK_IMPORTED_MODULE_0___default()({
+        title: "Are you sure you want to delete entry ?",
+        icon: "warning",
+        buttons: ["Cancel", "Delete"],
+        dangerMode: false
+      }).then(function (isConfirm) {
+        if (isConfirm) {
+          _this.$inertia["delete"](route('journal.destroy', entry.id), null, {
+            onSuccess: function onSuccess(page) {
+              _this.onSuccess('Entry is deleted !');
+            },
+            onError: function onError(errors) {
+              _this.onError(errors);
+            }
+          });
         }
       });
     },

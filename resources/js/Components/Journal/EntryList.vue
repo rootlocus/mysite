@@ -10,6 +10,9 @@
     </div>
 </template>
 <script>
+import swal from 'sweetalert';
+
+
 export default {
     props: {
         entries: {
@@ -27,9 +30,19 @@ export default {
             this.$inertia.get(route('journal.edit', entry.id));
         },
         deleteEntry(entry) {
-            this.$inertia.delete(route('journal.destroy', entry.id), null, {
-                onSuccess: page => { this.onSuccess('Entry is deleted !');},
-                onError: errors => { this.onError(errors);},
+            swal({
+                title: "Are you sure you want to delete entry ?",
+                icon: "warning",
+                buttons: ["Cancel", "Delete"],
+                dangerMode: false,
+            })
+            .then((isConfirm) => {
+                if (isConfirm) {
+                    this.$inertia.delete(route('journal.destroy', entry.id), null, {
+                        onSuccess: page => { this.onSuccess('Entry is deleted !');},
+                        onError: errors => { this.onError(errors);},
+                    });
+                }
             });
         },
         onError(data) {
