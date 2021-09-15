@@ -40,14 +40,15 @@ p, .content, ul>li {
 }
 
 .gradientShadeGray {
-    background: linear-gradient(-60deg, #000000, #232526, #414345, #232526, #000000);
+    background: linear-gradient(-60deg, #0000008c, #232526a9, #414345ab, #232526a2, #000000);
+    /* background: linear-gradient(-60deg, #000000, #232526, #414345, #232526, #000000); */
     /* background: linear-gradient(-60deg, #434343, #000000, #434343); */
     background-size: 400% 400%;
     animation: gradient 10s ease infinite;
 }
 
 .gradientShadeRevealing {
-    background: linear-gradient(-60deg,  #d5d0e5    , #f3e6e8, #d5d0e5   , #f3e6e8);
+    background: linear-gradient(-60deg,  #d5d0e5, #f3e6e8, #d5d0e5, #f3e6e8);
     background-size: 400% 400%;
     animation: gradient 10s ease infinite;
 }

@@ -27,6 +27,9 @@ module.exports = {
         128: '32rem',
         136: '34rem',
       },
+      backgroundImage: {
+        'hobby-pattern': "url('/images/wallpaper.png')",
+      },
     },
     fontFamily: {
       'computer': ['Courier New']

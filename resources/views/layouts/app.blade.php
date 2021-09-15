@@ -21,7 +21,7 @@
     <title>Eric Heng - {{ $title ? $title : 'Web Developer, PC Gamer & Magic Enthusiast' }}</title>
     @livewireStyles
 </head>
-<body class="bg-gray-850">
+<body class="bg-hobby-pattern">
     <x-nav/>
     {{ $slot }}
     @livewireScripts

@@ -1,4 +1,4 @@
-<div class="flex flex-row md:h-screen h-full bg-gray-850">
+<div class="flex flex-row md:h-screen h-full bg-hobby-pattern">
     <div class="w-1/2 flex items-center justify-center" id="content-desktop">
         <x-about-me.gallery  
             :images="$images"

@@ -38,7 +38,7 @@
             </div>
         </div>
     </section>
-    <section class="gradientShadeWinter flex flex-col justify-center items-start md:px-40 py-5" id="timeline">
+    <section class="flex flex-col justify-center items-start md:px-40 py-5" id="timeline">
         <div class="text-white text-center ">
             <h2 class="font-bold text-2xl">Backend Developer</h2>
             <p class="text-l md:text-xl md:px-80 pt-2 px-8">
@@ -49,9 +49,9 @@
         </div>
         <x-timeline.main/>
     </section>
-    <section class="gradientShadeWhale h-screen">
+    <section class="h-screen">
         <div class="h-full flex flex-col justify-center items-center">
-        <div class="text-indigo-800 text-center"> 
+        <div class="text-white text-center">
             <h2 class="font-bold text-2xl">Contact Me</h2>
             <p class="text-l py-2">
                 Just drop a message if you want to reach out to me!
