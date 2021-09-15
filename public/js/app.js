@@ -30487,7 +30487,7 @@ var _hoisted_1 = {
 };
 
 var _hoisted_2 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h1", {
-  "class": "text-green-550 title text-8xl computer"
+  "class": "text-green-550 title text-5xl md:text-8xl computer"
 }, "Journal", -1
 /* HOISTED */
 );
@@ -31606,7 +31606,7 @@ var _hoisted_1 = {
   key: 0
 };
 var _hoisted_2 = {
-  "class": "flex flex-col md:flex-row md:space-x-2"
+  "class": "flex flex-wrap md:w-full space-x-1 space-y-1 mt-2"
 };
 var _hoisted_3 = ["value"];
 
@@ -31849,6 +31849,23 @@ var _hoisted_38 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElement
 );
 
 var _hoisted_39 = [_hoisted_38];
+
+var _hoisted_40 = /*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("svg", {
+  xmlns: "http://www.w3.org/2000/svg",
+  "class": "h-6 w-6",
+  fill: "none",
+  viewBox: "0 0 24 24",
+  stroke: "currentColor"
+}, [/*#__PURE__*/(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("path", {
+  "stroke-linecap": "round",
+  "stroke-linejoin": "round",
+  "stroke-width": "2",
+  d: "M13.828 10.172a4 4 0 00-5.656 0l-4 4a4 4 0 105.656 5.656l1.102-1.101m-.758-4.899a4 4 0 005.656 0l4-4a4 4 0 00-5.656-5.656l-1.1 1.1"
+})], -1
+/* HOISTED */
+);
+
+var _hoisted_41 = [_hoisted_40];
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_editor_content = (0,vue__WEBPACK_IMPORTED_MODULE_0__.resolveComponent)("editor-content");
 
@@ -32041,8 +32058,8 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{
       'is-active': $data.editor.isActive('link')
-    }, "text-white"])
-  }, " link ", 2
+    }, "rounded bg-white p-1 hover:bg-gray-300"])
+  }, _hoisted_41, 2
   /* CLASS */
   )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)(_component_editor_content, {
     editor: $data.editor,
@@ -32091,7 +32108,7 @@ var _hoisted_1 = {
 };
 var _hoisted_2 = {
   key: 0,
-  "class": "w-1/2 my-5 p-1 rounded bg-black border border-green-550"
+  "class": "w-full md:w-1/2 my-5 p-1 rounded bg-black border border-green-550"
 };
 var _hoisted_3 = {
   "class": "flex items-center space-x-4"
