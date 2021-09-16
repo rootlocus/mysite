@@ -7,14 +7,17 @@
                 <div class="flex flex-col md:flex-row space-y-2 md:space-y-0 w-full justify-center items-center">
                     <input v-model="filters.search" @keyup="applyFilter" @keydown.enter="entries.data.length == 0 ? createDraft() : null" type="text" name="min" 
                         placeholder="Search" 
-                        class="border border-gray-400 rounded-xl mr-2 w-10/12 md:w-1/3">
+                        class="border border-gray-400 rounawded-xl mr-2 w-10/12 md:w-1/3">
                     <button class="rounded bg-blue-700 p-2 text-white" @click="createDraft">Draft</button>
                 </div>
                 <span class="text-white" v-if="filters.search">found {{ entries.data.length }} search results</span>
                 <span class="text-white" v-if="entries.data.length == 0">Hit "Enter" to create new entry</span>
             </div>
         </div>
-        <EntryList :entries="entries"/>
+        <EntryList :entries="nondrafts"/>
+        <pre>
+        {{ drafts }}
+        </pre>
     </div>
 </template>
 
@@ -92,14 +95,24 @@ export default {
             default: () => {}
         },
     },
+    data() {
+        return {
+            drafts: {},
+            nondrafts: {},
+        }
+    },
     computed: {
         isOwner() {
             return !!this.$page.props.auth.user && this.$page.props.auth.user.email === 'erickokkuan@gmail.com'; 
         },
     },
-    data() {
-        return {
-        }
+    mounted () {
+        this.drafts = this.entries.data.filter( entry => {
+            return entry.is_draft === true;
+        });
+        this.nondrafts = this.entries.data.filter( entry => {
+            return entry.is_draft === false;
+        });
     },
     methods: {
         applyFilter: debounce( function() {

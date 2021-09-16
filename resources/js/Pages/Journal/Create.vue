@@ -2,7 +2,7 @@
     <Head title="Create Entry"/>
     <div class="min-h-screen w-screen bg-black flex flex-col justify-top items-center pt-20">
         <JournalTitle />
-        <EntryForm v-if="entry" :entry="entry" :categories="categories.data" :action="'create'"/>
+        <EntryForm v-if="entry" :entry="entry" :categories="categories.data"/>
     </div>
 </template>
 <script>
@@ -17,6 +17,10 @@ export default {
         EntryForm,
     },
     props: {
+        entry: {
+            type: Object,
+            default: () => {}
+        },
         categories: {
             type: Object,
             default: () => {}
@@ -34,13 +38,6 @@ export default {
     data() {
         return {
             content: null,
-            entry: {
-                title: null,
-                content: null,
-                category: {
-                    id: 1
-                },
-            }
         }
     },
     methods: {

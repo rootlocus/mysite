@@ -7,9 +7,18 @@
             <button 
                 :disabled="!isOwner" 
                 class="p-2 mt-2 border border-gray-750 text-green-550 rounded disabled:opacity-50 disabled:cursor-not-allowed" 
-                @click="submit">
-                {{ action == 'update' ? 'Update' : 'Submit'}}
+                @click="updateEntry(false)">
+                Submit
             </button>
+            <button 
+                :disabled="!isOwner" 
+                class="p-2 mt-2 border border-gray-750 text-green-550 rounded disabled:opacity-50 disabled:cursor-not-allowed" 
+                @click="updateEntry()">
+                Save Draft
+            </button>
+            <div class="text-red-500">
+                {{ entry.is_draft ? 'Draft mode' : 'Published' }}
+            </div>
             <div v-if="!isOwner">Only owner can submit an entry</div>
         </div>
     </div>
@@ -17,6 +26,7 @@
 <script>
 import TipTap from '@/Components/TipTap';
 import DropdownSelect from '@/Components/DropdownSelect';
+import { debounce } from 'lodash';
 
 export default {
     components: {
@@ -32,10 +42,12 @@ export default {
             type: Array,
             default: () => {}
         },
-        action: {
-            type: String,
-            default: () => {}
-        }
+    },
+    watch: {
+        'entry.content': function(newValue, oldValue) {
+            this.updateEntry();
+        },
+
     },
     computed: {
         isOwner() {
@@ -45,31 +57,20 @@ export default {
     methods: {
         select(category) {
             this.entry.category.id = category;
+            this.updateEntry();
         },
-        submit() {
-            if (this.action === 'update') {
-                this.updateEntry();
-            } else {
-                this.submitEntry();
-            }
-        },
-        submitEntry() {
-            this.$inertia.post(route('journal.store'), this.entry, {
-                onSuccess: page => { this.onSuccess('Entry added');},
-                onError: errors => { this.onError(errors);},
-            });
-        },
-        updateEntry() {
+        updateEntry: debounce( function(isDraft = true) {
             let params = {
                 content: this.entry.content,
                 title: this.entry.title,
                 category_id: this.entry.category.id,
+                is_draft: isDraft
             };
             this.$inertia.put(route('journal.update', this.entry.id), params, {
                 onSuccess: page => { this.onSuccess('Entry updated');},
                 onError: errors => { this.onError(errors);},
             });
-        },
+        }, 500),
         onError(data) {
             for (let key in data) {
                 this.$toast.error(data[key], {duration: false});

@@ -42,7 +42,17 @@ class JournalController extends Controller
 
     public function create(Request $request)
     {
+        abort_if(!$request->user() || $request->user()->email !== config('mail.personal.email'), 403, 'Only owner can create an entry');
+        
+        $entry = new Entry();
+        $entry->user_id = $request->user()->id;
+        $entry->entry_categories_id = 1;
+        $entry->is_draft = true;
+        $entry->title = $request->title ?? null;
+        $entry->save();
+
         return Inertia::render('Journal/Create', [
+            'entry' => $entry->load('category'),
             'categories' => EntryCategoryResource::collection(EntryCategory::all()),
             'title' => $request->title ?? null,
         ]);
@@ -55,6 +65,8 @@ class JournalController extends Controller
         $entry->title = $request->title;
         $entry->entry_categories_id = data_get($request->category, 'id');
         $entry->content = $request->content;
+        $entry->is_draft = true;
+        $entry->user_id = $request->user()->id;
         $entry->save();
 
         return redirect()->route('journal.index')->with('success', 'Entry added!');
@@ -64,7 +76,7 @@ class JournalController extends Controller
     {
         abort_if(!$request->user() || $request->user()->email !== config('mail.personal.email'), 403, 'Only owner can edit an entry');
 
-        return Inertia::render('Journal/Edit', [
+        return Inertia::render('Journal/Create', [
             'entry' => $entry->load('category'),
             'categories' => EntryCategoryResource::collection(EntryCategory::all()),
             'filters' => [
@@ -81,6 +93,7 @@ class JournalController extends Controller
            'title' => $request->title,
            'entry_categories_id' => $request->category_id,
            'content' => $request->content,
+           'is_draft' => $request->is_draft,
         ]);
 
         return redirect()->route('journal.edit', $entry->id)->with('success', 'Entry added!');

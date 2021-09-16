@@ -19,7 +19,7 @@ export default {
             default: () => []
         },
         selected: {
-            type: String || Number,
+            type: Number,
             default: null
         },
     },

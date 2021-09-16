@@ -14,6 +14,12 @@ class Entry extends Model
         'title',
         'entry_categories_id',
         'content',
+        'is_draft',
+        'user_id,'
+    ];
+
+    protected $casts = [
+        'is_draft' => 'boolean'
     ];
 
     public function category()
