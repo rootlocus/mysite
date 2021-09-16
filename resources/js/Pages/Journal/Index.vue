@@ -14,10 +14,10 @@
                 <span class="text-white" v-if="entries.data.length == 0">Hit "Enter" to create new entry</span>
             </div>
         </div>
+        <h2 class="text-2xl text-green-550 title" v-if="isOwner && drafts.length > 0">Drafts</h2>
+        <DraftList :entries="drafts" v-if="isOwner && drafts.length > 0"/>
+        <h2 class="text-2xl text-green-550 mt-4 title">Entries</h2>
         <EntryList :entries="nondrafts"/>
-        <pre>
-        {{ drafts }}
-        </pre>
     </div>
 </template>
 
@@ -74,12 +74,14 @@ import { Head } from '@inertiajs/inertia-vue3';
 import { debounce } from 'lodash';
 import JournalTitle from "@/Components/Journal/Title";
 import EntryList from "@/Components/Journal/EntryList";
+import DraftList from "@/Components/Journal/DraftList";
 
 export default {
     components: {
         Head,
         JournalTitle,
         EntryList,
+        DraftList,
     },
     props: {
         entries: {
