@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Journal;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateEntryRequest;
+use App\Http\Requests\UpdateEntryRequest;
 use App\Http\Resources\EntryCategoryResource;
 use App\Http\Resources\EntryResource;
 use App\Models\Journal\Entry;
@@ -40,16 +42,17 @@ class JournalController extends Controller
         ]);
     }
 
-    public function create(Request $request)
+    public function create(Request $request, Entry $entry)
     {
         abort_if(!$request->user() || $request->user()->email !== config('mail.personal.email'), 403, 'Only owner can create an entry');
-        
-        $entry = new Entry();
-        $entry->user_id = $request->user()->id;
-        $entry->entry_categories_id = 1;
-        $entry->is_draft = true;
-        $entry->title = $request->title ?? null;
-        $entry->save();
+
+        if ($entry->id == null) {
+            $entry->user_id = $request->user()->id;
+            $entry->entry_categories_id = 1;
+            $entry->is_draft = true;
+            $entry->title = $request->title ?? null;
+            $entry->save();
+        }
 
         return Inertia::render('Journal/Create', [
             'entry' => $entry->load('category'),
@@ -58,16 +61,9 @@ class JournalController extends Controller
         ]);
     }
 
-    public function store(Request $request, Entry $entry)
+    public function store(CreateEntryRequest $request)
     {
-        abort_if(!$request->user() || $request->user()->email !== config('mail.personal.email'), 403, 'Only owner can submit an entry');
-        //todo validation
-        $entry->title = $request->title;
-        $entry->entry_categories_id = data_get($request->category, 'id');
-        $entry->content = $request->content;
-        $entry->is_draft = true;
-        $entry->user_id = $request->user()->id;
-        $entry->save();
+        Entry::firstOrCreate($request->validated());
 
         return redirect()->route('journal.index')->with('success', 'Entry added!');
     }
@@ -85,16 +81,9 @@ class JournalController extends Controller
         ]);
     }
 
-    public function update(Request $request, Entry $entry)
+    public function update(UpdateEntryRequest $request, Entry $entry)
     {
-        abort_if(!$request->user() || $request->user()->email !== config('mail.personal.email'), 403, 'Only owner can update an entry');
-        //todo validation
-        $entry->update([
-           'title' => $request->title,
-           'entry_categories_id' => $request->category_id,
-           'content' => $request->content,
-           'is_draft' => $request->is_draft,
-        ]);
+        $entry->update($request->validated());
 
         return redirect()->route('journal.edit', $entry->id)->with('success', 'Entry added!');
     }

@@ -13,7 +13,6 @@
 <script>
 import swal from 'sweetalert';
 
-
 export default {
     props: {
         entries: {
@@ -31,7 +30,6 @@ export default {
             this.$inertia.get(route('journal.edit', entry.id));
         },
         deleteEntry(entry) {
-            //TODO; page doesnt refresh upon deleting
             swal({
                 title: "Are you sure you want to delete entry ?",
                 icon: "warning",
@@ -40,7 +38,7 @@ export default {
             })
             .then((isConfirm) => {
                 if (isConfirm) {
-                    this.$inertia.delete(route('journal.destroy', entry.id), null, {
+                    this.$inertia.delete(route('journal.destroy', entry.id), {
                         onSuccess: page => { this.onSuccess('Entry is deleted !');},
                         onError: errors => { this.onError(errors);},
                     });

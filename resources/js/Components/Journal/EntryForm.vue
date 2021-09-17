@@ -67,10 +67,10 @@ export default {
                 is_draft: isDraft
             };
             this.$inertia.put(route('journal.update', this.entry.id), params, {
-                onSuccess: page => { this.onSuccess('Entry updated');},
+                // onSuccess: page => { this.onSuccess('Entry updated');},
                 onError: errors => { this.onError(errors);},
             });
-        }, 500),
+        }, 1000),
         onError(data) {
             for (let key in data) {
                 this.$toast.error(data[key], {duration: false});
