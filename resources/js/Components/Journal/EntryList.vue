@@ -12,7 +12,6 @@
 <script>
 import swal from 'sweetalert';
 
-
 export default {
     props: {
         entries: {
@@ -38,7 +37,7 @@ export default {
             })
             .then((isConfirm) => {
                 if (isConfirm) {
-                    this.$inertia.delete(route('journal.destroy', entry.id), null, {
+                    this.$inertia.delete(route('journal.destroy', entry.id), {
                         onSuccess: page => { this.onSuccess('Entry is deleted !');},
                         onError: errors => { this.onError(errors);},
                     });

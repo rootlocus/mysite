@@ -103,18 +103,18 @@ export default {
             nondrafts: {},
         }
     },
+    watch: {
+        filters(newValue, oldValue) {
+            this.initializeData();
+        }
+    },
     computed: {
         isOwner() {
             return !!this.$page.props.auth.user && this.$page.props.auth.user.email === 'erickokkuan@gmail.com'; 
         },
     },
     mounted () {
-        this.drafts = this.entries.data.filter( entry => {
-            return entry.is_draft === true;
-        });
-        this.nondrafts = this.entries.data.filter( entry => {
-            return entry.is_draft === false;
-        });
+        this.initializeData();
     },
     methods: {
         applyFilter: debounce( function() {
@@ -133,6 +133,14 @@ export default {
         onSuccess(msg) {
             this.$toast.success(msg, {duration: 3000});
         },
+        initializeData() {
+            this.drafts = this.entries.data.filter( entry => {
+                return entry.is_draft === true;
+            });
+            this.nondrafts = this.entries.data.filter( entry => {
+                return entry.is_draft === false;
+            });
+        }
     },
 }
 </script>

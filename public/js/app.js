@@ -28608,7 +28608,6 @@ __webpack_require__.r(__webpack_exports__);
     deleteEntry: function deleteEntry(entry) {
       var _this = this;
 
-      //TODO; page doesnt refresh upon deleting
       sweetalert__WEBPACK_IMPORTED_MODULE_0___default()({
         title: "Are you sure you want to delete entry ?",
         icon: "warning",
@@ -28616,7 +28615,7 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: false
       }).then(function (isConfirm) {
         if (isConfirm) {
-          _this.$inertia["delete"](route('journal.destroy', entry.id), null, {
+          _this.$inertia["delete"](route('journal.destroy', entry.id), {
             onSuccess: function onSuccess(page) {
               _this.onSuccess('Entry is deleted !');
             },
@@ -28703,14 +28702,12 @@ __webpack_require__.r(__webpack_exports__);
         is_draft: isDraft
       };
       this.$inertia.put(route('journal.update', this.entry.id), params, {
-        onSuccess: function onSuccess(page) {
-          _this.onSuccess('Entry updated');
-        },
+        // onSuccess: page => { this.onSuccess('Entry updated');},
         onError: function onError(errors) {
           _this.onError(errors);
         }
       });
-    }, 500),
+    }, 1000),
     onError: function onError(data) {
       for (var key in data) {
         this.$toast.error(data[key], {
@@ -28768,7 +28765,7 @@ __webpack_require__.r(__webpack_exports__);
         dangerMode: false
       }).then(function (isConfirm) {
         if (isConfirm) {
-          _this.$inertia["delete"](route('journal.destroy', entry.id), null, {
+          _this.$inertia["delete"](route('journal.destroy', entry.id), {
             onSuccess: function onSuccess(page) {
               _this.onSuccess('Entry is deleted !');
             },
@@ -29463,18 +29460,18 @@ __webpack_require__.r(__webpack_exports__);
       nondrafts: {}
     };
   },
+  watch: {
+    filters: function filters(newValue, oldValue) {
+      this.initializeData();
+    }
+  },
   computed: {
     isOwner: function isOwner() {
       return !!this.$page.props.auth.user && this.$page.props.auth.user.email === 'erickokkuan@gmail.com';
     }
   },
   mounted: function mounted() {
-    this.drafts = this.entries.data.filter(function (entry) {
-      return entry.is_draft === true;
-    });
-    this.nondrafts = this.entries.data.filter(function (entry) {
-      return entry.is_draft === false;
-    });
+    this.initializeData();
   },
   methods: {
     applyFilter: (0,lodash__WEBPACK_IMPORTED_MODULE_1__.debounce)(function () {
@@ -29503,6 +29500,14 @@ __webpack_require__.r(__webpack_exports__);
     onSuccess: function onSuccess(msg) {
       this.$toast.success(msg, {
         duration: 3000
+      });
+    },
+    initializeData: function initializeData() {
+      this.drafts = this.entries.data.filter(function (entry) {
+        return entry.is_draft === true;
+      });
+      this.nondrafts = this.entries.data.filter(function (entry) {
+        return entry.is_draft === false;
       });
     }
   }
