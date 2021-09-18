@@ -59,6 +59,11 @@
           />
         </svg>
       </button>
+    <button class="rounded bg-white p-1 hover:bg-gray-300 font-bold" 
+      @click="editor.chain().focus().setHardBreak().run()"
+      v-on:keyup.enter="addSpaces">
+      br
+    </button>
       <button
         class="rounded bg-white p-1 hover:bg-gray-300"
         @click="editor.chain().focus().toggleStrike().run()"
@@ -372,6 +377,9 @@ export default {
         .setLink({ href: url })
         .run()
     },
+    addSpaces() {
+      console.log('test');
+    }
   },
 };
 </script>

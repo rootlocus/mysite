@@ -1,9 +1,8 @@
 <template>
     <div class="border-2 border-gray-300 text-green-560 rounded p-4 mb-4 mx-4 w-11/12 md:w-1/2" v-for="entry in entries" :key="entry">
-        <h2 class="title font-bold text-3xl">{{ entry.title }}</h2>
-        <h3 class="content font-medium">{{ entry.category.name }}</h3>
+        <h2 class="title font-bold text-3xl">{{ entry.title }} <span class="content font-medium text-xs">{{ entry.category.name }}</span></h2>
         <div class="mt-2 text-xm mb-2" v-html="entry.content"></div>
-        <h3 class="content font-medium text-right"><i>Logged {{ entry.created_at }}</i></h3>
+        <h5 class="content font-medium text-right"><i>Logged {{ entry.created_at }}</i></h5>
         <div v-if="isOwner" class="flex justify-end space-x-2">
             <a @click="edit(entry)" class="cursor-pointer">Edit</a><a @click="deleteEntry(entry)" class="cursor-pointer">Delete</a>
         </div>

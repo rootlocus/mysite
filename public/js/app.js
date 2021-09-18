@@ -28705,7 +28705,8 @@ __webpack_require__.r(__webpack_exports__);
         // onSuccess: page => { this.onSuccess('Entry updated');},
         onError: function onError(errors) {
           _this.onError(errors);
-        }
+        },
+        preserveScroll: true
       });
     }, 1000),
     onError: function onError(data) {
@@ -29288,6 +29289,9 @@ __webpack_require__.r(__webpack_exports__);
       this.editor.chain().focus().extendMarkRange('link').setLink({
         href: url
       }).run();
+    },
+    addSpaces: function addSpaces() {
+      console.log('test');
     }
   }
 });
@@ -30581,7 +30585,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 
 var _hoisted_1 = {
-  "class": "w-full md:w-1/2 my-5 p-1 rounded bg-black border border-green-550"
+  "class": "w-full md:w-1/2 my-5 mb-20 p-1 rounded bg-black border border-green-550"
 };
 var _hoisted_2 = {
   "class": "flex items-center space-x-4"
@@ -30664,7 +30668,7 @@ var _hoisted_1 = {
   "class": "title font-bold text-3xl"
 };
 var _hoisted_2 = {
-  "class": "content font-medium"
+  "class": "content font-medium text-xs"
 };
 var _hoisted_3 = ["innerHTML"];
 var _hoisted_4 = {
@@ -30681,16 +30685,16 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", {
       "class": "border-2 border-gray-300 text-green-560 rounded p-4 mb-4 mx-4 w-11/12 md:w-1/2",
       key: entry
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_1, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(entry.title), 1
+    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h2", _hoisted_1, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(entry.title) + " ", 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(entry.category.name), 1
+    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("span", _hoisted_2, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(entry.category.name), 1
     /* TEXT */
-    ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
+    )]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("div", {
       "class": "mt-2 text-xm mb-2",
       innerHTML: entry.content
     }, null, 8
     /* PROPS */
-    , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h3", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "Logged " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(entry.created_at), 1
+    , _hoisted_3), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("h5", _hoisted_4, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("i", null, "Logged " + (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(entry.created_at), 1
     /* TEXT */
     )]), $options.isOwner ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementBlock)("div", _hoisted_5, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("a", {
       onClick: function onClick($event) {
@@ -32151,10 +32155,20 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   }, _hoisted_9, 2
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
+    "class": "rounded bg-white p-1 hover:bg-gray-300 font-bold",
+    onClick: _cache[4] || (_cache[4] = function ($event) {
+      return $data.editor.chain().focus().setHardBreak().run();
+    }),
+    onKeyup: _cache[5] || (_cache[5] = (0,vue__WEBPACK_IMPORTED_MODULE_0__.withKeys)(function () {
+      return $options.addSpaces && $options.addSpaces.apply($options, arguments);
+    }, ["enter"]))
+  }, " br ", 32
+  /* HYDRATE_EVENTS */
+  ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["rounded bg-white p-1 hover:bg-gray-300", {
       'bg-gray-300': $data.editor.isActive('strike')
     }]),
-    onClick: _cache[4] || (_cache[4] = function ($event) {
+    onClick: _cache[6] || (_cache[6] = function ($event) {
       return $data.editor.chain().focus().toggleStrike().run();
     })
   }, _hoisted_11, 2
@@ -32163,14 +32177,14 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["rounded bg-white p-1 hover:bg-gray-300", {
       'bg-gray-300': $data.editor.isActive('code')
     }]),
-    onClick: _cache[5] || (_cache[5] = function ($event) {
+    onClick: _cache[7] || (_cache[7] = function ($event) {
       return $data.editor.chain().focus().toggleCode().run();
     })
   }, _hoisted_13, 2
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "rounded bg-white p-1 hover:bg-gray-300",
-    onClick: _cache[6] || (_cache[6] = function ($event) {
+    onClick: _cache[8] || (_cache[8] = function ($event) {
       return $data.editor.chain().focus().unsetAllMarks().run();
     })
   }, _hoisted_15), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"rounded bg-white p-1 hover:bg-gray-300\" @click=\"editor.chain().focus().clearNodes().run()\">\n                clear node\n            </button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"rounded bg-white p-1 hover:bg-gray-300\" @click=\"editor.chain().focus().setParagraph().run()\" :class=\"{ 'bg-gray-300': editor.isActive('paragraph') }\">\n                <svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 24 24\" width=\"24\" height=\"24\"><path fill=\"none\" d=\"M0 0h24v24H0z\"/><path d=\"M12 6v15h-2v-5a6 6 0 1 1 0-12h10v2h-3v15h-2V6h-3zm-2 0a4 4 0 1 0 0 8V6z\"/></svg>\n            </button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
@@ -32179,7 +32193,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         level: 1
       })
     }]),
-    onClick: _cache[7] || (_cache[7] = function ($event) {
+    onClick: _cache[9] || (_cache[9] = function ($event) {
       return $data.editor.chain().focus().toggleHeading({
         level: 1
       }).run();
@@ -32192,7 +32206,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         level: 2
       })
     }]),
-    onClick: _cache[8] || (_cache[8] = function ($event) {
+    onClick: _cache[10] || (_cache[10] = function ($event) {
       return $data.editor.chain().focus().toggleHeading({
         level: 2
       }).run();
@@ -32205,7 +32219,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         level: 3
       })
     }]),
-    onClick: _cache[9] || (_cache[9] = function ($event) {
+    onClick: _cache[11] || (_cache[11] = function ($event) {
       return $data.editor.chain().focus().toggleHeading({
         level: 3
       }).run();
@@ -32218,7 +32232,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         level: 4
       })
     }]),
-    onClick: _cache[10] || (_cache[10] = function ($event) {
+    onClick: _cache[12] || (_cache[12] = function ($event) {
       return $data.editor.chain().focus().toggleHeading({
         level: 4
       }).run();
@@ -32231,7 +32245,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         level: 5
       })
     }]),
-    onClick: _cache[11] || (_cache[11] = function ($event) {
+    onClick: _cache[13] || (_cache[13] = function ($event) {
       return $data.editor.chain().focus().toggleHeading({
         level: 5
       }).run();
@@ -32244,7 +32258,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         level: 6
       })
     }]),
-    onClick: _cache[12] || (_cache[12] = function ($event) {
+    onClick: _cache[14] || (_cache[14] = function ($event) {
       return $data.editor.chain().focus().toggleHeading({
         level: 6
       }).run();
@@ -32255,7 +32269,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["rounded bg-white p-1 hover:bg-gray-300", {
       'bg-gray-300': $data.editor.isActive('bulletList')
     }]),
-    onClick: _cache[13] || (_cache[13] = function ($event) {
+    onClick: _cache[15] || (_cache[15] = function ($event) {
       return $data.editor.chain().focus().toggleBulletList().run();
     })
   }, _hoisted_29, 2
@@ -32264,7 +32278,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["rounded bg-white p-1 hover:bg-gray-300", {
       'bg-gray-300': $data.editor.isActive('orderedList')
     }]),
-    onClick: _cache[14] || (_cache[14] = function ($event) {
+    onClick: _cache[16] || (_cache[16] = function ($event) {
       return $data.editor.chain().focus().toggleOrderedList().run();
     })
   }, _hoisted_31, 2
@@ -32273,7 +32287,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["rounded bg-white p-1 hover:bg-gray-300", {
       'bg-gray-300': $data.editor.isActive('codeBlock')
     }]),
-    onClick: _cache[15] || (_cache[15] = function ($event) {
+    onClick: _cache[17] || (_cache[17] = function ($event) {
       return $data.editor.chain().focus().toggleCodeBlock().run();
     })
   }, _hoisted_33, 2
@@ -32282,23 +32296,23 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)(["rounded bg-white p-1 hover:bg-gray-300", {
       'bg-gray-300': $data.editor.isActive('blockquote')
     }]),
-    onClick: _cache[16] || (_cache[16] = function ($event) {
+    onClick: _cache[18] || (_cache[18] = function ($event) {
       return $data.editor.chain().focus().toggleBlockquote().run();
     })
   }, _hoisted_35, 2
   /* CLASS */
   ), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)(" <button class=\"rounded bg-white p-1 hover:bg-gray-300\" @click=\"editor.chain().focus().setHorizontalRule().run()\">\n                horizontal rule\n            </button>\n            <button class=\"rounded bg-white p-1 hover:bg-gray-300\" @click=\"editor.chain().focus().setHardBreak().run()\">\n                hard break\n            </button> "), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "rounded bg-white p-1 hover:bg-gray-300",
-    onClick: _cache[17] || (_cache[17] = function ($event) {
+    onClick: _cache[19] || (_cache[19] = function ($event) {
       return $data.editor.chain().focus().undo().run();
     })
   }, _hoisted_37), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
     "class": "rounded bg-white p-1 hover:bg-gray-300",
-    onClick: _cache[18] || (_cache[18] = function ($event) {
+    onClick: _cache[20] || (_cache[20] = function ($event) {
       return $data.editor.chain().focus().redo().run();
     })
   }, _hoisted_39), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createElementVNode)("button", {
-    onClick: _cache[19] || (_cache[19] = function () {
+    onClick: _cache[21] || (_cache[21] = function () {
       return $options.setLink && $options.setLink.apply($options, arguments);
     }),
     "class": (0,vue__WEBPACK_IMPORTED_MODULE_0__.normalizeClass)([{

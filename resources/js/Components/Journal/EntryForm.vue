@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full md:w-1/2 my-5 p-1 rounded bg-black border border-green-550">
+    <div class="w-full md:w-1/2 my-5 mb-20 p-1 rounded bg-black border border-green-550">
         <input v-model="entry.title" type="text" name="min" placeholder="Enter your title" class="border border-gray-400 p-2 m-1 mb-4 w-full">
         <DropdownSelect label='Categories' :items="categories" :selected="entry.category.id" @select="select" class="text-green-550"/>
         <TipTap :modelValue="entry.content" @update:model-value="entry.content = $event"/>
@@ -69,6 +69,7 @@ export default {
             this.$inertia.put(route('journal.update', this.entry.id), params, {
                 // onSuccess: page => { this.onSuccess('Entry updated');},
                 onError: errors => { this.onError(errors);},
+                preserveScroll: true, 
             });
         }, 1000),
         onError(data) {
