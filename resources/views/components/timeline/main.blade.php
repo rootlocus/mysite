@@ -1,11 +1,21 @@
 <div class="container mx-auto w-full h-full">
     <div class="relative wrap overflow-hidden p-10 h-full">
-        <div class="flex justify-center items-start">
+        {{-- <div class="flex justify-center items-start">
             <span style="font-size: 3em;" class="text-indigo-800">
                 <i class="fas fa-question-circle"></i>
               </span>
-        </div>
+        </div> --}}
         <div class="absolute border-dashed border-2 border-indigo-800 h-full" style="left: 50%"></div>
+        <x-timeline.section
+            direction='left-timeline flex-row-reverse'
+            title='Food Market Hub'
+            titleLink="https://www.foodmarkethub.com/"
+            year="2021"
+            tools="Laravel, Php, MySQL"
+            image="{{ local_images('fmh.png') }}"
+        >
+
+        </x-timeline.section>
         <x-timeline.section
             direction='right-timeline'
             title='Supplycart Technologies'
