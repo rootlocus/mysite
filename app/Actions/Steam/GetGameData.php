@@ -6,28 +6,30 @@ use App\Http\Resources\TopGameResource;
 use App\Services\Steam\SteamWebService;
 use Exception;
 use Illuminate\Support\Arr;
-use GuzzleHttp\Client;
 use Lorisleiva\Actions\Concerns\AsAction;
 
 class GetGameData
 {
     use AsAction;
 
-    public function handle($steamId = null)
+    protected $steamId;
+    protected $service;
+    
+    public function __construct($steamId = null)
     {
-        $steam = new SteamWebService();
-        $url = $steam->steamId($steamId ?? env('STEAM_ID'))->getOwnedGames();
+        $this->steamId = $steamId ?? env('STEAM_ID');
+        $this->service = new SteamWebService($this->steamId);
+    }
 
+    public function handle()
+    {
         try {
-            $httpClient = new Client();
-            $request = $httpClient->get($url);
-            $response = json_decode($request->getBody()->getContents());
+            $response = $this->service->getOwnedGames();
+
             $topGames = collect(data_get($response, 'response.games'))
                 ->sortByDesc('playtime_forever')
                 ->take(10);
         } catch (Exception $e) {
-            info($e);
-
             return [
                 'totalGames' => 0,
                 'totalPlaytime' => 0,
@@ -38,10 +40,6 @@ class GetGameData
                         'values' => []
                     ]
                 ]
-                // TopGameResource::collection($topGames)->additional(['meta' => [
-                //     'games' => $topGames->pluck('name'),
-                //     'values' => $topGames->pluck('playtime_forever'),
-                // ]]),
             ];
         }
 
@@ -55,6 +53,7 @@ class GetGameData
         ];
     }
 
+    //todo put into global helper
     public function calculateTotalPlaytime($response) 
     {
         $playtime = Arr::pluck(data_get($response, 'response.games'), 'playtime_forever');
